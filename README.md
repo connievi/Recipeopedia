@@ -135,6 +135,7 @@ Recipe
 
 Review
 | Property | Type | Description |
+| -------- | -------- | -------- |
 | user | pointer | pointer to user who left the review |
 | comment | String | user's comment on the recipe |
 | picture | file | user's picture of their attempt at the recipe |

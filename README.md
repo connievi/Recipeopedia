@@ -123,7 +123,7 @@ Recipe
 | Property | Type | Description |
 | -------- | -------- | -------- |
 | name | String | name of recipe |
-| picture | jpg | picture of re
+| picture | file | picture of recipe |
 | ingredients | List of Strings | recipe ingredients |
 | nutrition | List of Strings | nutrition facts |
 | instructions | String | recipe instructions |
@@ -132,6 +132,12 @@ Recipe
 | dishType | List of Strings | type of dish | 
 | dietLabels | List of Strings | diet label | 
 | healthLabels | List of Strings | health labels |
+
+Review
+| Property | Type | Description |
+| user | pointer | pointer to user who left the review |
+| comment | String | user's comment on the recipe |
+| picture | file | user's picture of their attempt at the recipe |
 
 
 ### Networking

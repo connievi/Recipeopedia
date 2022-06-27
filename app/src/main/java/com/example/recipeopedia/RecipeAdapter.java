@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.recipeopedia.models.Recipe;
 
+import org.parceler.Parcels;
+
 import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
@@ -52,8 +54,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        public TextView tvRecipeName;
-        public ImageView ivRecipeImage;
+        TextView tvRecipeName;
+        ImageView ivRecipeImage;
         // need to add more attributes later
 
         public ViewHolder(@NonNull View itemView)
@@ -61,16 +63,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             super(itemView);
             tvRecipeName = itemView.findViewById(R.id.tvRecipeName);
             ivRecipeImage = itemView.findViewById(R.id.ivRecipeImage);
-            // need to add more attributes later
             itemView.setOnClickListener(this);
         }
 
         public void bind(Recipe recipe)
         {
             tvRecipeName.setText(recipe.getRecipeName());
-            // need to load in the recipe image using Glide
             String imageUrl = recipe.getImage();
-
             Glide.with(context)
                     .load(imageUrl)
                     .into(ivRecipeImage);
@@ -83,7 +82,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             {
                 Recipe recipe = recipes.get(position);
                 Intent intent = new Intent(context, RecipeDetailsActivity.class);
-                // intent.putExtra(Recipe.class.getSimpleName(), Parcels.wrap(recipe));
+                intent.putExtra(Recipe.class.getSimpleName(), Parcels.wrap(recipe));
                 context.startActivity(intent);
             }
         }

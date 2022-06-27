@@ -1,23 +1,27 @@
 package com.example.recipeopedia.models;
 
+import com.parse.ParseClassName;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel
 public class Recipe {
-    private String recipeName;
-    private String ingredients;
-    private String nutrition;
-    private String instructions;
-    private String mealType;
-    private String cuisineType;
-    private String  dishType;
-    private String dietLabels;
-    private String healthLabels;
-    private String image;
+    String recipeName;
+    String ingredients;
+    String nutrition;
+    String instructions;
+    String mealType;
+    String cuisineType;
+    String dishType;
+    String dietLabels;
+    String healthLabels;
+    String image;
 
     public Recipe() {}
 

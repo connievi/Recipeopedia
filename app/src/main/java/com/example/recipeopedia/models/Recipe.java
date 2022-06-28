@@ -62,6 +62,4 @@ public class Recipe {
     public String getImage() {
         return image;
     }
-
-
 }

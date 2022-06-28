@@ -39,6 +39,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         tvRecipeName = findViewById(R.id.tvRecipeName);
         tvIngredients = findViewById(R.id.tvIngredients);
         tvInstructions = findViewById(R.id.tvInstructions);
+        ivRecipeImage = findViewById(R.id.ivRecipeImage);
 
          recipe = Parcels.unwrap(getIntent().getParcelableExtra(Recipe.class.getSimpleName()));
 

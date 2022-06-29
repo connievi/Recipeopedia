@@ -28,15 +28,15 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        etEmail = findViewById(R.id.etEmail);
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
-        btnCreate = findViewById(R.id.btnCreate);
-        etIcon = findViewById(R.id.etIcon);
-
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                etEmail = findViewById(R.id.etEmail);
+                etUsername = findViewById(R.id.etUsername);
+                etPassword = findViewById(R.id.etPassword);
+                btnCreate = findViewById(R.id.btnCreate);
+                etIcon = findViewById(R.id.etIcon);
+
                 String username = etUsername.getText().toString();
                 if (username.isEmpty()) {
                     Toast.makeText(SignUpActivity.this, "Username cannot be empty.", Toast.LENGTH_SHORT).show();
@@ -50,7 +50,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
                 String email = etEmail.getText().toString();
-                if (password.isEmpty()) {
+                if (email.isEmpty()) {
                     Toast.makeText(SignUpActivity.this, "Email cannot be empty.", Toast.LENGTH_SHORT).show();
                     return;
                 }

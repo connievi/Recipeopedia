@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ProfileFragment">
+
+    <ImageView
+        android:id="@+id/ivProfileImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="0dp"
+        android:contentDescription="@string/profile_picture"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivProfileImage"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="105dp"
+        android:contextClickable="false"
+        android:text="@string/username"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:text="Username" />
+
+    <TextView
+        android:id="@+id/tvBio"
+        android:layout_width="371dp"
+        android:layout_height="154dp"
+        android:layout_below="@+id/tvUsername"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/bio"
+        tools:text="Description" />
+
+    <Button
+        android:id="@+id/btnEditProfile"
+        android:layout_width="116dp"
+        android:layout_height="47dp"
+        android:layout_below="@+id/tvBio"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="281dp"
+        android:layout_marginEnd="147dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/edit"
+        android:text="@string/edit"
+        tools:ignore="SpeakableTextPresentCheck" />
+</RelativeLayout>

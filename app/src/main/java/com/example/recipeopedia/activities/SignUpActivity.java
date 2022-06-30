@@ -1,4 +1,4 @@
-package com.example.recipeopedia;
+package com.example.recipeopedia.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.recipeopedia.R;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -28,14 +29,15 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        etEmail = findViewById(R.id.etEmail);
+        etUsername = findViewById(R.id.etUsername);
+        etPassword = findViewById(R.id.etPassword);
+        etIcon = findViewById(R.id.etIcon);
+        btnCreate = findViewById(R.id.btnCreate);
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                etEmail = findViewById(R.id.etEmail);
-                etUsername = findViewById(R.id.etUsername);
-                etPassword = findViewById(R.id.etPassword);
-                btnCreate = findViewById(R.id.btnCreate);
-                etIcon = findViewById(R.id.etIcon);
+
 
                 String username = etUsername.getText().toString();
                 if (username.isEmpty()) {
@@ -79,13 +81,13 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(SignUpActivity.this, "Issue with creating account!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                goMainActivity();
+                goEditProfileActivity();
             }
         });
     }
 
-    private void goMainActivity() {
-        Intent i = new Intent(this, MainActivity.class); // this refers to this activity which is a context
+    private void goEditProfileActivity() {
+        Intent i = new Intent(this, EditProfileActivity.class);
         startActivity(i);
         finish();
     }

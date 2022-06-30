@@ -1,4 +1,4 @@
-package com.example.recipeopedia;
+package com.example.recipeopedia.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +11,8 @@ import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.RequestHeaders;
 import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.example.recipeopedia.R;
+import com.example.recipeopedia.RecipeAdapter;
 import com.example.recipeopedia.models.Recipe;
 
 import org.json.JSONArray;

@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Recipeopedia</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="username">Username</string>
     <string name="bio">Bio</string>
     <string name="edit" />
     <string name="profile_picture">Profile Picture</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
 </resources>

@@ -1,8 +1,11 @@
 package com.example.recipeopedia.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -19,11 +22,15 @@ import android.widget.Toast;
 
 import com.example.recipeopedia.R;
 import com.example.recipeopedia.fragments.ProfileFragment;
+import com.google.android.material.navigation.NavigationView;
 import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+    private DrawerLayout drawerLayout;
+
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private Button btnLogOut;
     private Button btnSearch;
@@ -33,10 +40,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        drawerLayout = findViewById(R.id.my_drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
 
-        btnLogOut = findViewById(R.id.btnLogOut);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        /*btnLogOut = findViewById(R.id.btnLogOut);
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,51 +56,36 @@ public class MainActivity extends AppCompatActivity {
                 ParseUser.logOutInBackground();
                 logOutUser();
             }
-        });
+        });*/
 
-        btnSearch = findViewById(R.id.btnSearch);
+        /*btnSearch = findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "onClick search button");
                 goRecipeListActivity();
             }
-        });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.example_menu, menu);
-        return true;
+        });*/
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.itemAccount:
-                Toast.makeText(this, "Account selected", Toast.LENGTH_SHORT).show();
-                fragmentManager.beginTransaction().replace(R.id.flContainer, new ProfileFragment()).commit();
-                return true;
-//            case R.id.item2:
-//                Toast.makeText(this, "Item 2 selected", Toast.LENGTH_SHORT).show();
-//                return true;
-//            case R.id.item3:
-//                Toast.makeText(this, "Item 3 selected", Toast.LENGTH_SHORT).show();
-//                return true;
-//            case R.id.subitem1:
-//                Toast.makeText(this, "Sub Item 1 selected", Toast.LENGTH_SHORT).show();
-//                return true;
-//            case R.id.subitem2:
-//                Toast.makeText(this, "Sub Item 2 selected", Toast.LENGTH_SHORT).show();
-//                return true;
-            case R.id.itemLogOut:
-                Toast.makeText(this, "Log Out item selected", Toast.LENGTH_SHORT).show();
-                logOutUser();
-                return true;
-            default: return super.onOptionsItemSelected(item);
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            switch (item.getItemId()) {
+                case R.id.nav_account:
+                    Toast.makeText(this, "Account selected", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.nav_settings:
+                    Toast.makeText(this, "Item 2 selected", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.nav_logout:
+                    Toast.makeText(this, "Log Out item selected", Toast.LENGTH_SHORT).show();
+                    logOutUser();
+                    return true;
+                default: return super.onOptionsItemSelected(item);
+            }
         }
-
+        return super.onOptionsItemSelected(item);
     }
 
     private void logOutUser() {

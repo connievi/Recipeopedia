@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.recipeopedia.R;
 import com.example.recipeopedia.fragments.ProfileFragment;
+import com.example.recipeopedia.fragments.RecipeListFragment;
 import com.example.recipeopedia.fragments.SavedRecipesFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.parse.ParseUser;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 logOutUser();
                 break;
             default:
-                fragment = new ProfileFragment();
+                fragment = new RecipeListFragment();
         }
 
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();

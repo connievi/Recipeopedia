@@ -28,8 +28,6 @@ public class RecipeListActivity extends AppCompatActivity {
 
     public static final String TAG = "RecipeListActivity";
     private static final String URL_PREFIX = "https://api.edamam.com/api/recipes/v2";
-    private static final String APP_ID = "ee1f2fe0";
-    private static final String APP_KEY = "ec8cceba866280e53c0c9f2300c17b1b";
 
     public List<Recipe> recipes;
 
@@ -50,8 +48,8 @@ public class RecipeListActivity extends AppCompatActivity {
         params.put("limit", "5");
         params.put("page", "0");
         params.put("type", "public");
-        params.put("app_id", APP_ID);
-        params.put("app_key", APP_KEY);
+        params.put("app_id", R.string.APP_ID);
+        params.put("app_key", R.string.APP_KEY);
         params.put("q", "chicken");
         client.get(URL_PREFIX, params, new JsonHttpResponseHandler()
         {

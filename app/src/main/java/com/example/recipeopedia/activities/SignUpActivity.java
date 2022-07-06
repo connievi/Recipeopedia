@@ -37,8 +37,6 @@ public class SignUpActivity extends AppCompatActivity {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 String username = etUsername.getText().toString();
                 if (username.isEmpty()) {
                     Toast.makeText(SignUpActivity.this, "Username cannot be empty.", Toast.LENGTH_SHORT).show();
@@ -65,7 +63,6 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void saveUser(String email, String username, String password) throws ParseException {

@@ -32,12 +32,9 @@ import okhttp3.Headers;
 public class RecipeListFragment extends Fragment {
     public static final String TAG = "RecipeListFragment";
     public static final String URL_PREFIX = "https://api.edamam.com/api/recipes/v2";
-    public static final String APP_ID = "ee1f2fe0";
-    public static final String APP_KEY = "ec8cceba866280e53c0c9f2300c17b1b";
     private RecyclerView rvRecipes;
     protected RecipeAdapter adapter;
     protected List<Recipe> recipes;
-
 
     public RecipeListFragment() {}
 
@@ -68,8 +65,8 @@ public class RecipeListFragment extends Fragment {
         params.put("limit", "5");
         params.put("page", "0");
         params.put("type", "public");
-        params.put("app_id", APP_ID);
-        params.put("app_key", APP_KEY);
+        params.put("app_id", R.string.APP_ID);
+        params.put("app_key", R.string.APP_KEY);
         params.put("q", "chicken"); // need to change this so users can search and query
         client.get(URL_PREFIX, params, new JsonHttpResponseHandler()
         {

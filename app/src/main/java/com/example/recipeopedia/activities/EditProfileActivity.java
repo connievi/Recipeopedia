@@ -18,6 +18,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private EditText etFirstName, etLastName, etEmail, etPhoneNumber, etBio;
     private Button btnUpdate;
 
+    String firstName, lastName, email, phoneNumber, bio;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,31 +34,36 @@ public class EditProfileActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validateInput();
                 editProfile(v);
                 goMainActivity();
             }
         });
+
+        firstName = etFirstName.getText().toString();
+        lastName = etLastName.getText().toString();
+        email = etEmail.getText().toString();
+        phoneNumber = etPhoneNumber.getText().toString();
+        bio = etBio.getText().toString();
     }
 
     private boolean validateInput() {
-        if (etFirstName.getText().toString().isEmpty()) {
+        if (firstName.isEmpty()) {
             etFirstName.setError("Please Enter First Name");
             return false;
         }
-        if (etLastName.getText().toString().isEmpty()) {
+        if (lastName.isEmpty()) {
             etLastName.setError("Please Enter Last Name");
             return false;
         }
-        if (etEmail.getText().toString().isEmpty()) {
+        if (email.isEmpty()) {
             etEmail.setError("Please Enter Email");
             return false;
         }
-        if (etPhoneNumber.getText().toString().isEmpty()) {
+        if (phoneNumber.isEmpty()) {
             etPhoneNumber.setError("Please Enter Contact No");
             return false;
         }
-        if (etBio.getText().toString().isEmpty()) {
+        if (bio.isEmpty()) {
             etBio.setError("Please Enter Designation ");
             return false;
         }
@@ -68,19 +75,12 @@ public class EditProfileActivity extends AppCompatActivity {
         return true;
     }
 
-    boolean isEmailValid(String email) {
+    private boolean isEmailValid(String email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     public void editProfile(View v) {
         if (validateInput()) {
-            String firstName = etFirstName.getText().toString();
-            String lastName = etLastName.getText().toString();
-            String email = etEmail.getText().toString();
-            String phoneNumber = etPhoneNumber.getText().toString();
-            String bio = etBio.getText().toString();
-
-
             // WORK ON SAVING THE UPDATED INFO
             ParseUser currentUser = ParseUser.getCurrentUser();
             currentUser.put("firstName", firstName);

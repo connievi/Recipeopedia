@@ -1,14 +1,19 @@
-package com.example.recipeopedia.activities;
+package com.example.recipeopedia.fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
-import com.codepath.asynchttpclient.RequestHeaders;
 import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.recipeopedia.R;
@@ -24,26 +29,39 @@ import java.util.List;
 
 import okhttp3.Headers;
 
-public class RecipeListActivity extends AppCompatActivity {
+public class RecipeListFragment extends Fragment {
+    public static final String TAG = "RecipeListFragment";
+    public static final String URL_PREFIX = "https://api.edamam.com/api/recipes/v2";
+    public static final String APP_ID = "ee1f2fe0";
+    public static final String APP_KEY = "ec8cceba866280e53c0c9f2300c17b1b";
+    private RecyclerView rvRecipes;
+    protected RecipeAdapter adapter;
+    protected List<Recipe> recipes;
 
-    public static final String TAG = "RecipeListActivity";
-    private static final String URL_PREFIX = "https://api.edamam.com/api/recipes/v2";
-    private static final String APP_ID = "ee1f2fe0";
-    private static final String APP_KEY = "ec8cceba866280e53c0c9f2300c17b1b";
 
-    public List<Recipe> recipes;
+    public RecipeListFragment() {}
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe_list);
+    }
 
-        RecyclerView rvRecipes = findViewById(R.id.rvRecipes);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_recipe_list, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        RecyclerView rvRecipes = view.findViewById(R.id.rvRecipes);
         recipes = new ArrayList<>();
 
-        RecipeAdapter recipeAdapter = new RecipeAdapter(this, recipes);
+        RecipeAdapter recipeAdapter = new RecipeAdapter(getContext(), recipes);
         rvRecipes.setAdapter(recipeAdapter);
-        rvRecipes.setLayoutManager(new LinearLayoutManager(this));
+        rvRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
 
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
@@ -52,7 +70,7 @@ public class RecipeListActivity extends AppCompatActivity {
         params.put("type", "public");
         params.put("app_id", APP_ID);
         params.put("app_key", APP_KEY);
-        params.put("q", "chicken");
+        params.put("q", "chicken"); // need to change this so users can search and query
         client.get(URL_PREFIX, params, new JsonHttpResponseHandler()
         {
             @Override

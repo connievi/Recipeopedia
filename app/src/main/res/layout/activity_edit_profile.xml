@@ -204,7 +204,7 @@
                 app:layout_constraintWidth_percent="0.7"
                 style="?android:attr/borderlessButtonStyle"
                 android:elevation="2dp"
-                android:onClick="performEditProfile"
+                android:onClick="editProfile"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.recipeopedia.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.recipeopedia.R;
+import com.example.recipeopedia.activities.EditProfileActivity;
+import com.example.recipeopedia.activities.RecipeListActivity;
 import com.parse.ParseUser;
 
 public class ProfileFragment extends Fragment {
@@ -52,8 +55,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "onClick edit button");
-                // go to edit profile screen
+                goEditProfileActivity();
             }
         });
+    }
+
+    private void goEditProfileActivity() {
+        Intent i = new Intent(getContext(), EditProfileActivity.class);
+        startActivity(i);
     }
 }

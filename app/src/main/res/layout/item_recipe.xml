@@ -26,6 +26,4 @@
         android:layout_below="@+id/tvRecipeName"
         android:layout_marginTop="5dp"
         tools:srcCompat="@tools:sample/avatars" />
-
-
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package com.example.recipeopedia.models;
 
+import android.text.TextUtils;
+
 import com.parse.ParseClassName;
 
 import org.json.JSONArray;
@@ -45,6 +47,18 @@ public class Recipe {
             recipes.add(new Recipe(recipeJsonArray.getJSONObject(i)));
         }
         return recipes;
+    }
+
+    // Returns a Book given the expected JSON
+    public static Recipe fromJson(JSONObject jsonObject) {
+        Recipe recipe = new Recipe();
+        try {
+            recipe.recipeName = jsonObject.getString("label");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return recipe;
     }
 
     public String getRecipeName() {

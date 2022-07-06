@@ -28,6 +28,8 @@ public class RecipeListActivity extends AppCompatActivity {
     public static final String URL_PREFIX = "https://api.edamam.com/api/recipes/v2";
     public static final String APP_ID = "ee1f2fe0";
     public static final String APP_KEY = "ec8cceba866280e53c0c9f2300c17b1b";
+    public static final AsyncHttpClient client = new AsyncHttpClient();
+    public static final RequestParams params = new RequestParams();
 
     public List<Recipe> recipes;
 
@@ -43,8 +45,7 @@ public class RecipeListActivity extends AppCompatActivity {
         rvRecipes.setAdapter(recipeAdapter);
         rvRecipes.setLayoutManager(new LinearLayoutManager(this));
 
-        AsyncHttpClient client = new AsyncHttpClient();
-        RequestParams params = new RequestParams();
+
         params.put("limit", "5");
         params.put("page", "0");
         params.put("type", "public");

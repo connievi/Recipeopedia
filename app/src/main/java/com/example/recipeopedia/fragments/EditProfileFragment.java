@@ -19,7 +19,7 @@ import com.example.recipeopedia.R;
 import com.example.recipeopedia.activities.MainActivity;
 import com.parse.ParseUser;
 
-
+/* NOTE: USING EditProfileActivity INSTEAD OF THIS FRAGMENT */
 public class EditProfileFragment extends Fragment {
     public static final String TAG = "EditProfileActivity";
     private EditText etFirstName, etLastName, etEmail, etPhoneNumber, etBio;

@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     final FragmentManager fragmentManager = getSupportFragmentManager();
-    private Button btnLogOut;
-    private Button btnSearch;
     private NavigationView navigationView;
 
     @Override
@@ -65,9 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    public void selectDrawerItem(MenuItem menuItem) {
+    private void selectDrawerItem(MenuItem menuItem) {
         Fragment fragment = null;
-
         switch(menuItem.getItemId()) {
             case R.id.nav_account:
                 fragment = new ProfileFragment();
@@ -85,9 +82,7 @@ public class MainActivity extends AppCompatActivity {
             default:
                 fragment = new RecipeListFragment();
         }
-
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
-
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
         drawerLayout.closeDrawers();
@@ -109,11 +104,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
         finish();
     }
-
-    private void goRecipeListActivity() {
-        Intent i = new Intent(this, RecipeListActivity.class);
-        startActivity(i);
-        finish();
-    }
 }
-

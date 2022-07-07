@@ -24,9 +24,6 @@
             android:name=".activities.RecipeDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.RecipeListActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.SignUpActivity"
             android:exported="false" />
         <activity

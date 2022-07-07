@@ -18,6 +18,7 @@ import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.recipeopedia.R;
 import com.example.recipeopedia.RecipeAdapter;
+import com.example.recipeopedia.RecipeKeys;
 import com.example.recipeopedia.models.Recipe;
 
 import org.json.JSONArray;
@@ -31,7 +32,6 @@ import okhttp3.Headers;
 
 public class RecipeListFragment extends Fragment {
     public static final String TAG = "RecipeListFragment";
-    public static final String URL_PREFIX = "https://api.edamam.com/api/recipes/v2";
     private RecyclerView rvRecipes;
     protected RecipeAdapter adapter;
     protected List<Recipe> recipes;
@@ -62,13 +62,13 @@ public class RecipeListFragment extends Fragment {
 
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
-        params.put("limit", "5");
+        params.put(RecipeKeys.KEY_LIMIT, "5");
         params.put("page", "0");
-        params.put("type", "public");
-        params.put("app_id", R.string.APP_ID);
-        params.put("app_key", R.string.APP_KEY);
-        params.put("q", "chicken"); // need to change this so users can search and query
-        client.get(URL_PREFIX, params, new JsonHttpResponseHandler()
+        params.put(RecipeKeys.KEY_TYPE, "public");
+        params.put(RecipeKeys.KEY_APP_ID, RecipeKeys.APP_ID);
+        params.put(RecipeKeys.KEY_APP_KEY, RecipeKeys.APP_KEY);
+        params.put(RecipeKeys.KEY_QUERY, "chicken"); // need to change this so users can search and query
+        client.get(RecipeKeys.KEY_URL_PREFIX, params, new JsonHttpResponseHandler()
         {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json)

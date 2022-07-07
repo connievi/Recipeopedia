@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.recipeopedia.R;
+import com.example.recipeopedia.RecipeKeys;
 import com.parse.ParseUser;
 
 public class EditProfileActivity extends AppCompatActivity {
@@ -38,41 +39,41 @@ public class EditProfileActivity extends AppCompatActivity {
                 goMainActivity();
             }
         });
+    }
 
+    private boolean validateInput() {
         firstName = etFirstName.getText().toString();
         lastName = etLastName.getText().toString();
         email = etEmail.getText().toString();
         phoneNumber = etPhoneNumber.getText().toString();
         bio = etBio.getText().toString();
-    }
 
-    private boolean validateInput() {
+        boolean check = true;
         if (firstName.isEmpty()) {
-            etFirstName.setError("Please Enter First Name");
-            return false;
+            etFirstName.setError(getString(R.string.enter_first_name));
+            check = false;
         }
         if (lastName.isEmpty()) {
-            etLastName.setError("Please Enter Last Name");
-            return false;
+            etLastName.setError(getString(R.string.enter_last_name));
+            check = false;
         }
         if (email.isEmpty()) {
-            etEmail.setError("Please Enter Email");
-            return false;
+            etEmail.setError(getString(R.string.enter_email));
+            check = false;
         }
         if (phoneNumber.isEmpty()) {
-            etPhoneNumber.setError("Please Enter Contact No");
-            return false;
+            etPhoneNumber.setError(getString(R.string.enter_phone_number));
+            check = false;
         }
         if (bio.isEmpty()) {
-            etBio.setError("Please Enter Designation ");
-            return false;
+            etBio.setError(getString(R.string.enter_bio));
+            check = false;
         }
-
-        if (!isEmailValid(etEmail.getText().toString())) {
-            etEmail.setError("Please Enter Valid Email");
-            return false;
+        if (!isEmailValid(email)) {
+            etEmail.setError(getString(R.string.enter_valid_email));
+            check = false;
         }
-        return true;
+        return check;
     }
 
     private boolean isEmailValid(String email) {
@@ -81,13 +82,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
     public void editProfile(View v) {
         if (validateInput()) {
-            // WORK ON SAVING THE UPDATED INFO
             ParseUser currentUser = ParseUser.getCurrentUser();
-            currentUser.put("firstName", firstName);
-            currentUser.put("lastName", lastName);
-            currentUser.put("phoneNumber", phoneNumber);
-            currentUser.put("bio", bio);
-            currentUser.put("email", email);
+            currentUser.put(RecipeKeys.KEY_FIRST_NAME, firstName);
+            currentUser.put(RecipeKeys.KEY_LAST_NAME, lastName);
+            currentUser.put(RecipeKeys.KEY_PHONE_NUMBER, phoneNumber);
+            currentUser.put(RecipeKeys.KEY_BIO, bio);
+            currentUser.put(RecipeKeys.KEY_EMAIL, email);
             currentUser.saveInBackground();
             Toast.makeText(this,"Profile Update Successfully",Toast.LENGTH_SHORT).show();
         }

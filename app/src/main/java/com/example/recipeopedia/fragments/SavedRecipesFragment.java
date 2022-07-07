@@ -12,8 +12,6 @@ import com.example.recipeopedia.R;
 
 
 public class SavedRecipesFragment extends Fragment {
-    public SavedRecipesFragment() {}
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

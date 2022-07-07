@@ -25,8 +25,6 @@ public class EditProfileFragment extends Fragment {
     private EditText etFirstName, etLastName, etEmail, etPhoneNumber, etBio;
     private Button btnUpdate;
 
-    public EditProfileFragment() {}
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

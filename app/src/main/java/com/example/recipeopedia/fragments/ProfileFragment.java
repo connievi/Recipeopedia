@@ -23,8 +23,6 @@ public class ProfileFragment extends Fragment {
     private TextView tvBio;
     private Button btnEditProfile;
 
-    public ProfileFragment() {}
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +37,10 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
         tvUsername = view.findViewById(R.id.tvUsername);
         tvBio = view.findViewById(R.id.tvBio);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
-
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override

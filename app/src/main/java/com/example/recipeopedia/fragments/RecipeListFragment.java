@@ -36,8 +36,6 @@ public class RecipeListFragment extends Fragment {
     protected RecipeAdapter adapter;
     protected List<Recipe> recipes;
 
-    public RecipeListFragment() {}
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

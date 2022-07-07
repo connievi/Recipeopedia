@@ -1,4 +1,4 @@
-package com.example.recipeopedia;
+package com.example.recipeopedia.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.recipeopedia.R;
 import com.example.recipeopedia.models.Recipe;
 
 import org.parceler.Parcels;

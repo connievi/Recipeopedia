@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".RecipeDetailsActivity">
+    tools:context=".activities.RecipeDetailsActivity">
 
     <TextView
         android:id="@+id/tvRecipeName"
@@ -26,6 +26,4 @@
         android:layout_below="@+id/tvRecipeName"
         android:layout_marginTop="5dp"
         tools:srcCompat="@tools:sample/avatars" />
-
-
 </RelativeLayout>

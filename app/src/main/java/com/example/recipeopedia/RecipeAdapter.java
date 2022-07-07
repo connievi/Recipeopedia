@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.recipeopedia.activities.RecipeDetailsActivity;
 import com.example.recipeopedia.models.Recipe;
 
 import org.parceler.Parcels;

@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Recipeopedia</string>
+    <string name="username">Username</string>
+    <string name="bio">Bio</string>
+    <string name="edit">Edit</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log In</string>
+    <string name="create_account">Create Account</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="enter_first_name">Please Enter First Name</string>
+    <string name="enter_last_name">Please Enter Last Name</string>
+    <string name="enter_email">Please Enter Email</string>
+    <string name="enter_phone_number">Please Enter Phone Number</string>
+    <string name="enter_bio">Please Enter Bio</string>
+    <string name="enter_valid_email">Please Enter Valid Email</string>
+    <string name="edit_account">Edit Account</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email">Email</string>
 </resources>

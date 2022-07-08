@@ -69,9 +69,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_account:
                 fragment = new ProfileFragment();
                 break;
-            case R.id.nav_search:
-                // fragmentClass = SecondFragment.class;
-                break;
             case R.id.nav_saved:
                 fragment = new SavedRecipesFragment();
                 break;

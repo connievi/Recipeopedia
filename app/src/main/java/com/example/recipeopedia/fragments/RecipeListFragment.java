@@ -56,8 +56,6 @@ public class RecipeListFragment extends Fragment {
         rvRecipes.setAdapter(recipeAdapter);
         rvRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        queryRecipes();
-
         EditText etSearch = view.findViewById(R.id.etSearch);
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -72,6 +70,7 @@ public class RecipeListFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
+                queryRecipes(s.toString());
                 filter(s.toString());
             }
         });
@@ -87,7 +86,7 @@ public class RecipeListFragment extends Fragment {
         recipeAdapter.setFilter(filteredList);
     }
 
-    private void queryRecipes() {
+    private void queryRecipes(String searchWord) {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.put(RecipeKeys.KEY_LIMIT, "5");
@@ -95,7 +94,7 @@ public class RecipeListFragment extends Fragment {
         params.put(RecipeKeys.KEY_TYPE, RecipeKeys.KEY_PUBLIC);
         params.put(RecipeKeys.KEY_APP_ID, RecipeKeys.APP_ID);
         params.put(RecipeKeys.KEY_APP_KEY, RecipeKeys.APP_KEY);
-        params.put(RecipeKeys.KEY_QUERY, "chicken"); // TODO: change this so users can query through search
+        params.put(RecipeKeys.KEY_QUERY, searchWord);
         client.get(RecipeKeys.KEY_URL_PREFIX, params, new JsonHttpResponseHandler()
         {
             @Override

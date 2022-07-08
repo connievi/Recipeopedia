@@ -16,7 +16,7 @@
             android:id="@+id/etSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/search" />
+            android:hint="@string/search_for_a_recipe" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRecipes"

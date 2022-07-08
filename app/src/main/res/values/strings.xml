@@ -19,4 +19,5 @@
     <string name="edit_account">Edit Account</string>
     <string name="phone_number">Phone Number</string>
     <string name="email">Email</string>
+    <string name="search">Search</string>
 </resources>

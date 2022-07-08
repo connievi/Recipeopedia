@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,17 +20,18 @@ import com.example.recipeopedia.models.Recipe;
 
 import org.parceler.Parcels;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
+public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> implements Filterable {
     public static final String TAG = "RecipeListActivity";
-
+    private List<Recipe> mRecipes;
     Context context;
-    private List<Recipe> recipes;
 
     public RecipeAdapter(Context context, List<Recipe> recipes) {
         this.context = context;
-        this.recipes = recipes;
+        this.mRecipes = recipes;
     }
 
     @NonNull
@@ -44,20 +47,30 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
         Log.d(TAG, "onBindViewHolder " + position);
-        Recipe recipe = recipes.get(position);
+        Recipe recipe = mRecipes.get(position);
         holder.bind(recipe);
     }
 
     @Override
     public int getItemCount() {
-        return recipes.size();
+        return mRecipes.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return null;
+    }
+
+    public void setFilter(List<Recipe> filteredRecipes){
+        mRecipes = new ArrayList<>();
+        mRecipes.addAll(filteredRecipes);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         TextView tvRecipeName;
         ImageView ivRecipeImage;
-        // need to add more attributes later
 
         public ViewHolder(@NonNull View itemView)
         {
@@ -81,7 +94,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             int position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION)
             {
-                Recipe recipe = recipes.get(position);
+                Recipe recipe = mRecipes.get(position);
                 Intent intent = new Intent(context, RecipeDetailsActivity.class);
                 intent.putExtra(Recipe.class.getSimpleName(), Parcels.wrap(recipe));
                 context.startActivity(intent);

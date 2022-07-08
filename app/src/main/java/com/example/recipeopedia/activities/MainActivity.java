@@ -13,10 +13,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.recipeopedia.R;
+import com.example.recipeopedia.RecipeAdapter;
 import com.example.recipeopedia.fragments.ProfileFragment;
 import com.example.recipeopedia.fragments.RecipeListFragment;
 import com.example.recipeopedia.fragments.SavedRecipesFragment;
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private NavigationView navigationView;
+    protected RecipeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +70,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_account:
                 fragment = new ProfileFragment();
                 break;
-            case R.id.nav_search:
-                // fragmentClass = SecondFragment.class;
-                break;
             case R.id.nav_saved:
                 fragment = new SavedRecipesFragment();
                 break;
@@ -83,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new RecipeListFragment();
         }
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
-        menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
         drawerLayout.closeDrawers();
     }

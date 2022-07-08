@@ -37,11 +37,6 @@ public class RecipeListFragment extends Fragment {
     protected List<Recipe> recipes;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_recipe_list, container, false);
@@ -61,8 +56,8 @@ public class RecipeListFragment extends Fragment {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.put(RecipeKeys.KEY_LIMIT, "5");
-        params.put("page", "0");
-        params.put(RecipeKeys.KEY_TYPE, "public");
+        params.put(RecipeKeys.KEY_PAGE, "0");
+        params.put(RecipeKeys.KEY_TYPE, RecipeKeys.KEY_PUBLIC);
         params.put(RecipeKeys.KEY_APP_ID, RecipeKeys.APP_ID);
         params.put(RecipeKeys.KEY_APP_KEY, RecipeKeys.APP_KEY);
         params.put(RecipeKeys.KEY_QUERY, "chicken"); // need to change this so users can search and query

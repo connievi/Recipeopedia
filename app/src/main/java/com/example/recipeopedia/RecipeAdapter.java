@@ -6,8 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,14 +18,13 @@ import com.example.recipeopedia.models.Recipe;
 
 import org.parceler.Parcels;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> implements Filterable {
-    public static final String TAG = "RecipeListActivity";
+public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
+    public static final String TAG = "RecipeAdapter";
     private List<Recipe> mRecipes;
-    Context context;
+    private Context context;
 
     public RecipeAdapter(Context context, List<Recipe> recipes) {
         this.context = context;
@@ -54,11 +51,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     @Override
     public int getItemCount() {
         return mRecipes.size();
-    }
-
-    @Override
-    public Filter getFilter() {
-        return null;
     }
 
     public void setFilter(List<Recipe> filteredRecipes){
@@ -95,7 +87,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             if (position != RecyclerView.NO_POSITION)
             {
                 Recipe recipe = mRecipes.get(position);
-                Intent intent = new Intent(context, RecipeDetailsActivity.class);
+                Intent intent = new Intent(v.getContext(), RecipeDetailsActivity.class);
                 intent.putExtra(Recipe.class.getSimpleName(), Parcels.wrap(recipe));
                 context.startActivity(intent);
             }

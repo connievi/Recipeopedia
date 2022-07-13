@@ -36,7 +36,6 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 editProfile(v);
-                goMainActivity();
             }
         });
     }
@@ -89,7 +88,8 @@ public class EditProfileActivity extends AppCompatActivity {
             currentUser.put(RecipeKeys.KEY_BIO, bio);
             currentUser.put(RecipeKeys.KEY_EMAIL, email);
             currentUser.saveInBackground();
-            Toast.makeText(this,"Profile Update Successfully",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.profile_update_success, Toast.LENGTH_SHORT).show();
+            goMainActivity();
         }
     }
 

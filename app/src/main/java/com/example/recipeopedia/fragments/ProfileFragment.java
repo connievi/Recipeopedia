@@ -56,11 +56,11 @@ public class ProfileFragment extends Fragment {
         });
 
         ParseUser currentUser = ParseUser.getCurrentUser();
-
         tvUsername.setText(currentUser.getUsername());
         tvEmail.setText(currentUser.getEmail());
         tvPhoneNumber.setText((String) currentUser.get(RecipeKeys.KEY_PHONE_NUMBER));
         tvBio.setText((String) currentUser.get(RecipeKeys.KEY_BIO));
+        // TODO: show more info on My Account page (first name, last name, etc.)
     }
 
     private void goEditProfileActivity() {

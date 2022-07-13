@@ -20,12 +20,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     private TextView tvRecipeName, tvIngredients, tvInstructions;
     private ImageView ivRecipeImage;
 
-    /*TextView nutrition;
-    TextView mealType;
-    TextView cuisineType;
-    TextView dishType;
-    TextView dietLabels;
-    TextView healthLabels;*/
+    // TextView nutrition, mealType, cuisineType, dishType, dietLabels, healthLabels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -36,7 +36,7 @@
             android:contextClickable="false"
             android:ems="10"
             android:text="@string/username"
-            tools:text="Username" />
+            tools:text="@string/username" />
 
         <TextView
             android:id="@+id/tvEmail"
@@ -48,7 +48,7 @@
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/email"
             android:text="@string/email" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Phone Number"
+            android:hint="@string/phone_number"
             android:text="@string/phone_number" />
 
         <TextView
@@ -77,7 +77,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:text="@string/bio"
-            tools:text="Description" />
+            tools:text="@string/description" />
 
         <Button
             android:id="@+id/btnEditProfile"

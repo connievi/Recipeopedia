@@ -11,7 +11,7 @@
         android:id="@+id/tvUpdateProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update Profile Information"
+        android:text="@string/update_profile_information"
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="#000"
@@ -25,16 +25,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvUpdateProfile"
-        >
+        app:layout_constraintTop_toBottomOf="@id/tvUpdateProfile">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:focusable="true"
-            android:focusableInTouchMode="true"
-            >
-
+            android:focusableInTouchMode="true">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ivProfile"
@@ -105,7 +102,6 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_email"
                 android:layout_width="0dp"
@@ -170,8 +166,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="14dp"
                 android:textColorHint="#808080"
-                app:layout_constraintTop_toBottomOf="@+id/layout_contact_no"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/layout_contact_no">
 
                 <EditText
                     android:id="@+id/etBio"
@@ -204,8 +199,7 @@
                 app:layout_constraintWidth_percent="0.7"
                 style="?android:attr/borderlessButtonStyle"
                 android:elevation="2dp"
-                android:onClick="editProfile"
-                />
+                android:onClick="editProfile" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

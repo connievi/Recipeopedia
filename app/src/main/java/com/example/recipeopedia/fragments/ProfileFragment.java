@@ -14,13 +14,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.recipeopedia.R;
+import com.example.recipeopedia.RecipeKeys;
 import com.example.recipeopedia.activities.EditProfileActivity;
+import com.example.recipeopedia.models.Recipe;
+import com.parse.Parse;
+import com.parse.ParseUser;
 
 public class ProfileFragment extends Fragment {
     private static final String TAG = "ProfileFragment";
     private ImageView ivProfileImage;
-    private TextView tvUsername;
-    private TextView tvBio;
+    private TextView tvUsername, tvEmail, tvPhoneNumber, tvBio;
     private Button btnEditProfile;
 
     @Override
@@ -39,6 +42,8 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
         tvUsername = view.findViewById(R.id.tvUsername);
+        tvEmail = view.findViewById(R.id.tvEmail);
+        tvPhoneNumber = view.findViewById(R.id.tvPhoneNumber);
         tvBio = view.findViewById(R.id.tvBio);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
@@ -49,6 +54,13 @@ public class ProfileFragment extends Fragment {
                 goEditProfileActivity();
             }
         });
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+
+        tvUsername.setText(currentUser.getUsername());
+        tvEmail.setText(currentUser.getEmail());
+        tvPhoneNumber.setText((String) currentUser.get(RecipeKeys.KEY_PHONE_NUMBER));
+        tvBio.setText((String) currentUser.get(RecipeKeys.KEY_BIO));
     }
 
     private void goEditProfileActivity() {

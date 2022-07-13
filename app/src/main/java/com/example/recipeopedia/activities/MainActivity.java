@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.recipeopedia.R;
@@ -29,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
-    final FragmentManager fragmentManager = getSupportFragmentManager();
     private NavigationView navigationView;
+    final FragmentManager fragmentManager = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_account:
                 fragment = new ProfileFragment();
                 break;
+            case R.id.nav_search:
+                fragment = new RecipeListFragment();
+                break;
             case R.id.nav_saved:
                 fragment = new SavedRecipesFragment();
                 break;
@@ -76,11 +78,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Log Out selected", Toast.LENGTH_SHORT).show();
                 logOutUser();
                 break;
-            default:
-                fragment = new RecipeListFragment();
         }
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
-        menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
         drawerLayout.closeDrawers();
     }

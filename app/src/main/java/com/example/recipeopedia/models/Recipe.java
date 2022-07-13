@@ -14,30 +14,23 @@ import java.util.List;
 
 @Parcel
 public class Recipe {
-    String recipeName;
-    String ingredients;
-    String nutrition;
-    String instructions;
-    String mealType;
-    String cuisineType;
-    String dishType;
-    String dietLabels;
-    String healthLabels;
-    String image;
+    public String recipeName, ingredients, nutrition, instructions,
+            mealType, cuisineType, dishType, dietLabels, healthLabels, image;
 
     public Recipe() {}
 
     public Recipe(JSONObject jsonObject) throws JSONException {
-        recipeName = jsonObject.getJSONObject("recipe").getString("label");
-        ingredients = (jsonObject.getJSONObject("recipe").getJSONArray("ingredientLines")).toString();
-        dietLabels = (jsonObject.getJSONObject("recipe").getJSONArray("dietLabels")).toString();
-        healthLabels = (jsonObject.getJSONObject("recipe").getJSONArray("healthLabels")).toString();
-        mealType = (jsonObject.getJSONObject("recipe").getJSONArray("mealType")).toString();
-        dishType = jsonObject.getJSONObject("recipe").getString("dishType");
-        cuisineType = jsonObject.getJSONObject("recipe").getString("dishType");
-        instructions = jsonObject.getJSONObject("recipe").getString("url");
-        image = jsonObject.getJSONObject("recipe").getString("image");
-        // nutrition = (jsonObject.getJSONObject("recipe").getJSONArray("totalNutrients")).toString();
+        JSONObject recipeObject = jsonObject.getJSONObject("recipe");
+        recipeName = recipeObject.getString("label");
+        ingredients = (recipeObject.getJSONArray("ingredientLines")).toString();
+        dietLabels = (recipeObject.getJSONArray("dietLabels")).toString();
+        healthLabels = (recipeObject.getJSONArray("healthLabels")).toString();
+        mealType = (recipeObject.getJSONArray("mealType")).toString();
+        dishType = recipeObject.getString("dishType");
+        cuisineType = recipeObject.getString("dishType");
+        instructions = recipeObject.getString("url");
+        image = recipeObject.getString("image");
+        // nutrition = (recipeObject.getJSONArray("totalNutrients")).toString();
     }
 
     public static List<Recipe> fromJsonArray(JSONArray recipeJsonArray) throws JSONException {
@@ -49,7 +42,6 @@ public class Recipe {
         return recipes;
     }
 
-    // Returns a Book given the expected JSON
     public static Recipe fromJson(JSONObject jsonObject) {
         Recipe recipe = new Recipe();
         try {
@@ -66,7 +58,7 @@ public class Recipe {
     }
 
     public String getIngredients() {
-        return ingredients;
+        return formatString(ingredients);
     }
 
     public String getInstructions() {
@@ -75,5 +67,62 @@ public class Recipe {
 
     public String getImage() {
         return image;
+    }
+
+    private String formatString(String text) {
+        /*
+        formatString() formats the nested JSON data that ingredients, instructions,
+        and other values are stored in
+        TODO: this method does not completely format the string how I want, will edit later
+        */
+
+        StringBuilder json = new StringBuilder();
+        String indentString = "";
+
+        boolean inQuotes = false;
+        boolean isEscaped = false;
+
+        for (int i = 0; i < text.length(); i++) {
+            char letter = text.charAt(i);
+
+            switch (letter) {
+                case '\\':
+                    isEscaped = !isEscaped;
+                    break;
+                case '"':
+                    if (!isEscaped) {
+                        inQuotes = !inQuotes;
+                    }
+                    break;
+                default:
+                    isEscaped = false;
+                    break;
+            }
+
+            if (!inQuotes && !isEscaped) {
+                switch (letter) {
+                    case '{':
+                    case '[':
+                        json.append("\n" + indentString + letter + "\n");
+                        indentString = indentString + "\t";
+                        json.append(indentString);
+                        break;
+                    case '}':
+                    case ']':
+                        indentString = indentString.replaceFirst("\t", "");
+                        json.append("\n" + indentString + letter);
+                        break;
+                    case ',':
+                        json.append(letter + "\n" + indentString);
+                        break;
+                    default:
+                        json.append(letter);
+                        break;
+                }
+            } else {
+                json.append(letter);
+            }
+        }
+        return json.toString();
     }
 }

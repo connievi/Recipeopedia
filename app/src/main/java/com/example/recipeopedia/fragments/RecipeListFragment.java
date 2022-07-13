@@ -8,10 +8,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.RequestParams;
@@ -24,6 +27,7 @@ import com.example.recipeopedia.models.Recipe;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +37,8 @@ import okhttp3.Headers;
 public class RecipeListFragment extends Fragment {
     public static final String TAG = "RecipeListFragment";
     private RecyclerView rvRecipes;
-    protected RecipeAdapter adapter;
-    protected List<Recipe> recipes;
+    protected RecipeAdapter recipeAdapter;
+    protected List<Recipe> mRecipes;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,13 +50,43 @@ public class RecipeListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView rvRecipes = view.findViewById(R.id.rvRecipes);
-        recipes = new ArrayList<>();
-
-        RecipeAdapter recipeAdapter = new RecipeAdapter(getContext(), recipes);
+        mRecipes = new ArrayList<>();
+        rvRecipes = view.findViewById(R.id.rvRecipes);
+        recipeAdapter = new RecipeAdapter(mRecipes);
         rvRecipes.setAdapter(recipeAdapter);
         rvRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        EditText etSearch = view.findViewById(R.id.etSearch);
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                queryRecipes(s.toString());
+                filter(s.toString());
+            }
+        });
+    }
+
+    private void filter(String text) {
+        ArrayList<Recipe> filteredList = new ArrayList<>();
+        for (Recipe recipe : mRecipes) {
+            if (recipe.getRecipeName().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(recipe);
+            }
+        }
+        recipeAdapter.setFilter(filteredList);
+    }
+
+    private void queryRecipes(String searchWord) {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.put(RecipeKeys.KEY_LIMIT, "5");
@@ -60,7 +94,7 @@ public class RecipeListFragment extends Fragment {
         params.put(RecipeKeys.KEY_TYPE, RecipeKeys.KEY_PUBLIC);
         params.put(RecipeKeys.KEY_APP_ID, RecipeKeys.APP_ID);
         params.put(RecipeKeys.KEY_APP_KEY, RecipeKeys.APP_KEY);
-        params.put(RecipeKeys.KEY_QUERY, "chicken"); // need to change this so users can search and query
+        params.put(RecipeKeys.KEY_QUERY, searchWord);
         client.get(RecipeKeys.KEY_URL_PREFIX, params, new JsonHttpResponseHandler()
         {
             @Override
@@ -72,9 +106,9 @@ public class RecipeListFragment extends Fragment {
                 {
                     JSONArray hits = jsonObject.getJSONArray("hits");
                     Log.i(TAG, "Hits: " + hits.toString());
-                    recipes.addAll(Recipe.fromJsonArray(hits));
+                    mRecipes.addAll(Recipe.fromJsonArray(hits));
                     recipeAdapter.notifyDataSetChanged();
-                    Log.i(TAG, "Recipes: " + recipes.size());
+                    Log.i(TAG, "Recipes: " + mRecipes.size());
                 }
                 catch (JSONException e)
                 {

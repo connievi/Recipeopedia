@@ -19,4 +19,10 @@
     <string name="edit_account">Edit Account</string>
     <string name="phone_number">Phone Number</string>
     <string name="email">Email</string>
+    <string name="search">Search</string>
+    <string name="search_for_a_recipe">Search for a recipe</string>
+    <string name="image_of_recipe">image of recipe</string>
+    <string name="instructions">Instructions</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="recipe_name">Recipe Name</string>
 </resources>

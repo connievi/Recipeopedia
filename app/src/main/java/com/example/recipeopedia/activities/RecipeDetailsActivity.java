@@ -15,22 +15,17 @@ import com.example.recipeopedia.models.Recipe;
 import org.parceler.Parcels;
 
 public class RecipeDetailsActivity extends AppCompatActivity {
-
     public static final String TAG = "RecipeDetailsActivity";
+    private Recipe recipe;
+    private TextView tvRecipeName, tvIngredients, tvInstructions;
+    private ImageView ivRecipeImage;
 
-    Recipe recipe;
-
-    TextView tvRecipeName;
-    TextView tvIngredients;
-    TextView tvInstructions;
-
-    TextView nutrition;
+    /*TextView nutrition;
     TextView mealType;
     TextView cuisineType;
     TextView dishType;
     TextView dietLabels;
-    TextView healthLabels;
-    ImageView ivRecipeImage;
+    TextView healthLabels;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

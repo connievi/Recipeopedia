@@ -18,17 +18,15 @@ import com.example.recipeopedia.models.Recipe;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
-    public static final String TAG = "RecipeListActivity";
+    public static final String TAG = "RecipeAdapter";
+    private List<Recipe> mRecipes;
 
-    Context context;
-    private List<Recipe> recipes;
-
-    public RecipeAdapter(Context context, List<Recipe> recipes) {
-        this.context = context;
-        this.recipes = recipes;
+    public RecipeAdapter(List<Recipe> recipes) {
+        this.mRecipes = recipes;
     }
 
     @NonNull
@@ -36,7 +34,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         Log.d(TAG, "onCreateViewHolder");
-        View recipeView = LayoutInflater.from(context).inflate(R.layout.item_recipe, parent, false);
+        View recipeView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recipe, parent, false);
         return new ViewHolder(recipeView);
     }
 
@@ -44,20 +42,25 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
         Log.d(TAG, "onBindViewHolder " + position);
-        Recipe recipe = recipes.get(position);
+        Recipe recipe = mRecipes.get(position);
         holder.bind(recipe);
     }
 
     @Override
     public int getItemCount() {
-        return recipes.size();
+        return mRecipes.size();
+    }
+
+    public void setFilter(List<Recipe> filteredRecipes){
+        mRecipes = new ArrayList<>();
+        mRecipes.addAll(filteredRecipes);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         TextView tvRecipeName;
         ImageView ivRecipeImage;
-        // need to add more attributes later
 
         public ViewHolder(@NonNull View itemView)
         {
@@ -71,7 +74,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         {
             tvRecipeName.setText(recipe.getRecipeName());
             String imageUrl = recipe.getImage();
-            Glide.with(context)
+            Glide.with(itemView.getContext())
                     .load(imageUrl)
                     .into(ivRecipeImage);
         }
@@ -81,10 +84,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             int position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION)
             {
-                Recipe recipe = recipes.get(position);
-                Intent intent = new Intent(context, RecipeDetailsActivity.class);
+                Recipe recipe = mRecipes.get(position);
+                Intent intent = new Intent(v.getContext(), RecipeDetailsActivity.class);
                 intent.putExtra(Recipe.class.getSimpleName(), Parcels.wrap(recipe));
-                context.startActivity(intent);
+                v.getContext().startActivity(intent);
             }
         }
     }

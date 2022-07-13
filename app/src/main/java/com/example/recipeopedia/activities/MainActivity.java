@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         ParseUser.logOutInBackground();
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
     }
 }

@@ -13,8 +13,10 @@
         <entry key="app/src/main/res/layout/activity_recipe_details.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_recipe_list.xml" value="0.16691995947315097" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.32916666666666666" />
+        <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.16540020263424518" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_recipe_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_saved_recipes.xml" value="0.16540020263424518" />
         <entry key="app/src/main/res/layout/item_recipe.xml" value="0.1" />
         <entry key="app/src/main/res/layout/recipe_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.1661600810536981" />

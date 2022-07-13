@@ -24,10 +24,8 @@ import java.util.List;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
     public static final String TAG = "RecipeAdapter";
     private List<Recipe> mRecipes;
-    private Context context;
 
-    public RecipeAdapter(Context context, List<Recipe> recipes) {
-        this.context = context;
+    public RecipeAdapter(List<Recipe> recipes) {
         this.mRecipes = recipes;
     }
 
@@ -36,7 +34,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         Log.d(TAG, "onCreateViewHolder");
-        View recipeView = LayoutInflater.from(context).inflate(R.layout.item_recipe, parent, false);
+        View recipeView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recipe, parent, false);
         return new ViewHolder(recipeView);
     }
 
@@ -76,7 +74,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         {
             tvRecipeName.setText(recipe.getRecipeName());
             String imageUrl = recipe.getImage();
-            Glide.with(context)
+            Glide.with(itemView.getContext())
                     .load(imageUrl)
                     .into(ivRecipeImage);
         }
@@ -89,7 +87,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                 Recipe recipe = mRecipes.get(position);
                 Intent intent = new Intent(v.getContext(), RecipeDetailsActivity.class);
                 intent.putExtra(Recipe.class.getSimpleName(), Parcels.wrap(recipe));
-                context.startActivity(intent);
+                v.getContext().startActivity(intent);
             }
         }
     }

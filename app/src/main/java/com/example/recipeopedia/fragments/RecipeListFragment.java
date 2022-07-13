@@ -52,7 +52,7 @@ public class RecipeListFragment extends Fragment {
 
         mRecipes = new ArrayList<>();
         rvRecipes = view.findViewById(R.id.rvRecipes);
-        recipeAdapter = new RecipeAdapter(getContext(), mRecipes);
+        recipeAdapter = new RecipeAdapter(mRecipes);
         rvRecipes.setAdapter(recipeAdapter);
         rvRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
 

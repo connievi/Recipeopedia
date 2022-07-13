@@ -69,7 +69,12 @@ public class Recipe {
         return image;
     }
 
-    public String formatString(String text){
+    private String formatString(String text) {
+        /*
+        formatString() formats the nested JSON data that ingredients, instructions,
+        and other values are stored in
+        TODO: this method does not completely format the string how I want, will edit later
+        */
 
         StringBuilder json = new StringBuilder();
         String indentString = "";
@@ -118,7 +123,6 @@ public class Recipe {
                 json.append(letter);
             }
         }
-
         return json.toString();
     }
 }

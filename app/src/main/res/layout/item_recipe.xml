@@ -1,37 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="10dp"
-    android:layout_margin="4dp">
+<layout>
+    <data>
+        <variable
+            name="recipe"
+            type="com.example.recipeopedia.models.Recipe" />
 
-    <RelativeLayout
+        <variable
+            name="imageUrl"
+            type="String" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".activities.RecipeDetailsActivity">
+        app:cardCornerRadius="10dp"
+        android:layout_margin="4dp">
 
-        <ImageView
-            android:id="@+id/ivRecipeImage"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginTop="5dp"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/tvRecipeName"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ivRecipeImage"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="0dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:text="@string/recipe_name" />
+            tools:context=".activities.RecipeDetailsActivity">
 
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/ivRecipeImage"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="5dp"
+                tools:srcCompat="@tools:sample/avatars"
+                app:recipeImage="@{recipe.image}" />
 
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/tvRecipeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivRecipeImage"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="0dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                tools:text="@string/recipe_name"
+                android:text="@{recipe.recipeName}" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -55,8 +55,11 @@ public class RecipeListFragment extends Fragment {
         rvRecipes.setAdapter(recipeAdapter);
         rvRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        queryRecipes("chicken"); // keyword is CHICKEN to not overload API with so many requests
+
         EditText etSearch = view.findViewById(R.id.etSearch);
-        etSearch.addTextChangedListener(new TextWatcher() {
+        // TODO: uncomment below for final product
+        /*etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -73,7 +76,7 @@ public class RecipeListFragment extends Fragment {
                 queryRecipes(searchWord);
                 filter(searchWord);
             }
-        });
+        });*/
     }
 
     private void filter(String text) {

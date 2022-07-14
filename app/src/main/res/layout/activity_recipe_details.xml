@@ -4,6 +4,10 @@
         <variable
             name="recipe"
             type="com.example.recipeopedia.models.Recipe" />
+
+        <variable
+            name="imageUrl"
+            type="String" />
     </data>
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -38,7 +42,8 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="0dp"
             android:contentDescription="@string/image_of_recipe"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            app:recipeImage="@{recipe.image}" />
 
         <TextView
             android:id="@+id/tvIngredients"

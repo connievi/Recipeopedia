@@ -34,13 +34,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
         ActivityRecipeDetailsBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_recipe_details);
-
-        ivRecipeImage = findViewById(R.id.ivRecipeImage);
-        String imageUrl = recipe.getImage();
-        Glide.with(getApplicationContext())
-                .load(imageUrl)
-                .into(ivRecipeImage);
-
+        binding.setImageUrl(recipe.getImage());
         binding.setRecipe(recipe);
     }
 }

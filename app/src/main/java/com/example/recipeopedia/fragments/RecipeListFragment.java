@@ -49,7 +49,6 @@ public class RecipeListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         mRecipes = new ArrayList<>();
         rvRecipes = view.findViewById(R.id.rvRecipes);
         recipeAdapter = new RecipeAdapter(mRecipes);
@@ -70,8 +69,9 @@ public class RecipeListFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                queryRecipes(s.toString());
-                filter(s.toString());
+                String searchWord = s.toString();
+                queryRecipes(searchWord);
+                filter(searchWord);
             }
         });
     }

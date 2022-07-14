@@ -1,6 +1,7 @@
 package com.example.recipeopedia.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.recipeopedia.R;
+import com.example.recipeopedia.databinding.ActivityRecipeDetailsBinding;
 import com.example.recipeopedia.models.Recipe;
 
 import org.parceler.Parcels;
@@ -27,21 +29,18 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_details);
 
-        tvRecipeName = findViewById(R.id.tvRecipeName);
-        tvIngredients = findViewById(R.id.tvIngredients);
-        tvInstructions = findViewById(R.id.tvInstructions);
-        ivRecipeImage = findViewById(R.id.ivRecipeImage);
-
         recipe = Parcels.unwrap(getIntent().getParcelableExtra(Recipe.class.getSimpleName()));
         Log.d("RecipeDetailsActivity", String.format("Showing details for '%s'", recipe.getRecipeName()));
 
-        tvRecipeName.setText(recipe.getRecipeName());
-        tvIngredients.setText(recipe.getIngredients());
-        tvInstructions.setText(recipe.getInstructions());
+        ActivityRecipeDetailsBinding binding =
+                DataBindingUtil.setContentView(this, R.layout.activity_recipe_details);
 
+        ivRecipeImage = findViewById(R.id.ivRecipeImage);
         String imageUrl = recipe.getImage();
         Glide.with(getApplicationContext())
                 .load(imageUrl)
                 .into(ivRecipeImage);
+
+        binding.setRecipe(recipe);
     }
 }

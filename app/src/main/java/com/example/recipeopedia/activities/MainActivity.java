@@ -67,21 +67,21 @@ public class MainActivity extends AppCompatActivity {
         switch(menuItem.getItemId()) {
             case R.id.nav_account:
                 fragment = new ProfileFragment();
+                changeFragments(menuItem, fragment);
                 break;
             case R.id.nav_search:
                 fragment = new RecipeListFragment();
+                changeFragments(menuItem, fragment);
                 break;
             case R.id.nav_saved:
                 fragment = new SavedRecipesFragment();
+                changeFragments(menuItem, fragment);
                 break;
             case R.id.nav_logout:
                 Toast.makeText(this, "Log Out selected", Toast.LENGTH_SHORT).show();
                 logOutUser();
                 break;
         }
-        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
-        setTitle(menuItem.getTitle());
-        drawerLayout.closeDrawers();
     }
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -93,11 +93,18 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void changeFragments(MenuItem menuItem, Fragment fragment) {
+        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+        setTitle(menuItem.getTitle());
+        drawerLayout.closeDrawers();
+    }
+
     private void logOutUser() {
         Log.i(TAG, "Attempting to logout user");
         ParseUser.logOutInBackground();
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
     }
 }

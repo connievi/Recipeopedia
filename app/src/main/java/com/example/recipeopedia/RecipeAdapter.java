@@ -64,7 +64,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         private ItemRecipeBinding binding;
-        
         public ViewHolder(@NonNull View itemView)
         {
             super(itemView);

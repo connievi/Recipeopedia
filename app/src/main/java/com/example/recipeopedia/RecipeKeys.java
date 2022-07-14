@@ -3,6 +3,7 @@ package com.example.recipeopedia;
 public class RecipeKeys {
     public static final String KEY_FIRST_NAME = "firstName";
     public static final String KEY_LAST_NAME = "lastName";
+    public static final String KEY_PASSWORD = "password";
     public static final String KEY_PHONE_NUMBER = "phoneNumber";
     public static final String KEY_BIO = "bio";
     public static final String KEY_EMAIL = "email";

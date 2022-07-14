@@ -1,98 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.ProfileFragment">
+<layout>
+    <data>
+        <variable
+            name="user"
+            type="com.example.recipeopedia.models.User" />
 
-    <RelativeLayout
+        <variable
+            name="imageUrl"
+            type="String" />
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".fragments.ProfileFragment">
 
-        <ImageView
-            android:id="@+id/ivProfileImage"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="0dp"
-            android:contentDescription="@string/profile_picture"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvUsername"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_below="@+id/ivProfileImage"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            android:layout_weight="1"
-            android:contextClickable="false"
-            android:ems="10"
-            android:text="@string/username"
-            tools:text="@string/username" />
+            <ImageView
+                android:id="@+id/ivProfileImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="0dp"
+                android:contentDescription="@string/profile_picture"
+                tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/tvEmail"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_below="@id/ivProfileImage"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="34dp"
-            android:layout_marginEnd="20dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/email"
-            android:text="@string/email" />
+            <TextView
+                android:id="@+id/tvUsername"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/ivProfileImage"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:contextClickable="false"
+                android:ems="10"
+                tools:text="@string/username"
+                android:text="@{user.username}" />
 
-        <TextView
-            android:id="@+id/tvPhoneNumber"
-            android:layout_width="376dp"
-            android:layout_height="30dp"
-            android:layout_below="@id/tvEmail"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="20dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/phone_number"
-            android:text="@string/phone_number" />
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/ivProfileImage"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/email"
+                android:text="@{user.email}" />
 
-        <TextView
-            android:id="@+id/tvBio"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_below="@+id/tvUsername"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="61dp"
-            android:layout_marginEnd="20dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:text="@string/bio"
-            tools:text="@string/description" />
+            <TextView
+                android:id="@+id/tvPhoneNumber"
+                android:layout_width="376dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/tvEmail"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/phone_number"
+                android:text="@{user.phoneNumber}" />
 
-        <Button
-            android:id="@+id/btnEditProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_below="@+id/tvBio"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="130dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="130dp"
-            android:layout_marginBottom="-428dp"
-            android:layout_weight="1"
-            android:contentDescription="@string/edit"
-            android:ems="10"
-            android:text="@string/edit_account" />
-    </RelativeLayout>
-</FrameLayout>
+            <TextView
+                android:id="@+id/tvBio"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_below="@+id/tvUsername"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="61dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:text="@{user.bio}"
+                tools:text="@string/description" />
+
+            <Button
+                android:id="@+id/btnEditProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@+id/tvBio"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="130dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="130dp"
+                android:layout_marginBottom="-428dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/edit"
+                android:ems="10"
+                android:text="@string/edit_account" />
+        </RelativeLayout>
+    </FrameLayout>
+</layout>

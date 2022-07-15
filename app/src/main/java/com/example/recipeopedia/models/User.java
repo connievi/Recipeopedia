@@ -46,5 +46,5 @@ public class User {
         return bio;
     }
 
-
+    public String getFullName() { return firstName + " " + lastName; }
 }

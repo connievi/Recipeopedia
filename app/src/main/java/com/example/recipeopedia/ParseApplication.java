@@ -2,6 +2,7 @@ package com.example.recipeopedia;
 
 import android.app.Application;
 
+import com.example.recipeopedia.models.Recipe;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -12,6 +13,7 @@ public class ParseApplication extends Application {
         super.onCreate();
 
         // Register parse models
+//        ParseObject.registerSubclass(Recipe.class);
         // ParseObject.registerSubclass(Review.class);
 
         Parse.initialize(new Parse.Configuration.Builder(this)

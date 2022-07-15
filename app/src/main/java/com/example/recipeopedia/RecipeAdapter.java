@@ -23,6 +23,7 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
     public static final String TAG = "RecipeAdapter";
     private List<Recipe> mRecipes;

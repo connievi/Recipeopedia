@@ -10,10 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.recipeopedia.activities.RecipeDetailsActivity;
+import com.example.recipeopedia.databinding.ItemRecipeBinding;
 import com.example.recipeopedia.models.Recipe;
 
 import org.parceler.Parcels;
@@ -34,7 +36,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         Log.d(TAG, "onCreateViewHolder");
-        View recipeView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recipe, parent, false);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View recipeView = inflater.inflate(R.layout.item_recipe, parent, false);
         return new ViewHolder(recipeView);
     }
 
@@ -59,24 +62,17 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        TextView tvRecipeName;
-        ImageView ivRecipeImage;
-
+        private ItemRecipeBinding binding;
         public ViewHolder(@NonNull View itemView)
         {
             super(itemView);
-            tvRecipeName = itemView.findViewById(R.id.tvRecipeName);
-            ivRecipeImage = itemView.findViewById(R.id.ivRecipeImage);
+            binding = DataBindingUtil.bind(itemView);
             itemView.setOnClickListener(this);
         }
 
         public void bind(Recipe recipe)
         {
-            tvRecipeName.setText(recipe.getRecipeName());
-            String imageUrl = recipe.getImage();
-            Glide.with(itemView.getContext())
-                    .load(imageUrl)
-                    .into(ivRecipeImage);
+            binding.setRecipe(recipe);
         }
 
         @Override

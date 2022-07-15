@@ -49,15 +49,17 @@ public class RecipeListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         mRecipes = new ArrayList<>();
         rvRecipes = view.findViewById(R.id.rvRecipes);
         recipeAdapter = new RecipeAdapter(mRecipes);
         rvRecipes.setAdapter(recipeAdapter);
         rvRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        queryRecipes("chicken"); // keyword is CHICKEN to not overload API with so many requests
+
         EditText etSearch = view.findViewById(R.id.etSearch);
-        etSearch.addTextChangedListener(new TextWatcher() {
+        // TODO: uncomment below for final product
+        /*etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -70,10 +72,11 @@ public class RecipeListFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                queryRecipes(s.toString());
-                filter(s.toString());
+                String searchWord = s.toString();
+                queryRecipes(searchWord);
+                filter(searchWord);
             }
-        });
+        });*/
     }
 
     private void filter(String text) {
@@ -94,7 +97,7 @@ public class RecipeListFragment extends Fragment {
         params.put(RecipeKeys.KEY_TYPE, RecipeKeys.KEY_PUBLIC);
         params.put(RecipeKeys.KEY_APP_ID, RecipeKeys.APP_ID);
         params.put(RecipeKeys.KEY_APP_KEY, RecipeKeys.APP_KEY);
-        params.put(RecipeKeys.KEY_QUERY, searchWord);
+        params.put(RecipeKeys.KEY_QUERY, "chicken"); // TODO: change to searchWord for final product
         client.get(RecipeKeys.KEY_URL_PREFIX, params, new JsonHttpResponseHandler()
         {
             @Override

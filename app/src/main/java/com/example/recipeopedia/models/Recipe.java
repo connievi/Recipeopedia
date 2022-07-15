@@ -1,7 +1,12 @@
 package com.example.recipeopedia.models;
 
 import android.text.TextUtils;
+import android.widget.ImageView;
 
+import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.parse.ParseClassName;
 
 import org.json.JSONArray;
@@ -67,6 +72,13 @@ public class Recipe {
 
     public String getImage() {
         return image;
+    }
+
+    @BindingAdapter("recipeImage")
+    public static void loadImage(ImageView view, String imageUrl) {
+        Glide.with(view.getContext())
+                .load(imageUrl)
+                .into(view);
     }
 
     private String formatString(String text) {

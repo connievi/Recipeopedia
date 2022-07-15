@@ -1,63 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.RecipeDetailsActivity">
+<layout>
+    <data>
+        <variable
+            name="recipe"
+            type="com.example.recipeopedia.models.Recipe" />
 
-    <TextView
-        android:id="@+id/tvRecipeName"
+        <variable
+            name="imageUrl"
+            type="String" />
+    </data>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="155dp"
-        android:layout_marginEnd="0dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:text="@string/recipe_name" />
+        android:layout_height="match_parent"
+        tools:context=".activities.RecipeDetailsActivity">
 
-    <ImageView
-        android:id="@+id/ivRecipeImage"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_below="@+id/tvRecipeName"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="0dp"
-        android:contentDescription="@string/image_of_recipe"
-        tools:srcCompat="@tools:sample/avatars" />
+        <TextView
+            android:id="@+id/tvRecipeName"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="155dp"
+            android:layout_marginEnd="0dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="@{recipe.recipeName}" />
 
-    <TextView
-        android:id="@+id/tvIngredients"
-        android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:layout_below="@+id/tvInstructions"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="161dp"
-        tools:text="@string/ingredients" />
+        <ImageView
+            android:id="@+id/ivRecipeImage"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@+id/tvRecipeName"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="0dp"
+            android:contentDescription="@string/image_of_recipe"
+            tools:srcCompat="@tools:sample/avatars"
+            app:recipeImage="@{recipe.image}" />
 
-    <TextView
-        android:id="@+id/tvInstructions"
-        android:layout_width="match_parent"
-        android:layout_height="86dp"
-        android:layout_below="@+id/tvRecipeName"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="0dp"
-        tools:text="@string/instructions" />
+        <TextView
+            android:id="@+id/tvIngredients"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:layout_below="@+id/tvInstructions"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="161dp"
+            android:text="@{recipe.ingredients}"
+            tools:text="@string/ingredients" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tvInstructions"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:layout_below="@+id/tvRecipeName"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="0dp"
+            android:text="@{recipe.instructions}"
+            tools:text="@string/instructions" />
+
+    </RelativeLayout>
+</layout>

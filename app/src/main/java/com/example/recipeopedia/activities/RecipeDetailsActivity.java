@@ -64,12 +64,12 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         });
     }
 
-    private void saveRecipe(String recipeName, ParseUser currentUser, String imageUrl,
-                            String ingredients, String instructions) throws ParseException {
+    public void saveRecipe(String recipeName, ParseUser currentUser, String imageUrl,
+                                  String ingredients, String instructions) throws ParseException {
         ParseQuery<FavoriteRecipe> query = ParseQuery.getQuery(FavoriteRecipe.class);
         query.whereEqualTo(FavoriteRecipe.KEY_RECIPE_NAME, recipeName);
         if (query.count() > 0) {
-            Toast.makeText(getApplicationContext(), "Recipe already in favorites!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Recipe already saved!", Toast.LENGTH_SHORT).show();
         }
         else {
             FavoriteRecipe favoriteRecipe = new FavoriteRecipe();

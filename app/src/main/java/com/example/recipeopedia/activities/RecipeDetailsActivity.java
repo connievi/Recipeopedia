@@ -16,17 +16,20 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.recipeopedia.R;
+import com.example.recipeopedia.RecipeKeys;
 import com.example.recipeopedia.databinding.ActivityRecipeDetailsBinding;
 import com.example.recipeopedia.models.FavoriteRecipe;
 import com.example.recipeopedia.models.Recipe;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import org.parceler.Parcels;
 
 import java.io.File;
+import java.util.List;
 
 public class RecipeDetailsActivity extends AppCompatActivity {
     public static final String TAG = "RecipeDetailsActivity";
@@ -51,32 +54,43 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "onClick save recipe button");
-                saveRecipe(recipe.getRecipeName(), ParseUser.getCurrentUser(), recipe.getImage(),
-                        recipe.getIngredients(), recipe.getInstructions());
+                try {
+                    saveRecipe(recipe.getRecipeName(), ParseUser.getCurrentUser(), recipe.getImage(),
+                            recipe.getIngredients(), recipe.getInstructions());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
     private void saveRecipe(String recipeName, ParseUser currentUser, String imageUrl,
-                            String ingredients, String instructions) {
-        // TODO: check if recipe is already saved as a favorite recipe in Parse
-        FavoriteRecipe favoriteRecipe = new FavoriteRecipe();
-        favoriteRecipe.setRecipeName(recipeName);
-        favoriteRecipe.setImage(imageUrl);
-        favoriteRecipe.setUser(currentUser);
-        favoriteRecipe.setIngredients(ingredients);
-        favoriteRecipe.setInstructions(instructions);
-        favoriteRecipe.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Error while saving", e);
-                    Toast.makeText(getApplicationContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
+                            String ingredients, String instructions) throws ParseException {
+        ParseQuery<FavoriteRecipe> query = ParseQuery.getQuery(FavoriteRecipe.class);
+        query.whereEqualTo(FavoriteRecipe.KEY_RECIPE_NAME, recipeName);
+        if (query.count() > 0) {
+            Toast.makeText(getApplicationContext(), "Recipe already in favorites!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            FavoriteRecipe favoriteRecipe = new FavoriteRecipe();
+            favoriteRecipe.setRecipeName(recipeName);
+            favoriteRecipe.setImage(imageUrl);
+            favoriteRecipe.setUser(currentUser);
+            favoriteRecipe.setIngredients(ingredients);
+            favoriteRecipe.setInstructions(instructions);
+            favoriteRecipe.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e != null) {
+                        Log.e(TAG, "Error while saving", e);
+                        Toast.makeText(getApplicationContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Log.i(TAG, "Favorite recipe saved successfully");
+                        Toast.makeText(getApplicationContext(), "Recipe saved!", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                else {
-                    Log.i(TAG, "Favorite recipe saved successful!");
-                }
-            }
-        });
+            });
+        }
     }
 }

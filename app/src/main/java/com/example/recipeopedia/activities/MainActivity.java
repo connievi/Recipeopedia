@@ -49,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView = findViewById(R.id.navigationView);
         setupDrawerContent(navigationView);
+
+        fragmentManager.beginTransaction()
+                .replace(R.id.flContainer, new RecipeListFragment())
+                .commit();
     }
 
     private void setupDrawerContent(NavigationView navigationView) {

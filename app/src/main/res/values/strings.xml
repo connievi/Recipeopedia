@@ -29,4 +29,5 @@
     <string name="description">Description</string>
     <string name="profile_update_success">Profile Update Successfully</string>
     <string name="full_name">Full Name</string>
+    <string name="save_recipe">Save Recipe</string>
 </resources>

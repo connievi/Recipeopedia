@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SavedRecipesFragment">
+    tools:context=".fragments.FavoriteRecipesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvSavedRecipes"
+        android:id="@+id/rvFavoriteRecipes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="8dp"

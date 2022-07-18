@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.recipeopedia.R;
 import com.example.recipeopedia.RecipeKeys;
 import com.parse.ParseUser;
@@ -51,26 +53,44 @@ public class EditProfileActivity extends AppCompatActivity {
         if (firstName.isEmpty()) {
             etFirstName.setError(getString(R.string.enter_first_name));
             check = false;
+            YoYo.with(Techniques.Shake)
+                    .duration(600)
+                    .playOn(findViewById(R.id.layout_first_name));
         }
         if (lastName.isEmpty()) {
             etLastName.setError(getString(R.string.enter_last_name));
             check = false;
+            YoYo.with(Techniques.Shake)
+                    .duration(600)
+                    .playOn(findViewById(R.id.layout_last_name));
         }
         if (email.isEmpty()) {
             etEmail.setError(getString(R.string.enter_email));
             check = false;
+            YoYo.with(Techniques.Shake)
+                    .duration(600)
+                    .playOn(findViewById(R.id.layout_email));
         }
         if (phoneNumber.isEmpty()) {
             etPhoneNumber.setError(getString(R.string.enter_phone_number));
             check = false;
+            YoYo.with(Techniques.Shake)
+                    .duration(600)
+                    .playOn(findViewById(R.id.layout_phone_number));
         }
         if (bio.isEmpty()) {
             etBio.setError(getString(R.string.enter_bio));
             check = false;
+            YoYo.with(Techniques.Shake)
+                    .duration(600)
+                    .playOn(findViewById(R.id.layout_bio));
         }
         if (!isEmailValid(email)) {
             etEmail.setError(getString(R.string.enter_valid_email));
             check = false;
+            YoYo.with(Techniques.Shake)
+                    .duration(600)
+                    .playOn(findViewById(R.id.layout_email));
         }
         return check;
     }

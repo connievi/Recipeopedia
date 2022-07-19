@@ -18,11 +18,13 @@ import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Parcel
 public class Recipe {
-    public String recipeName, ingredients, nutrition, instructions,
-            mealType, cuisineType, dishType, dietLabels, healthLabels, image;
+    public String recipeName, ingredients, nutrition, instructions, mealType, cuisineType,
+            dishType, dietLabels, healthLabels, image, href;
 
     public Recipe() {}
 
@@ -37,6 +39,7 @@ public class Recipe {
         cuisineType = recipeObject.getString("dishType");
         instructions = recipeObject.getString("url");
         image = recipeObject.getString("image");
+        href = jsonObject.getJSONObject("_links").getJSONObject("self").getString("href");
         // nutrition = (recipeObject.getJSONArray("totalNutrients")).toString();
     }
 
@@ -74,6 +77,15 @@ public class Recipe {
 
     public String getImage() {
         return image;
+    }
+
+    public String getExternalId() {
+        Pattern pattern = Pattern.compile("[^\\/][\\w]+(?=\\?)", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(href);
+        while (matcher.find()) {
+            return matcher.group();
+        }
+        return null;
     }
 
     @BindingAdapter("recipeImage")

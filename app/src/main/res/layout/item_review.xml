@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="review"
+            type="com.example.recipeopedia.models.Review" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvUser"
+                android:layout_width="298dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="5dp"
+                android:text="@{review.username}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:text="@string/username" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="112dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/tvReview"
+                android:layout_alignRight="@+id/tvUser"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="-27dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="9dp"
+                android:layout_marginBottom="0dp"
+                tools:text="@string/time_stamp" />
+
+            <TextView
+                android:id="@+id/tvReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvUser"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="9dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                tools:text="Review"
+                android:text="@{review.review}"/>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

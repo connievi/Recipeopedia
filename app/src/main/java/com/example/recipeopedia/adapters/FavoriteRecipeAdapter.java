@@ -1,4 +1,4 @@
-package com.example.recipeopedia;
+package com.example.recipeopedia.adapters;
 
 import android.content.Intent;
 import android.util.Log;
@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recipeopedia.R;
 import com.example.recipeopedia.activities.FavoriteRecipeDetailsActivity;
-import com.example.recipeopedia.activities.RecipeDetailsActivity;
 import com.example.recipeopedia.databinding.ItemFavoriteRecipeBinding;
 import com.example.recipeopedia.models.FavoriteRecipe;
 

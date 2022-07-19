@@ -13,7 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.recipeopedia.FavoriteRecipeAdapter;
+import com.example.recipeopedia.adapters.FavoriteRecipeAdapter;
 import com.example.recipeopedia.R;
 import com.example.recipeopedia.models.FavoriteRecipe;
 import com.parse.FindCallback;

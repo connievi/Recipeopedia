@@ -2,39 +2,29 @@ package com.example.recipeopedia.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.recipeopedia.R;
-import com.example.recipeopedia.RecipeKeys;
 import com.example.recipeopedia.databinding.ActivityRecipeDetailsBinding;
 import com.example.recipeopedia.models.FavoriteRecipe;
 import com.example.recipeopedia.models.Recipe;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import org.parceler.Parcels;
 
-import java.io.File;
-import java.util.List;
-
 public class RecipeDetailsActivity extends AppCompatActivity {
     public static final String TAG = "RecipeDetailsActivity";
     private Recipe recipe;
-    private Button btnSave;
+    private Button btnSave, btnReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +52,21 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btnReview = findViewById(R.id.btnReview);
+        btnReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "onClick view recipe reviews button");
+                Intent i = new Intent(getApplicationContext(), ReviewSectionActivity.class);
+                i.putExtra(Recipe.class.getSimpleName(), Parcels.wrap(recipe));
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
-    public void saveRecipe(String recipeName, ParseUser currentUser, String imageUrl,
+    private void saveRecipe(String recipeName, ParseUser currentUser, String imageUrl,
                                   String ingredients, String instructions) throws ParseException {
         ParseQuery<FavoriteRecipe> query = ParseQuery.getQuery(FavoriteRecipe.class);
         query.whereEqualTo(FavoriteRecipe.KEY_RECIPE_NAME, recipeName);

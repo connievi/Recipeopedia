@@ -1,20 +1,17 @@
-package com.example.recipeopedia;
+package com.example.recipeopedia.adapters;
 
-import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.example.recipeopedia.R;
 import com.example.recipeopedia.activities.RecipeDetailsActivity;
 import com.example.recipeopedia.databinding.ItemRecipeBinding;
 import com.example.recipeopedia.models.FavoriteRecipe;
@@ -111,7 +108,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             return true;
         }
 
-        public void saveRecipe(String recipeName, ParseUser currentUser, String imageUrl,
+        private void saveRecipe(String recipeName, ParseUser currentUser, String imageUrl,
                                String ingredients, String instructions) throws ParseException {
             ParseQuery<FavoriteRecipe> query = ParseQuery.getQuery(FavoriteRecipe.class);
             query.whereEqualTo(FavoriteRecipe.KEY_RECIPE_NAME, recipeName);

@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.example.recipeopedia.R;
 import com.example.recipeopedia.fragments.ProfileFragment;
 import com.example.recipeopedia.fragments.RecipeListFragment;
-import com.example.recipeopedia.fragments.SavedRecipesFragment;
+import com.example.recipeopedia.fragments.FavoriteRecipesFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.parse.ParseUser;
 
@@ -49,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView = findViewById(R.id.navigationView);
         setupDrawerContent(navigationView);
+
+        fragmentManager.beginTransaction()
+                .replace(R.id.flContainer, new RecipeListFragment())
+                .commit();
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -74,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 changeFragments(menuItem, fragment);
                 break;
             case R.id.nav_saved:
-                fragment = new SavedRecipesFragment();
+                fragment = new FavoriteRecipesFragment();
                 changeFragments(menuItem, fragment);
                 break;
             case R.id.nav_logout:

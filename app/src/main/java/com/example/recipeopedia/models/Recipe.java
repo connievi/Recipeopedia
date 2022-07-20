@@ -1,6 +1,7 @@
 package com.example.recipeopedia.models;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
@@ -8,6 +9,7 @@ import androidx.databinding.BindingAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.parse.ParseClassName;
+import com.parse.ParseObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,7 +65,7 @@ public class Recipe {
     }
 
     public String getIngredients() {
-        return formatString(ingredients);
+        return ingredients;
     }
 
     public String getInstructions() {
@@ -81,12 +83,12 @@ public class Recipe {
                 .into(view);
     }
 
-    private String formatString(String text) {
-        /*
+    /*private String formatString(String text) {
+        *//*
         formatString() formats the nested JSON data that ingredients, instructions,
         and other values are stored in
         TODO: this method does not completely format the string how I want, will edit later
-        */
+        *//*
 
         StringBuilder json = new StringBuilder();
         String indentString = "";
@@ -136,5 +138,5 @@ public class Recipe {
             }
         }
         return json.toString();
-    }
+    }*/
 }

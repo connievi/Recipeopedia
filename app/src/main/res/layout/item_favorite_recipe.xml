@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="recipe"
-            type="com.example.recipeopedia.models.Recipe" />
+            name="favoriteRecipe"
+            type="com.example.recipeopedia.models.FavoriteRecipe" />
 
         <variable
             name="imageUrl"
@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="5dp"
-                app:recipeImage="@{recipe.image}"
+                app:recipeImage="@{favoriteRecipe.image}"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
@@ -41,7 +41,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="0dp"
-                android:text="@{recipe.recipeName}"
+                android:text="@{favoriteRecipe.recipeName}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 tools:text="@string/recipe_name" />
 

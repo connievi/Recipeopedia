@@ -30,8 +30,6 @@ public class FavoriteRecipeDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favorite_recipe_details);
 
         favoriteRecipe = Parcels.unwrap(getIntent().getParcelableExtra(FavoriteRecipe.class.getSimpleName()));
-        Log.d("FavoriteRecipeDetailsActivity", String.format("Showing details for '%s'", favoriteRecipe.getRecipeName()));
-
         ActivityFavoriteRecipeDetailsBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_favorite_recipe_details);
         binding.setImageUrl(favoriteRecipe.getImage());

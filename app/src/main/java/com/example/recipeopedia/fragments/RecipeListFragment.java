@@ -100,25 +100,20 @@ public class RecipeListFragment extends Fragment {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json)
             {
-                Log.d(TAG, "onSuccess");
                 JSONObject jsonObject = json.jsonObject;
                 try
                 {
                     JSONArray hits = jsonObject.getJSONArray("hits");
-                    Log.i(TAG, "Hits: " + hits.toString());
                     mRecipes.addAll(Recipe.fromJsonArray(hits));
                     recipeAdapter.notifyDataSetChanged();
-                    Log.i(TAG, "Recipes: " + mRecipes.size());
                 }
                 catch (JSONException e)
                 {
-                    Log.e(TAG, "Hit json exception", e);
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                Log.e("ERROR", response);
             }
         });
     }

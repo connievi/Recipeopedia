@@ -31,7 +31,6 @@ public class FavoriteRecipeAdapter extends RecyclerView.Adapter<FavoriteRecipeAd
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        Log.d(TAG, "onCreateViewHolder");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View recipeView = inflater.inflate(R.layout.item_favorite_recipe, parent, false);
         return new ViewHolder(recipeView);
@@ -40,7 +39,6 @@ public class FavoriteRecipeAdapter extends RecyclerView.Adapter<FavoriteRecipeAd
     @Override
     public void onBindViewHolder(@NonNull FavoriteRecipeAdapter.ViewHolder holder, int position)
     {
-        Log.d(TAG, "onBindViewHolder " + position);
         FavoriteRecipe favoriteRecipe = mFavoriteRecipes.get(position);
         holder.bind(favoriteRecipe);
     }

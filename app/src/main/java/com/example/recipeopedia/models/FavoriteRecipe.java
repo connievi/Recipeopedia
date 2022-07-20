@@ -14,6 +14,7 @@ public class FavoriteRecipe extends ParseObject {
     public static final String KEY_IMAGE = "image";
     public static final String KEY_INSTRUCTIONS = "instructions";
     public static final String KEY_INGREDIENTS = "ingredients";
+    public static final String KEY_HEALTH_LABELS = "healthLabels";
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED = "createdAt";
 
@@ -39,6 +40,14 @@ public class FavoriteRecipe extends ParseObject {
 
     public void setInstructions(String instructions) {
         put(KEY_INSTRUCTIONS, instructions);
+    }
+
+    public String getHealthLabels() {
+        return getString(KEY_HEALTH_LABELS);
+    }
+
+    public void setHealthLabels(String healthLabels) {
+        put(KEY_HEALTH_LABELS, healthLabels);
     }
 
     public String getImage() {

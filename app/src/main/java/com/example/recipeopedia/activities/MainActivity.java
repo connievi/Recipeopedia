@@ -23,7 +23,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
-
     public static final String TAG = "MainActivity";
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private DrawerLayout drawerLayout;
@@ -41,10 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
-
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navigationView = findViewById(R.id.navigationView);
@@ -82,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 changeFragments(menuItem, fragment);
                 break;
             case R.id.nav_logout:
-                Toast.makeText(this, "Log Out selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Logging Out", Toast.LENGTH_SHORT).show();
                 logOutUser();
                 break;
         }
@@ -104,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logOutUser() {
-        Log.i(TAG, "Attempting to logout user");
         ParseUser.logOutInBackground();
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);

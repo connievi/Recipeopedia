@@ -73,10 +73,7 @@ public class ReviewSectionActivity extends AppCompatActivity {
             @Override
             public void done(ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Error while saving", e);
-                }
-                else {
-                    Log.i(TAG, "Review uploaded successfully");
+                    return;
                 }
             }
         });
@@ -88,7 +85,6 @@ public class ReviewSectionActivity extends AppCompatActivity {
         btnPostReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick post review button");
                 recipe = Parcels.unwrap(getIntent().getParcelableExtra(Recipe.class.getSimpleName()));
                 String recipeId = recipe.getExternalId();
                 ParseUser currentUser = ParseUser.getCurrentUser();
@@ -125,7 +121,6 @@ public class ReviewSectionActivity extends AppCompatActivity {
             @Override
             public void done(List<Review> reviews, ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting reviews", e);
                     return;
                 }
                 mReviews.addAll(reviews);

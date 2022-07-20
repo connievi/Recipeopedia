@@ -23,24 +23,18 @@ import java.util.regex.Pattern;
 
 @Parcel
 public class Recipe {
-    public String recipeName, ingredients, nutrition, instructions, mealType, cuisineType,
-            dishType, dietLabels, healthLabels, image, href;
+    public String recipeName, image, instructions, ingredients, href, healthLabels;
 
     public Recipe() {}
 
     public Recipe(JSONObject jsonObject) throws JSONException {
         JSONObject recipeObject = jsonObject.getJSONObject("recipe");
         recipeName = recipeObject.getString("label");
-        ingredients = (recipeObject.getJSONArray("ingredientLines")).toString();
-        dietLabels = (recipeObject.getJSONArray("dietLabels")).toString();
-        healthLabels = (recipeObject.getJSONArray("healthLabels")).toString();
-        mealType = (recipeObject.getJSONArray("mealType")).toString();
-        dishType = recipeObject.getString("dishType");
-        cuisineType = recipeObject.getString("dishType");
-        instructions = recipeObject.getString("url");
         image = recipeObject.getString("image");
+        instructions = recipeObject.getString("url");
+        ingredients = (recipeObject.getJSONArray("ingredientLines")).toString();
         href = jsonObject.getJSONObject("_links").getJSONObject("self").getString("href");
-        // nutrition = (recipeObject.getJSONArray("totalNutrients")).toString();
+        healthLabels = (recipeObject.getJSONArray("healthLabels")).toString();
     }
 
     public static List<Recipe> fromJsonArray(JSONArray recipeJsonArray) throws JSONException {
@@ -68,7 +62,7 @@ public class Recipe {
     }
 
     public String getIngredients() {
-        return formatString(ingredients);
+        return formatIngredients(ingredients);
     }
 
     public String getInstructions() {
@@ -88,18 +82,34 @@ public class Recipe {
         return null;
     }
 
-    private String formatString(String format) {
+    public String getHealthLabels() { return formatHealthLabels(healthLabels); }
+
+    private String formatIngredients(String ingredients) {
         StringBuilder sb = new StringBuilder();
         Pattern pattern = Pattern.compile("\"(.*?)\"", Pattern.CASE_INSENSITIVE);
-        format.replaceAll("\\\\", "");
-        Matcher matcher = pattern.matcher(format);
+        ingredients.replaceAll("\\\\", "");
+        Matcher matcher = pattern.matcher(ingredients);
         while (matcher.find()) {
             String ingredientLine = matcher.group().replaceAll("^\"|\"$", "");
             ingredientLine = ingredientLine.replaceAll("\\\\", "");
             sb.append(ingredientLine + "\n");
         }
         String ret = sb.toString();
-        return ret;
+        return ret.trim();
+    }
+
+    private String formatHealthLabels(String healthLabels) {
+        StringBuilder sb = new StringBuilder();
+        Pattern pattern = Pattern.compile("\"(.*?)\"", Pattern.CASE_INSENSITIVE);
+        healthLabels.replaceAll("\\\\", "");
+        Matcher matcher = pattern.matcher(healthLabels);
+        while (matcher.find()) {
+            String label = matcher.group().replaceAll("^\"|\"$", "");
+            label = label.replaceAll("\\\\", "");
+            sb.append(label + ", ");
+        }
+        String ret = sb.toString();
+        return ret.substring(0, ret.length() - 2);
     }
 
     @BindingAdapter("recipeImage")

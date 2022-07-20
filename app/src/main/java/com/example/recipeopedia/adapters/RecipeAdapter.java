@@ -84,7 +84,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             if (position != RecyclerView.NO_POSITION)
             {
                 Recipe recipe = mRecipes.get(position);
-                Log.i(TAG, recipe.getIngredients());
                 Intent intent = new Intent(v.getContext(), RecipeDetailsActivity.class);
                 intent.putExtra(Recipe.class.getSimpleName(), Parcels.wrap(recipe));
                 v.getContext().startActivity(intent);
@@ -98,8 +97,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             {
                 Recipe recipe = mRecipes.get(position);
                 try {
-                    saveRecipe(recipe.getRecipeName(), ParseUser.getCurrentUser(),
-                            recipe.getImage(), recipe.getIngredients(), recipe.getInstructions());
+                    saveRecipe(recipe.getRecipeName(), ParseUser.getCurrentUser(), recipe.getImage(),
+                            recipe.getIngredients(), recipe.getInstructions(), recipe.getHealthLabels());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -108,7 +107,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         }
 
         private void saveRecipe(String recipeName, ParseUser currentUser, String imageUrl,
-                               String ingredients, String instructions) throws ParseException {
+                               String ingredients, String instructions, String healthLabels) throws ParseException {
             ParseQuery<FavoriteRecipe> query = ParseQuery.getQuery(FavoriteRecipe.class);
             query.whereEqualTo(FavoriteRecipe.KEY_RECIPE_NAME, recipeName);
             if (query.count() > 0) {
@@ -121,6 +120,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                 favoriteRecipe.setUser(currentUser);
                 favoriteRecipe.setIngredients(ingredients);
                 favoriteRecipe.setInstructions(instructions);
+                favoriteRecipe.setHealthLabels(healthLabels);
                 favoriteRecipe.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {

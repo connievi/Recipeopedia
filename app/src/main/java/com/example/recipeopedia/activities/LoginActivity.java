@@ -11,13 +11,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.recipeopedia.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
 public class LoginActivity extends AppCompatActivity {
-
     public static final String TAG = "LoginActivity";
     private ImageView etIcon;
     private EditText etUsername;
@@ -38,22 +39,19 @@ public class LoginActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
-        btnCreate = findViewById(R.id.btnCreate);
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick login button");
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 logInUser(username, password);
             }
         });
 
+        btnCreate = findViewById(R.id.btnCreate);
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onCreate login button");
                 signUpActivity();
             }
         });
@@ -61,14 +59,31 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void logInUser(String username, String password) {
-        Log.i(TAG, "Attempting to login user " + username);
-
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
+                if (username.isEmpty() && password.isEmpty()) {
+                    YoYo.with(Techniques.Shake)
+                            .duration(600)
+                            .playOn(findViewById(R.id.etUsername));
+                    YoYo.with(Techniques.Shake)
+                            .duration(600)
+                            .playOn(findViewById(R.id.etPassword));
+                }
+                else if (username.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, R.string.enter_username, Toast.LENGTH_SHORT).show();
+                    YoYo.with(Techniques.Shake)
+                            .duration(600)
+                            .playOn(findViewById(R.id.etUsername));
+                }
+                else if (password.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, R.string.enter_password, Toast.LENGTH_SHORT).show();
+                    YoYo.with(Techniques.Shake)
+                            .duration(600)
+                            .playOn(findViewById(R.id.etPassword));
+                }
                 if (e != null) {
-                    Log.e(TAG, "Issue with login", e);
-                    Toast.makeText(LoginActivity.this, "Issue with login!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, R.string.incorrect_login_info, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 goMainActivity();

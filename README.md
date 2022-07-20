@@ -11,13 +11,13 @@ Original App Design Project - README
 
 ## Overview
 ### Description
-This Android mobile app will serve as a platform for users to generate recipes based off their unique food tastes and diets.
+This Android mobile app will serve as a platform for users to search up recipes based off their unique food tastes.
 
 ### App Evaluation
 - **Category:** Health
-- **Mobile:** This app will be very user friendly to mobile users. Users can easily input their diet information and ingredients into the app, scroll through recipes, and tap on recipes to learn more specific information about them, such as ingredients and nutrition information. 
-- **Story:** This app is very compelling towards users as they can easily find new recipes based on their peresonal preferences. 
-- **Market:** The market for this app is typically teenagers or adults who are more health-conscious or want to learn/explore new recipes. 
+- **Mobile:** This app will be very user friendly to mobile users. Users can easily search through recipes and tap on recipes to learn more specific information about them, such as instructions, ingredients, and health labels. 
+- **Story:** This app is very compelling towards users as they can easily find new recipes based on their personal preferences. 
+- **Market:** The market for this app is typically teenagers or adults who want to learn/explore new recipes. 
 - **Habit:** Users will use this app when they want to discover new recipes. They can consume and create content on this app.
 - **Scope:** I believe the scope is realistic for this app and allows me to incorporate many different useful and relevant features.
 
@@ -35,7 +35,7 @@ This Android mobile app will serve as a platform for users to generate recipes b
 * User can tap on a recipe and view detailed recipe information, users' reviews
 * User can leave reviews on a recipe (comment + image) to share their experience
 * User can double tap to like other users' reviews
-* User can rate recipes out of 5 stars
+* User can long press to save recipes to favorite
 * User can save favorite recipes
 * Incorporate at least one external library to add visual polish
 * Incorporate animated loading symbol while waiting for recipes to load
@@ -63,17 +63,16 @@ This Android mobile app will serve as a platform for users to generate recipes b
    * User can edit a description for themselves (OPTIONAL)
    * User can add/change profile image (OPTIONAL)
    * User can log out
-* Category/search screen
-    * User can search keywords or choose categories (breakfast, lunch, dinner, etc.) to navigate to a screen of recipes
+   * User can delete their account (OPTIONAL)
+* Recipe List Search screen
+    * User can search keywords to view list of recipes
     * Filter recipes by total ingredient cost and other factors (OPTIONAL)
-* Recipe screen
     * User can view/scroll through generated recipes
-    * User can tap on a recipe and view detailed recipe information, users' reviews    
+    * User can tap on a recipe and view detailed recipe information and users' reviews    
 * Recipe Details screen
-    * User can leave reviews on a recipe (comment + image) to share their experience
+    * User can leave reviews on a recipe to share their experience
     * User can double tap to like other users' reviews
     * User can save favorite recipes
-    * User can rate recipes out of 5 stars
     * User can receive suggested grocery information for guidance where to buy ingredients (OPTIONAL)
 * Recipes for You Screen (OPTIONAL)
     * User can view generated “Recipes for You” and a daily suggested recipe (OPTIONAL)
@@ -85,67 +84,69 @@ This Android mobile app will serve as a platform for users to generate recipes b
 **Tab Navigation** (Tab to Screen)
 
 * Profile tab
-* Category/search tab
-* Recipe tab
+* Recipe List Search tab
+* Saved Recipes tab
 
 **Flow Navigation** (Screen to Screen)
-* Login page
-    * Navigate to search/category screen
-* Create account page
-    * Navigate to profile screen
-* Category/search screen
-   * Navigate to recipes
-* Recipe screen
-    * Navigate to specific recipe information screen
+* Login page 
+  * Navigate to search/category screen
+* Create account page 
+  * Navigate to profile screen
+* Recipe List Search screen 
+  * Navigate to specific recipe information screen
+* Recipe Information screen
+  * Navigate to comment section
+* Saved Recipes screen
+  * Navigate to basic recipe information screen
 
 
 ## Wireframes
 ![](https://i.imgur.com/QRDCuVO.jpg)
 
 
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
-
 ## Schema 
 ### Models
 User
 | Property | Type | Description |
 | -------- | -------- | -------- |
+| username | String | user's account username |
+| password | String | user's account password |
 | firstName | String | user's first name |
 | lastName | String | user's last name |
-| userName | String | user's account username |
-| password | String | user's account password |
 | email | String | user's email address associated with account |
-| savedRecipes | List of Pointers | list of user's saved recipes |
+| phoneNumber | String | user's phone number |
+| bio | String | user's self description |
 
 Recipe
 | Property | Type | Description |
 | -------- | -------- | -------- |
-| name | String | name of recipe |
-| picture | file | picture of recipe |
-| ingredients | List of Strings | recipe ingredients |
-| nutrition | List of Strings | nutrition facts |
-| instructions | String | recipe instructions |
-| mealType | String | type of meal (breakfast, lunch, dinner, etc.) |
-| cuisineType | String | type of cuisine | 
-| dishType | List of Strings | type of dish | 
-| dietLabels | List of Strings | diet label | 
-| healthLabels | List of Strings | health labels |
+| recipeName | String | name of recipe |
+| image | String | picture of dish |
+| instructions | String | website link to recipe instructions |
+| ingredients | String | recipe ingredients |
+| href | String | API href |
+| healthLabels | String | health labels |
+
+FavoriteRecipe
+| Property | Type | Description |
+| -------- | -------- | -------- |
+| recipeName | String | name of recipe |
+| image | String | picture of dish |
+| instructions | String | website link to recipe instructions |
+| ingredients | String | recipe ingredients |
+| healthLabels | String | health labels |
+| user | Pointer to User | user |
 
 Review
 | Property | Type | Description |
 | -------- | -------- | -------- |
 | user | pointer | pointer to user who left the review |
-| comment | String | user's comment on the recipe |
-| picture | file | user's picture of their attempt at the recipe |
+| username | String | user's username | 
+| review | String | user's review |
+| recipeId | String | recipe's unique external ID | 
 
 
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
-
 * Login screen 
    * (Read/GET) Query username to log in
    * (Read/GET) Query password to log in
@@ -154,30 +155,11 @@ Review
 * Profile screen
    * (Read/GET) Query logged in user object
    * (Update/PUT) Update user profile image
-* Category/search screen
+* Recipe List Search screen
     * (Read/GET) Query keywords in search bar
-    * (Read/GET) Query category
-* Recipe screen
-    * (Read/GET Query recipe information
-
-```
-private void queryRecipes() {
-    ParseQuery<Recipe> query = ParseQuery.getQuery(Recipe.class);
-    query.include(Recipe.KEY_USER);
-    query.setLimit(20);
-    query.findInBackground(new FindCallback<Recipe>() {
-        @Override
-        public void done(List<Recipe> recipes, ParseException e) {
-            if (e != null) {
-                Log.e(TAG, "Issue with getting recipes", e);
-                return;
-            }
-            allRecipes.addAll(recipes);
-            adapter.notifyDataSetChanged();
-        }
-    });
-}
-```
+    * (Read/GET) Query recipe information
+* Favorite Recipe screen
+  * (READ/GET) Query favorite recipes from database
 
 
 API: https://developer.edamam.com/edamam-docs-recipe-api

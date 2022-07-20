@@ -62,11 +62,7 @@ public class FavoriteRecipesFragment extends Fragment {
             @Override
             public void done(List<FavoriteRecipe> favoriteRecipes, ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting favorite recipes", e);
                     return;
-                }
-                for (FavoriteRecipe favoriteRecipe: favoriteRecipes) {
-                    Log.i(TAG, "Favorite Recipe: " + favoriteRecipe.getRecipeName());
                 }
                 mFavoriteRecipes.addAll(favoriteRecipes);
                 favoriteRecipeAdapter.notifyDataSetChanged();

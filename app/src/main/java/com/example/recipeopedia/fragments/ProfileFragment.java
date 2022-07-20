@@ -55,7 +55,6 @@ public class ProfileFragment extends Fragment {
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick edit button");
                 goEditProfileActivity();
             }
         });

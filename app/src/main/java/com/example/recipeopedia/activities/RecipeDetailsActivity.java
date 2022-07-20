@@ -42,7 +42,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     saveRecipe(recipe.getRecipeName(), ParseUser.getCurrentUser(), recipe.getImage(),
-                            recipe.getIngredients(), recipe.getInstructions());
+                            recipe.getIngredients(), recipe.getInstructions(), recipe.getHealthLabels());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -62,7 +62,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     }
 
     private void saveRecipe(String recipeName, ParseUser currentUser, String imageUrl,
-                                  String ingredients, String instructions) throws ParseException {
+                                  String ingredients, String instructions, String healthLabels) throws ParseException {
         ParseQuery<FavoriteRecipe> query = ParseQuery.getQuery(FavoriteRecipe.class);
         query.whereEqualTo(FavoriteRecipe.KEY_RECIPE_NAME, recipeName);
         if (query.count() > 0) {
@@ -75,6 +75,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             favoriteRecipe.setUser(currentUser);
             favoriteRecipe.setIngredients(ingredients);
             favoriteRecipe.setInstructions(instructions);
+            favoriteRecipe.setHealthLabels(healthLabels);
             favoriteRecipe.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {

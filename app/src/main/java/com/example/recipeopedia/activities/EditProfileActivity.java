@@ -20,8 +20,7 @@ public class EditProfileActivity extends AppCompatActivity {
     public static final String TAG = "EditProfileActivity";
     private EditText etFirstName, etLastName, etEmail, etPhoneNumber, etBio;
     private Button btnUpdate;
-
-    String firstName, lastName, email, phoneNumber, bio;
+    private String firstName, lastName, email, phoneNumber, bio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -3,7 +3,6 @@ package com.example.recipeopedia;
 import android.app.Application;
 
 import com.example.recipeopedia.models.FavoriteRecipe;
-import com.example.recipeopedia.models.Recipe;
 import com.example.recipeopedia.models.Review;
 import com.parse.Parse;
 import com.parse.ParseObject;

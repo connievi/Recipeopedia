@@ -14,6 +14,7 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,8 +31,8 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="4dp"
                 android:contentDescription="@string/image_of_recipe"
-                tools:srcCompat="@tools:sample/avatars"
-                app:recipeImage="@{favoriteRecipe.image}" />
+                app:recipeImage="@{favoriteRecipe.image}"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/tvRecipeName"
@@ -125,6 +126,69 @@
                 android:layout_marginEnd="6dp"
                 android:text="@{favoriteRecipe.healthLabels}"
                 tools:text="@string/health_labels" />
+
+            <TextView
+                android:id="@+id/tvYourAttemptLayout"
+                android:layout_width="407dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvHealthLabels"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="6dp"
+                android:text="@string/tried_this_recipe_out_record_your_attempt"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <EditText
+                android:id="@+id/etYourAttempt"
+                android:layout_width="399dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvYourAttemptLayout"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="6dp"
+                android:hint="@string/describe_your_attempt"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <Button
+                android:id="@+id/btnPostAttempt"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/etYourAttempt"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="300dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="0dp"
+                android:text="@string/record" />
+
+            <TextView
+                android:id="@+id/tvYourAttemptsLayout"
+                android:layout_width="407dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnPostAttempt"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="6dp"
+                android:text="Your Attempts"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <TextView
+                android:id="@+id/tvYourAttempt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvYourAttemptsLayout"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="1dp"
+                android:text="@{favoriteRecipe.attempt}"
+                tools:text="@string/your_attempt" />
+
         </RelativeLayout>
     </ScrollView>
 </layout>

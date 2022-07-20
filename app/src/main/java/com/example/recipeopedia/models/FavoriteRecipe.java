@@ -17,6 +17,7 @@ public class FavoriteRecipe extends ParseObject {
     public static final String KEY_HEALTH_LABELS = "healthLabels";
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED = "createdAt";
+    public static final String KEY_ATTEMPT = "attempt";
 
     public String getRecipeName() {
         return getString(KEY_RECIPE_NAME);
@@ -65,4 +66,8 @@ public class FavoriteRecipe extends ParseObject {
     public void setUser(ParseUser user) {
         put(KEY_USER, user);
     }
+
+    public String getAttempt() { return getString(KEY_ATTEMPT); }
+
+    public void setAttempt(String attempt) { put(KEY_ATTEMPT, attempt); }
 }

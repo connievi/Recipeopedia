@@ -39,7 +39,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        Log.d(TAG, "onCreateViewHolder");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View recipeView = inflater.inflate(R.layout.item_recipe, parent, false);
         return new ViewHolder(recipeView);
@@ -48,7 +47,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
-        Log.d(TAG, "onBindViewHolder " + position);
         Recipe recipe = mRecipes.get(position);
         holder.bind(recipe);
     }
@@ -86,6 +84,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             if (position != RecyclerView.NO_POSITION)
             {
                 Recipe recipe = mRecipes.get(position);
+                Log.i(TAG, recipe.getIngredients());
                 Intent intent = new Intent(v.getContext(), RecipeDetailsActivity.class);
                 intent.putExtra(Recipe.class.getSimpleName(), Parcels.wrap(recipe));
                 v.getContext().startActivity(intent);
@@ -126,11 +125,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                     @Override
                     public void done(ParseException e) {
                         if (e != null) {
-                            Log.e(TAG, "Error while saving", e);
                             Toast.makeText(itemView.getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            Log.i(TAG, "Recipe already saved recipe saved successfully");
                             Toast.makeText(itemView.getContext(), "Recipe saved!", Toast.LENGTH_SHORT).show();
                         }
                     }

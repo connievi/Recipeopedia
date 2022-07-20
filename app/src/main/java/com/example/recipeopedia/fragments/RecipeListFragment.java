@@ -94,7 +94,7 @@ public class RecipeListFragment extends Fragment {
         params.put(RecipeKeys.KEY_TYPE, RecipeKeys.KEY_PUBLIC);
         params.put(RecipeKeys.KEY_APP_ID, RecipeKeys.APP_ID);
         params.put(RecipeKeys.KEY_APP_KEY, RecipeKeys.APP_KEY);
-        params.put(RecipeKeys.KEY_QUERY, "chicken"); // TODO: change to searchWord for final product
+        params.put(RecipeKeys.KEY_QUERY, "chicken"); // TODO: change "chicken" to searchWord for final product
         client.get(RecipeKeys.KEY_URL_PREFIX, params, new JsonHttpResponseHandler()
         {
             @Override

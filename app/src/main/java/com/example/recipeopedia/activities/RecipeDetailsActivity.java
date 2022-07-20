@@ -32,18 +32,14 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipe_details);
 
         recipe = Parcels.unwrap(getIntent().getParcelableExtra(Recipe.class.getSimpleName()));
-        Log.d("RecipeDetailsActivity", String.format("Showing details for '%s'", recipe.getRecipeName()));
-
         ActivityRecipeDetailsBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_recipe_details);
-        binding.setImageUrl(recipe.getImage());
         binding.setRecipe(recipe);
 
         btnSave = findViewById(R.id.btnSave);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick save recipe button");
                 try {
                     saveRecipe(recipe.getRecipeName(), ParseUser.getCurrentUser(), recipe.getImage(),
                             recipe.getIngredients(), recipe.getInstructions());
@@ -57,7 +53,6 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         btnReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick view recipe reviews button");
                 Intent i = new Intent(getApplicationContext(), ReviewSectionActivity.class);
                 i.putExtra(Recipe.class.getSimpleName(), Parcels.wrap(recipe));
                 startActivity(i);
@@ -84,11 +79,9 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                 @Override
                 public void done(ParseException e) {
                     if (e != null) {
-                        Log.e(TAG, "Error while saving", e);
                         Toast.makeText(getApplicationContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        Log.i(TAG, "Favorite recipe saved successfully");
                         Toast.makeText(getApplicationContext(), "Recipe saved!", Toast.LENGTH_SHORT).show();
                     }
                 }

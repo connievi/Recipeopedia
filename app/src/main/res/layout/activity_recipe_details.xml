@@ -38,9 +38,9 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="6dp"
             android:layout_marginTop="155dp"
-            android:layout_marginEnd="0dp"
+            android:layout_marginEnd="6dp"
             android:text="@{recipe.recipeName}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             tools:text="@string/recipe_name" />
@@ -52,9 +52,9 @@
             android:layout_below="@+id/tvRecipeName"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="6dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="6dp"
             android:text="@string/instructions"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
@@ -65,9 +65,9 @@
             android:layout_below="@+id/tvInstructionsLayout"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="6dp"
             android:text="@{recipe.instructions}"
             tools:text="@string/instructions" />
 
@@ -78,10 +78,10 @@
             android:layout_below="@+id/tvInstructions"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="6dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:text="@string/instructions"
+            android:layout_marginEnd="6dp"
+            android:text="@string/ingredients"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <TextView
@@ -91,9 +91,9 @@
             android:layout_below="@+id/tvIngredientsLayout"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="6dp"
             android:text="@{recipe.ingredients}"
             tools:text="@string/ingredients" />
 

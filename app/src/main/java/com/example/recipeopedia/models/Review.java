@@ -18,7 +18,6 @@ public class Review extends ParseObject {
     public static final String KEY_CREATED_AT = "createdAt";
     public static final String KEY_RECIPE_ID = "recipeId";
     public static final String KEY_REVIEW = "review";
-    public static final String KEY_RELATIVE_TIME = "relativeTime";
 
     public ParseUser getUser() {
         return getParseUser(KEY_USER);
@@ -50,12 +49,5 @@ public class Review extends ParseObject {
 
     public void setReview(String review) {
         put(KEY_REVIEW, review);
-    }
-
-    public String getRelativeTime(String rawJsonDate) {
-        SimpleDateFormat ft =
-                new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
-        ft.setLenient(true);
-        return ft.format(rawJsonDate);
     }
 }

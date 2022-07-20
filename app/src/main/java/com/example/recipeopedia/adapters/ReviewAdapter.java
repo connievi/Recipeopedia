@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -57,15 +58,25 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ItemReviewBinding binding;
+        private TextView tvCreatedAt;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt);
             binding = DataBindingUtil.bind(itemView);
         }
 
         public void bind(Review review) {
+            tvCreatedAt.setText(getRelativeTime());
             binding.setReview(review);
         }
+
+        public String getRelativeTime() {
+            int position = getAdapterPosition();
+            Review review = mReviews.get(position);
+            Date createdAt = review.getCreatedAt();
+            SimpleDateFormat ft = new SimpleDateFormat("MMM d, yyyy 'at' hh:mm a");
+            ft.setLenient(true);
+            return ft.format(createdAt);
+        }
     }
-
-
 }

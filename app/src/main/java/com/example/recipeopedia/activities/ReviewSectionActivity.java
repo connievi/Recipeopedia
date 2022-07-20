@@ -24,7 +24,9 @@ import com.parse.SaveCallback;
 
 import org.parceler.Parcels;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ReviewSectionActivity extends AppCompatActivity {
@@ -57,8 +59,30 @@ public class ReviewSectionActivity extends AppCompatActivity {
         rvReviews = findViewById(R.id.rvReviews);
         rvReviews.setAdapter(reviewAdapter);
         rvReviews.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
         queryReviews();
+        setUpLeaveReview();
+    }
+
+    private void saveReview(String recipeId, ParseUser currentUser, String username, String comment) throws ParseException {
+        Review review = new Review();
+        review.setRecipeId(recipeId);
+        review.setUsername(username);
+        review.setUser(currentUser);
+        review.setReview(comment);
+        review.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Error while saving", e);
+                }
+                else {
+                    Log.i(TAG, "Review uploaded successfully");
+                }
+            }
+        });
+    }
+
+    private void setUpLeaveReview() {
         etReview = findViewById(R.id.etReview);
         btnPostReview = findViewById(R.id.btnPostReview);
         btnPostReview.setOnClickListener(new View.OnClickListener() {
@@ -84,27 +108,6 @@ public class ReviewSectionActivity extends AppCompatActivity {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                }
-            }
-        });
-    }
-
-    private void saveReview(String recipeId, ParseUser currentUser, String username, String comment) throws ParseException {
-        Review review = new Review();
-        review.setRecipeId(recipeId);
-        review.setUsername(username);
-        review.setUser(currentUser);
-        review.setReview(comment);
-        review.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Error while saving", e);
-                    Toast.makeText(getApplicationContext(), "Error while posting!", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Log.i(TAG, "Review uploaded successfully");
-                    Toast.makeText(getApplicationContext(), "Review uploaded!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -66,7 +66,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         ParseQuery<FavoriteRecipe> query = ParseQuery.getQuery(FavoriteRecipe.class);
         query.whereEqualTo(FavoriteRecipe.KEY_RECIPE_NAME, recipeName);
         if (query.count() > 0) {
-            Toast.makeText(getApplicationContext(), "Recipe already saved!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.recipe_already_saved, Toast.LENGTH_SHORT).show();
         }
         else {
             FavoriteRecipe favoriteRecipe = new FavoriteRecipe();
@@ -80,10 +80,10 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                 @Override
                 public void done(ParseException e) {
                     if (e != null) {
-                        Toast.makeText(getApplicationContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.error_while_saving, Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        Toast.makeText(getApplicationContext(), "Recipe saved!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.recipe_saved, Toast.LENGTH_SHORT).show();
                     }
                 }
             });

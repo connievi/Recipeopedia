@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.recipeopedia.R;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -37,32 +39,44 @@ public class SignUpActivity extends AppCompatActivity {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = etUsername.getText().toString();
-                if (username.isEmpty()) {
-                    Toast.makeText(SignUpActivity.this, "Username cannot be empty.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                String password = etPassword.getText().toString();
-                if (password.isEmpty()) {
-                    Toast.makeText(SignUpActivity.this, "Password cannot be empty.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
                 String email = etEmail.getText().toString();
-                if (email.isEmpty()) {
-                    Toast.makeText(SignUpActivity.this, "Email cannot be empty.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                try {
-                    saveUser(email, username, password);
-                    Toast.makeText(SignUpActivity.this, "Account successfully made!", Toast.LENGTH_SHORT).show();
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                String username = etUsername.getText().toString();
+                String password = etPassword.getText().toString();
+                if (validateInput(email, username, password)) {
+                    try {
+                        saveUser(email, username, password);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
+    }
+
+    private boolean validateInput(String email, String username, String password) {
+        boolean check = true;
+        if (email.isEmpty()) {
+            YoYo.with(Techniques.Shake)
+                    .duration(600)
+                    .playOn(findViewById(R.id.etEmail));
+            check = false;
+        }
+        if (username.isEmpty()) {
+            YoYo.with(Techniques.Shake)
+                    .duration(600)
+                    .playOn(findViewById(R.id.etUsername));
+            check = false;
+        }
+        if (password.isEmpty()) {
+            YoYo.with(Techniques.Shake)
+                    .duration(600)
+                    .playOn(findViewById(R.id.etPassword));
+            check = false;
+        }
+        if (!check) {
+            Toast.makeText(SignUpActivity.this, R.string.enter_account_info, Toast.LENGTH_SHORT).show();
+        }
+        return check;
     }
 
     private void saveUser(String email, String username, String password) throws ParseException {
@@ -74,8 +88,11 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void done(ParseException e) {
                 if (e != null) {
-                    Toast.makeText(SignUpActivity.this, "Issue with creating account!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, R.string.issue_creating_account, Toast.LENGTH_SHORT).show();
                     return;
+                }
+                else {
+                    Toast.makeText(SignUpActivity.this, R.string.account_made, Toast.LENGTH_SHORT).show();
                 }
                 goEditProfileActivity();
             }

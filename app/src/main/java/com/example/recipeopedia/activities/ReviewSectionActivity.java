@@ -86,12 +86,12 @@ public class ReviewSectionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 recipe = Parcels.unwrap(getIntent().getParcelableExtra(Recipe.class.getSimpleName()));
-                String recipeId = recipe.getExternalId();
+                String recipeId = recipe.getRecipeId();
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 String username = currentUser.getUsername();
                 String comment = etReview.getText().toString();
                 if (comment.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Review cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.review_empty, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else {
@@ -100,7 +100,7 @@ public class ReviewSectionActivity extends AppCompatActivity {
                         reviewAdapter.clear();
                         queryReviews();
                         swipeContainer.setRefreshing(false);
-                        Toast.makeText(getApplicationContext(), "Review posted!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.review_posted, Toast.LENGTH_SHORT).show();
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -113,7 +113,7 @@ public class ReviewSectionActivity extends AppCompatActivity {
         ParseQuery<Review> query = ParseQuery.getQuery(Review.class);
         query.include(Review.KEY_USER);
         recipe = Parcels.unwrap(getIntent().getParcelableExtra(Recipe.class.getSimpleName()));
-        String recipeId = recipe.getExternalId();
+        String recipeId = recipe.getRecipeId();
         query.whereEqualTo(Review.KEY_RECIPE_ID, recipeId);
         query.setLimit(20);
         query.addDescendingOrder("createdAt");

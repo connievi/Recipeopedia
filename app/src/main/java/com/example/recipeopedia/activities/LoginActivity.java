@@ -44,7 +44,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-                logInUser(username, password);
+                if (validateInput(username, password)) {
+                    logInUser(username, password);
+                }
             }
         });
 
@@ -55,33 +57,41 @@ public class LoginActivity extends AppCompatActivity {
                 signUpActivity();
             }
         });
+    }
 
+    private boolean validateInput(String username, String password) {
+        boolean check = true;
+        if (username.isEmpty() && password.isEmpty()) {
+            Toast.makeText(LoginActivity.this, R.string.enter_user_and_password, Toast.LENGTH_SHORT).show();
+            YoYo.with(Techniques.Shake)
+                    .duration(600)
+                    .playOn(findViewById(R.id.etUsername));
+            YoYo.with(Techniques.Shake)
+                    .duration(600)
+                    .playOn(findViewById(R.id.etPassword));
+            check = false;
+        }
+        else if (username.isEmpty()) {
+            Toast.makeText(LoginActivity.this, R.string.enter_username, Toast.LENGTH_SHORT).show();
+            YoYo.with(Techniques.Shake)
+                    .duration(600)
+                    .playOn(findViewById(R.id.etUsername));
+            check = false;
+        }
+        else if (password.isEmpty()) {
+            Toast.makeText(LoginActivity.this, R.string.enter_password, Toast.LENGTH_SHORT).show();
+            YoYo.with(Techniques.Shake)
+                    .duration(600)
+                    .playOn(findViewById(R.id.etPassword));
+            check = false;
+        }
+        return check;
     }
 
     private void logInUser(String username, String password) {
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
-                if (username.isEmpty() && password.isEmpty()) {
-                    YoYo.with(Techniques.Shake)
-                            .duration(600)
-                            .playOn(findViewById(R.id.etUsername));
-                    YoYo.with(Techniques.Shake)
-                            .duration(600)
-                            .playOn(findViewById(R.id.etPassword));
-                }
-                else if (username.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, R.string.enter_username, Toast.LENGTH_SHORT).show();
-                    YoYo.with(Techniques.Shake)
-                            .duration(600)
-                            .playOn(findViewById(R.id.etUsername));
-                }
-                else if (password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, R.string.enter_password, Toast.LENGTH_SHORT).show();
-                    YoYo.with(Techniques.Shake)
-                            .duration(600)
-                            .playOn(findViewById(R.id.etPassword));
-                }
                 if (e != null) {
                     Toast.makeText(LoginActivity.this, R.string.incorrect_login_info, Toast.LENGTH_SHORT).show();
                     return;

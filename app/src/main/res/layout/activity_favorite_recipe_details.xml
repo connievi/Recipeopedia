@@ -127,69 +127,19 @@
                 android:text="@{favoriteRecipe.healthLabels}"
                 tools:text="@string/health_labels" />
 
-            <TextView
-                android:id="@+id/tvYourAttemptLayout"
-                android:layout_width="407dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvHealthLabels"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="6dp"
-                android:text="Tried making this recipe? Describe your experience!"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-
-            <EditText
-                android:id="@+id/etYourAttempt"
-                android:layout_width="399dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvYourAttemptLayout"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="6dp"
-                android:hint="Describe your attempt"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
             <Button
-                android:id="@+id/btnPostAttempt"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_below="@+id/etYourAttempt"
+                android:id="@+id/btnViewAttempts"
+                android:layout_width="400dp"
+                android:layout_height="45dp"
+                android:layout_below="@id/tvHealthLabels"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="300dp"
-                android:layout_marginEnd="6dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="40dp"
                 android:layout_marginBottom="0dp"
-                android:text="@string/record" />
-
-            <TextView
-                android:id="@+id/tvYourAttemptsLayout"
-                android:layout_width="407dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btnPostAttempt"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="6dp"
-                android:text="Your Attempts"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                android:id="@+id/swipeContainer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/tvYourAttemptsLayout">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvAttempts"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:padding="8dp" />
-            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                android:gravity="center_horizontal"
+                android:text="@string/view_your_attempts_at_this_recipe" />
 
         </RelativeLayout>
     </ScrollView>

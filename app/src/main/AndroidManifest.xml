@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ViewAttemptsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ReviewSectionActivity"
             android:exported="false" />
         <activity

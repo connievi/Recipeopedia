@@ -43,4 +43,7 @@
     <string name="enter_password">Please enter password</string>
     <string name="incorrect_login_info">Incorrect username or password</string>
     <string name="record">Record</string>
+    <string name="view_your_attempts_at_this_recipe">View Your Attempts at This Recipe</string>
+    <string name="describe_your_attempt">Describe your attempt</string>
+    <string name="your_attempts">Your Attempts</string>
 </resources>

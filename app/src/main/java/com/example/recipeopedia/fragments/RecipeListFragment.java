@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,14 +18,13 @@ import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.recipeopedia.R;
-import com.example.recipeopedia.RecipeAdapter;
+import com.example.recipeopedia.adapters.RecipeAdapter;
 import com.example.recipeopedia.RecipeKeys;
 import com.example.recipeopedia.models.Recipe;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +35,6 @@ public class RecipeListFragment extends Fragment {
     public static final String TAG = "RecipeListFragment";
     private RecyclerView rvRecipes;
     protected RecipeAdapter recipeAdapter;
-    protected List<Recipe> mRecipes;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,9 +45,8 @@ public class RecipeListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRecipes = new ArrayList<>();
         rvRecipes = view.findViewById(R.id.rvRecipes);
-        recipeAdapter = new RecipeAdapter(mRecipes);
+        recipeAdapter = new RecipeAdapter();
         rvRecipes.setAdapter(recipeAdapter);
         rvRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -81,7 +76,7 @@ public class RecipeListFragment extends Fragment {
 
     private void filter(String text) {
         ArrayList<Recipe> filteredList = new ArrayList<>();
-        for (Recipe recipe : mRecipes) {
+        for (Recipe recipe : recipeAdapter.mRecipes) {
             if (recipe.getRecipeName().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(recipe);
             }
@@ -97,31 +92,26 @@ public class RecipeListFragment extends Fragment {
         params.put(RecipeKeys.KEY_TYPE, RecipeKeys.KEY_PUBLIC);
         params.put(RecipeKeys.KEY_APP_ID, RecipeKeys.APP_ID);
         params.put(RecipeKeys.KEY_APP_KEY, RecipeKeys.APP_KEY);
-        params.put(RecipeKeys.KEY_QUERY, "chicken"); // TODO: change to searchWord for final product
+        params.put(RecipeKeys.KEY_QUERY, "chicken"); // TODO: change "chicken" to searchWord for final product
         client.get(RecipeKeys.KEY_URL_PREFIX, params, new JsonHttpResponseHandler()
         {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json)
             {
-                Log.d(TAG, "onSuccess");
                 JSONObject jsonObject = json.jsonObject;
                 try
                 {
                     JSONArray hits = jsonObject.getJSONArray("hits");
-                    Log.i(TAG, "Hits: " + hits.toString());
-                    mRecipes.addAll(Recipe.fromJsonArray(hits));
+                    recipeAdapter.mRecipes.addAll(Recipe.fromJsonArray(hits));
                     recipeAdapter.notifyDataSetChanged();
-                    Log.i(TAG, "Recipes: " + mRecipes.size());
                 }
                 catch (JSONException e)
                 {
-                    Log.e(TAG, "Hit json exception", e);
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                Log.e("ERROR", response);
             }
         });
     }

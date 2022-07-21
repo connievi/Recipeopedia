@@ -74,7 +74,6 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void done(ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Issue with login", e);
                     Toast.makeText(SignUpActivity.this, "Issue with creating account!", Toast.LENGTH_SHORT).show();
                     return;
                 }

@@ -21,7 +21,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".activities.RecipeDetailsActivity">
+            tools:context=".activities.FavoriteRecipeDetailsActivity">
 
             <ImageView
                 android:id="@+id/ivRecipeImage"

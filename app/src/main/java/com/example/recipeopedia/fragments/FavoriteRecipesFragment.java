@@ -12,8 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.example.recipeopedia.FavoriteRecipeAdapter;
+import com.example.recipeopedia.adapters.FavoriteRecipeAdapter;
 import com.example.recipeopedia.R;
 import com.example.recipeopedia.models.FavoriteRecipe;
 import com.parse.FindCallback;
@@ -29,7 +30,7 @@ public class FavoriteRecipesFragment extends Fragment {
     public static final String TAG = "FavoriteRecipesFragment";
     private RecyclerView rvFavoriteRecipes;
     protected FavoriteRecipeAdapter favoriteRecipeAdapter;
-    protected List<FavoriteRecipe> mFavoriteRecipes;
+    private TextView tvNoRecipesSaved;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,11 +46,11 @@ public class FavoriteRecipesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mFavoriteRecipes = new ArrayList<>();
         rvFavoriteRecipes = view.findViewById(R.id.rvFavoriteRecipes);
-        favoriteRecipeAdapter = new FavoriteRecipeAdapter(mFavoriteRecipes);
+        favoriteRecipeAdapter = new FavoriteRecipeAdapter();
         rvFavoriteRecipes.setAdapter(favoriteRecipeAdapter);
         rvFavoriteRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
+        tvNoRecipesSaved = view.findViewById(R.id.tvNoRecipesSaved);
         querySavedRecipes();
     }
 
@@ -62,13 +63,15 @@ public class FavoriteRecipesFragment extends Fragment {
             @Override
             public void done(List<FavoriteRecipe> favoriteRecipes, ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting favorite recipes", e);
                     return;
                 }
-                for (FavoriteRecipe favoriteRecipe: favoriteRecipes) {
-                    Log.i(TAG, "Favorite Recipe: " + favoriteRecipe.getRecipeName());
+                favoriteRecipeAdapter.mFavoriteRecipes.addAll(favoriteRecipes);
+                if (favoriteRecipeAdapter.mFavoriteRecipes.isEmpty()) {
+                    tvNoRecipesSaved.setVisibility(View.VISIBLE);
                 }
-                mFavoriteRecipes.addAll(favoriteRecipes);
+                else {
+                    tvNoRecipesSaved.setVisibility(View.GONE);
+                }
                 favoriteRecipeAdapter.notifyDataSetChanged();
             }
         });

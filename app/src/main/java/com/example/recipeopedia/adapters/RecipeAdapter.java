@@ -1,20 +1,17 @@
-package com.example.recipeopedia;
+package com.example.recipeopedia.adapters;
 
-import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.example.recipeopedia.R;
 import com.example.recipeopedia.activities.RecipeDetailsActivity;
 import com.example.recipeopedia.databinding.ItemRecipeBinding;
 import com.example.recipeopedia.models.FavoriteRecipe;
@@ -32,17 +29,16 @@ import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
     public static final String TAG = "RecipeAdapter";
-    private List<Recipe> mRecipes;
+    public List<Recipe> mRecipes;
 
-    public RecipeAdapter(List<Recipe> recipes) {
-        this.mRecipes = recipes;
+    public RecipeAdapter() {
+        mRecipes = new ArrayList<>();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        Log.d(TAG, "onCreateViewHolder");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View recipeView = inflater.inflate(R.layout.item_recipe, parent, false);
         return new ViewHolder(recipeView);
@@ -51,7 +47,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
-        Log.d(TAG, "onBindViewHolder " + position);
         Recipe recipe = mRecipes.get(position);
         holder.bind(recipe);
     }
@@ -102,8 +97,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             {
                 Recipe recipe = mRecipes.get(position);
                 try {
-                    saveRecipe(recipe.getRecipeName(), ParseUser.getCurrentUser(),
-                            recipe.getImage(), recipe.getIngredients(), recipe.getInstructions());
+                    saveRecipe(recipe.getRecipeName(), ParseUser.getCurrentUser(), recipe.getImage(),
+                            recipe.getIngredients(), recipe.getInstructions(), recipe.getHealthLabels());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -111,8 +106,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             return true;
         }
 
-        public void saveRecipe(String recipeName, ParseUser currentUser, String imageUrl,
-                               String ingredients, String instructions) throws ParseException {
+        private void saveRecipe(String recipeName, ParseUser currentUser, String imageUrl,
+                               String ingredients, String instructions, String healthLabels) throws ParseException {
             ParseQuery<FavoriteRecipe> query = ParseQuery.getQuery(FavoriteRecipe.class);
             query.whereEqualTo(FavoriteRecipe.KEY_RECIPE_NAME, recipeName);
             if (query.count() > 0) {
@@ -125,15 +120,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                 favoriteRecipe.setUser(currentUser);
                 favoriteRecipe.setIngredients(ingredients);
                 favoriteRecipe.setInstructions(instructions);
+                favoriteRecipe.setHealthLabels(healthLabels);
                 favoriteRecipe.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
                         if (e != null) {
-                            Log.e(TAG, "Error while saving", e);
                             Toast.makeText(itemView.getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            Log.i(TAG, "Recipe already saved recipe saved successfully");
                             Toast.makeText(itemView.getContext(), "Recipe saved!", Toast.LENGTH_SHORT).show();
                         }
                     }

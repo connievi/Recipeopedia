@@ -20,8 +20,7 @@ public class EditProfileActivity extends AppCompatActivity {
     public static final String TAG = "EditProfileActivity";
     private EditText etFirstName, etLastName, etEmail, etPhoneNumber, etBio;
     private Button btnUpdate;
-
-    String firstName, lastName, email, phoneNumber, bio;
+    private String firstName, lastName, email, phoneNumber, bio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,50 +52,44 @@ public class EditProfileActivity extends AppCompatActivity {
         if (firstName.isEmpty()) {
             etFirstName.setError(getString(R.string.enter_first_name));
             check = false;
-            YoYo.with(Techniques.Shake)
-                    .duration(600)
-                    .playOn(findViewById(R.id.layout_first_name));
+            errorAnimation(R.id.layout_first_name);
         }
         if (lastName.isEmpty()) {
             etLastName.setError(getString(R.string.enter_last_name));
             check = false;
-            YoYo.with(Techniques.Shake)
-                    .duration(600)
-                    .playOn(findViewById(R.id.layout_last_name));
+            errorAnimation(R.id.layout_last_name);
         }
         if (email.isEmpty()) {
             etEmail.setError(getString(R.string.enter_email));
             check = false;
-            YoYo.with(Techniques.Shake)
-                    .duration(600)
-                    .playOn(findViewById(R.id.layout_email));
+            errorAnimation(R.id.layout_email);
         }
         if (phoneNumber.isEmpty()) {
             etPhoneNumber.setError(getString(R.string.enter_phone_number));
             check = false;
-            YoYo.with(Techniques.Shake)
-                    .duration(600)
-                    .playOn(findViewById(R.id.layout_phone_number));
+            errorAnimation(R.id.layout_phone_number);
         }
         if (bio.isEmpty()) {
             etBio.setError(getString(R.string.enter_bio));
             check = false;
-            YoYo.with(Techniques.Shake)
-                    .duration(600)
-                    .playOn(findViewById(R.id.layout_bio));
+            errorAnimation(R.id.layout_bio);
         }
         if (!isEmailValid(email)) {
             etEmail.setError(getString(R.string.enter_valid_email));
             check = false;
-            YoYo.with(Techniques.Shake)
-                    .duration(600)
-                    .playOn(findViewById(R.id.layout_email));
+            errorAnimation(R.id.layout_email);
         }
         return check;
     }
 
     private boolean isEmailValid(String email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    private void errorAnimation(int resourceId) {
+        YoYo.with(Techniques.Shake)
+                .duration(600)
+                .playOn(findViewById(resourceId));
     }
 
     public void editProfile(View v) {

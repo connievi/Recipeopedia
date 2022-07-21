@@ -8,6 +8,7 @@ import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.recipeopedia.R;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
@@ -18,26 +19,23 @@ import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Parcel
 public class Recipe {
-    public String recipeName, ingredients, nutrition, instructions,
-            mealType, cuisineType, dishType, dietLabels, healthLabels, image;
+    public String recipeName, image, instructions, ingredients, href, healthLabels;
 
     public Recipe() {}
 
     public Recipe(JSONObject jsonObject) throws JSONException {
         JSONObject recipeObject = jsonObject.getJSONObject("recipe");
         recipeName = recipeObject.getString("label");
-        ingredients = (recipeObject.getJSONArray("ingredientLines")).toString();
-        dietLabels = (recipeObject.getJSONArray("dietLabels")).toString();
-        healthLabels = (recipeObject.getJSONArray("healthLabels")).toString();
-        mealType = (recipeObject.getJSONArray("mealType")).toString();
-        dishType = recipeObject.getString("dishType");
-        cuisineType = recipeObject.getString("dishType");
-        instructions = recipeObject.getString("url");
         image = recipeObject.getString("image");
-        // nutrition = (recipeObject.getJSONArray("totalNutrients")).toString();
+        instructions = recipeObject.getString("url");
+        ingredients = (recipeObject.getJSONArray("ingredientLines")).toString();
+        href = jsonObject.getJSONObject("_links").getJSONObject("self").getString("href");
+        healthLabels = (recipeObject.getJSONArray("healthLabels")).toString();
     }
 
     public static List<Recipe> fromJsonArray(JSONArray recipeJsonArray) throws JSONException {
@@ -65,7 +63,7 @@ public class Recipe {
     }
 
     public String getIngredients() {
-        return ingredients;
+        return formatIngredients(ingredients);
     }
 
     public String getInstructions() {
@@ -76,67 +74,50 @@ public class Recipe {
         return image;
     }
 
+    public String getExternalId() {
+        Pattern pattern = Pattern.compile("[^\\/][\\w]+(?=\\?)", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(href);
+        while (matcher.find()) {
+            return matcher.group();
+        }
+        return null;
+    }
+
+    public String getHealthLabels() { return formatHealthLabels(healthLabels); }
+
+    private String formatIngredients(String ingredients) {
+        StringBuilder sb = new StringBuilder();
+        Pattern pattern = Pattern.compile("\"(.*?)\"", Pattern.CASE_INSENSITIVE);
+        ingredients.replaceAll("\\\\", "");
+        Matcher matcher = pattern.matcher(ingredients);
+        while (matcher.find()) {
+            String ingredientLine = matcher.group().replaceAll("^\"|\"$", "");
+            ingredientLine = ingredientLine.replaceAll("\\\\", "");
+            sb.append(ingredientLine + "\n");
+        }
+        String ret = sb.toString();
+        return ret.trim();
+    }
+
+    private String formatHealthLabels(String healthLabels) {
+        StringBuilder sb = new StringBuilder();
+        Pattern pattern = Pattern.compile("\"(.*?)\"", Pattern.CASE_INSENSITIVE);
+        healthLabels.replaceAll("\\\\", "");
+        Matcher matcher = pattern.matcher(healthLabels);
+        while (matcher.find()) {
+            String label = matcher.group().replaceAll("^\"|\"$", "");
+            label = label.replaceAll("\\\\", "");
+            sb.append(label + ", ");
+        }
+        String ret = sb.toString();
+        return ret.substring(0, ret.length() - 2);
+    }
+
     @BindingAdapter("recipeImage")
     public static void loadImage(ImageView view, String imageUrl) {
         Glide.with(view.getContext())
                 .load(imageUrl)
+                .placeholder(R.drawable.recipe_image_placeholder)
                 .into(view);
     }
-
-    /*private String formatString(String text) {
-        *//*
-        formatString() formats the nested JSON data that ingredients, instructions,
-        and other values are stored in
-        TODO: this method does not completely format the string how I want, will edit later
-        *//*
-
-        StringBuilder json = new StringBuilder();
-        String indentString = "";
-
-        boolean inQuotes = false;
-        boolean isEscaped = false;
-
-        for (int i = 0; i < text.length(); i++) {
-            char letter = text.charAt(i);
-
-            switch (letter) {
-                case '\\':
-                    isEscaped = !isEscaped;
-                    break;
-                case '"':
-                    if (!isEscaped) {
-                        inQuotes = !inQuotes;
-                    }
-                    break;
-                default:
-                    isEscaped = false;
-                    break;
-            }
-
-            if (!inQuotes && !isEscaped) {
-                switch (letter) {
-                    case '{':
-                    case '[':
-                        json.append("\n" + indentString + letter + "\n");
-                        indentString = indentString + "\t";
-                        json.append(indentString);
-                        break;
-                    case '}':
-                    case ']':
-                        indentString = indentString.replaceFirst("\t", "");
-                        json.append("\n" + indentString + letter);
-                        break;
-                    case ',':
-                        json.append(letter + "\n" + indentString);
-                        break;
-                    default:
-                        json.append(letter);
-                        break;
-                }
-            } else {
-                json.append(letter);
-            }
-        }
-        return json.toString();
-    }*/
 }

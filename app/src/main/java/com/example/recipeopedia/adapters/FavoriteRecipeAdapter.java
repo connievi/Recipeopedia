@@ -1,4 +1,4 @@
-package com.example.recipeopedia;
+package com.example.recipeopedia.adapters;
 
 import android.content.Intent;
 import android.util.Log;
@@ -10,28 +10,28 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recipeopedia.R;
 import com.example.recipeopedia.activities.FavoriteRecipeDetailsActivity;
-import com.example.recipeopedia.activities.RecipeDetailsActivity;
 import com.example.recipeopedia.databinding.ItemFavoriteRecipeBinding;
 import com.example.recipeopedia.models.FavoriteRecipe;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FavoriteRecipeAdapter extends RecyclerView.Adapter<FavoriteRecipeAdapter.ViewHolder> {
     public static final String TAG = "FavoriteRecipeAdapter";
-    private List<FavoriteRecipe> mFavoriteRecipes;
+    public List<FavoriteRecipe> mFavoriteRecipes;
 
-    public FavoriteRecipeAdapter(List<FavoriteRecipe> favoriteRecipes) {
-        this.mFavoriteRecipes = favoriteRecipes;
+    public FavoriteRecipeAdapter() {
+        mFavoriteRecipes = new ArrayList<>();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        Log.d(TAG, "onCreateViewHolder");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View recipeView = inflater.inflate(R.layout.item_favorite_recipe, parent, false);
         return new ViewHolder(recipeView);
@@ -40,7 +40,6 @@ public class FavoriteRecipeAdapter extends RecyclerView.Adapter<FavoriteRecipeAd
     @Override
     public void onBindViewHolder(@NonNull FavoriteRecipeAdapter.ViewHolder holder, int position)
     {
-        Log.d(TAG, "onBindViewHolder " + position);
         FavoriteRecipe favoriteRecipe = mFavoriteRecipes.get(position);
         holder.bind(favoriteRecipe);
     }

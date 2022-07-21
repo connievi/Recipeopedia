@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.recipeopedia.R;
@@ -35,6 +36,7 @@ public class ReviewSectionActivity extends AppCompatActivity {
     private Button btnPostReview;
     private EditText etReview;
     private RecyclerView rvReviews;
+    private TextView tvNoReviews;
     private SwipeRefreshLayout swipeContainer;
     protected ReviewAdapter reviewAdapter;
     protected List<Review> mReviews;
@@ -54,6 +56,7 @@ public class ReviewSectionActivity extends AppCompatActivity {
             }
         });
 
+        tvNoReviews = findViewById(R.id.tvNoReviews);
         mReviews = new ArrayList<>();
         reviewAdapter = new ReviewAdapter(mReviews);
         rvReviews = findViewById(R.id.rvReviews);
@@ -124,6 +127,12 @@ public class ReviewSectionActivity extends AppCompatActivity {
                     return;
                 }
                 mReviews.addAll(reviews);
+                if (mReviews.isEmpty()) {
+                    tvNoReviews.setVisibility(View.VISIBLE);
+                }
+                else {
+                    tvNoReviews.setVisibility(View.GONE);
+                }
                 reviewAdapter.notifyDataSetChanged();
             }
         });

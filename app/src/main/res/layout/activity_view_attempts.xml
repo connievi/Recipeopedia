@@ -55,6 +55,18 @@
         android:text="@string/your_attempts"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
+    <TextView
+        android:id="@+id/tvNoAttempts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="135dp"
+        android:layout_marginEnd="0dp"
+        android:elevation="10dp"
+        android:text="No attempts yet! Don't be afraid to give the recipe a try."
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/cardview_dark_background" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"

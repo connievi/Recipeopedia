@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.recipeopedia.R;
@@ -30,6 +31,7 @@ import java.util.List;
 public class ViewAttemptsActivity extends AppCompatActivity {
     private Button btnPostAttempt;
     private EditText etYourAttempt;
+    private TextView tvNoAttempts;
     private RecyclerView rvAttempts;
     private FavoriteRecipe favoriteRecipe;
     private SwipeRefreshLayout swipeContainer;
@@ -56,6 +58,7 @@ public class ViewAttemptsActivity extends AppCompatActivity {
         rvAttempts = findViewById(R.id.rvAttempts);
         rvAttempts.setAdapter(attemptAdapter);
         rvAttempts.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        tvNoAttempts = findViewById(R.id.tvNoAttempts);
         queryAttempts();
 
         favoriteRecipe = Parcels.unwrap(getIntent().getParcelableExtra(FavoriteRecipe.class.getSimpleName()));
@@ -116,6 +119,12 @@ public class ViewAttemptsActivity extends AppCompatActivity {
                     return;
                 }
                 mAttempts.addAll(attempts);
+                if (mAttempts.isEmpty()) {
+                    tvNoAttempts.setVisibility(View.VISIBLE);
+                }
+                else {
+                    tvNoAttempts.setVisibility(View.GONE);
+                }
                 attemptAdapter.notifyDataSetChanged();
             }
         });

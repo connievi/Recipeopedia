@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.recipeopedia.adapters.FavoriteRecipeAdapter;
 import com.example.recipeopedia.R;
@@ -30,6 +31,7 @@ public class FavoriteRecipesFragment extends Fragment {
     private RecyclerView rvFavoriteRecipes;
     protected FavoriteRecipeAdapter favoriteRecipeAdapter;
     protected List<FavoriteRecipe> mFavoriteRecipes;
+    private TextView tvNoRecipesSaved;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class FavoriteRecipesFragment extends Fragment {
         favoriteRecipeAdapter = new FavoriteRecipeAdapter(mFavoriteRecipes);
         rvFavoriteRecipes.setAdapter(favoriteRecipeAdapter);
         rvFavoriteRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
+        tvNoRecipesSaved = view.findViewById(R.id.tvNoRecipesSaved);
         querySavedRecipes();
     }
 
@@ -65,6 +68,12 @@ public class FavoriteRecipesFragment extends Fragment {
                     return;
                 }
                 mFavoriteRecipes.addAll(favoriteRecipes);
+                if (mFavoriteRecipes.isEmpty()) {
+                    tvNoRecipesSaved.setVisibility(View.VISIBLE);
+                }
+                else {
+                    tvNoRecipesSaved.setVisibility(View.GONE);
+                }
                 favoriteRecipeAdapter.notifyDataSetChanged();
             }
         });

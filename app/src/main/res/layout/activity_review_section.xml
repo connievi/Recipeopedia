@@ -60,6 +60,19 @@
         android:text="Review Section"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+    <TextView
+        android:id="@+id/tvNoReviews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="185dp"
+        android:layout_marginEnd="0dp"
+        android:elevation="10dp"
+        android:gravity="center_horizontal"
+        android:text="No reviews yet! Leave the first review."
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/cardview_dark_background" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
@@ -69,10 +82,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvReviews"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:padding="8dp" />
+            android:padding="8dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </RelativeLayout>

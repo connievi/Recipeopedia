@@ -30,7 +30,6 @@ public class FavoriteRecipesFragment extends Fragment {
     public static final String TAG = "FavoriteRecipesFragment";
     private RecyclerView rvFavoriteRecipes;
     protected FavoriteRecipeAdapter favoriteRecipeAdapter;
-    protected List<FavoriteRecipe> mFavoriteRecipes;
     private TextView tvNoRecipesSaved;
 
     @Override
@@ -47,9 +46,8 @@ public class FavoriteRecipesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mFavoriteRecipes = new ArrayList<>();
         rvFavoriteRecipes = view.findViewById(R.id.rvFavoriteRecipes);
-        favoriteRecipeAdapter = new FavoriteRecipeAdapter(mFavoriteRecipes);
+        favoriteRecipeAdapter = new FavoriteRecipeAdapter();
         rvFavoriteRecipes.setAdapter(favoriteRecipeAdapter);
         rvFavoriteRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
         tvNoRecipesSaved = view.findViewById(R.id.tvNoRecipesSaved);
@@ -67,8 +65,8 @@ public class FavoriteRecipesFragment extends Fragment {
                 if (e != null) {
                     return;
                 }
-                mFavoriteRecipes.addAll(favoriteRecipes);
-                if (mFavoriteRecipes.isEmpty()) {
+                favoriteRecipeAdapter.mFavoriteRecipes.addAll(favoriteRecipes);
+                if (favoriteRecipeAdapter.mFavoriteRecipes.isEmpty()) {
                     tvNoRecipesSaved.setVisibility(View.VISIBLE);
                 }
                 else {

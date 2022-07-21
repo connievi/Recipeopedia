@@ -36,7 +36,6 @@ public class ViewAttemptsActivity extends AppCompatActivity {
     private FavoriteRecipe favoriteRecipe;
     private SwipeRefreshLayout swipeContainer;
     protected AttemptAdapter attemptAdapter;
-    protected List<Attempt> mAttempts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +52,10 @@ public class ViewAttemptsActivity extends AppCompatActivity {
             }
         });
 
-        mAttempts = new ArrayList<>();
-        attemptAdapter = new AttemptAdapter(mAttempts);
+        attemptAdapter = new AttemptAdapter();
         rvAttempts = findViewById(R.id.rvAttempts);
         rvAttempts.setAdapter(attemptAdapter);
-        rvAttempts.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        rvAttempts.setLayoutManager(new LinearLayoutManager(this));
         tvNoAttempts = findViewById(R.id.tvNoAttempts);
         queryAttempts();
 
@@ -71,7 +69,7 @@ public class ViewAttemptsActivity extends AppCompatActivity {
                 favoriteRecipe = Parcels.unwrap(getIntent().getParcelableExtra(FavoriteRecipe.class.getSimpleName()));
                 String description = etYourAttempt.getText().toString();
                 if (description.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), "Description cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else {
@@ -80,7 +78,7 @@ public class ViewAttemptsActivity extends AppCompatActivity {
                         attemptAdapter.clear();
                         queryAttempts();
                         swipeContainer.setRefreshing(false);
-                        Toast.makeText(getApplicationContext(), "Attempt posted!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(), "Attempt posted!", Toast.LENGTH_SHORT).show();
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -118,8 +116,8 @@ public class ViewAttemptsActivity extends AppCompatActivity {
                 if (e != null) {
                     return;
                 }
-                mAttempts.addAll(attempts);
-                if (mAttempts.isEmpty()) {
+                attemptAdapter.mAttempts.addAll(attempts);
+                if (attemptAdapter.mAttempts.isEmpty()) {
                     tvNoAttempts.setVisibility(View.VISIBLE);
                 }
                 else {

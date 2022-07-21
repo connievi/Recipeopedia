@@ -18,14 +18,15 @@ import com.example.recipeopedia.models.FavoriteRecipe;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AttemptAdapter extends RecyclerView.Adapter<AttemptAdapter.ViewHolder> {
     public static final String TAG = "AttemptAdapter";
-    private List<Attempt> mAttempts;
+    public List<Attempt> mAttempts;
 
-    public AttemptAdapter(List<Attempt> attempt) {
-        this.mAttempts = attempt;
+    public AttemptAdapter() {
+        mAttempts = new ArrayList<>();
     }
 
     @NonNull

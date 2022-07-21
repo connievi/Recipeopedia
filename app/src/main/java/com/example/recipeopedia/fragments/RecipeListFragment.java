@@ -35,7 +35,6 @@ public class RecipeListFragment extends Fragment {
     public static final String TAG = "RecipeListFragment";
     private RecyclerView rvRecipes;
     protected RecipeAdapter recipeAdapter;
-    protected List<Recipe> mRecipes;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,9 +45,8 @@ public class RecipeListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRecipes = new ArrayList<>();
         rvRecipes = view.findViewById(R.id.rvRecipes);
-        recipeAdapter = new RecipeAdapter(mRecipes);
+        recipeAdapter = new RecipeAdapter();
         rvRecipes.setAdapter(recipeAdapter);
         rvRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -78,7 +76,7 @@ public class RecipeListFragment extends Fragment {
 
     private void filter(String text) {
         ArrayList<Recipe> filteredList = new ArrayList<>();
-        for (Recipe recipe : mRecipes) {
+        for (Recipe recipe : recipeAdapter.mRecipes) {
             if (recipe.getRecipeName().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(recipe);
             }
@@ -104,7 +102,7 @@ public class RecipeListFragment extends Fragment {
                 try
                 {
                     JSONArray hits = jsonObject.getJSONArray("hits");
-                    mRecipes.addAll(Recipe.fromJsonArray(hits));
+                    recipeAdapter.mRecipes.addAll(Recipe.fromJsonArray(hits));
                     recipeAdapter.notifyDataSetChanged();
                 }
                 catch (JSONException e)

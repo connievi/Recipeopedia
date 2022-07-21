@@ -29,10 +29,10 @@ import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
     public static final String TAG = "RecipeAdapter";
-    private List<Recipe> mRecipes;
+    public List<Recipe> mRecipes;
 
-    public RecipeAdapter(List<Recipe> recipes) {
-        this.mRecipes = recipes;
+    public RecipeAdapter() {
+        mRecipes = new ArrayList<>();
     }
 
     @NonNull

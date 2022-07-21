@@ -17,14 +17,15 @@ import com.example.recipeopedia.models.FavoriteRecipe;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FavoriteRecipeAdapter extends RecyclerView.Adapter<FavoriteRecipeAdapter.ViewHolder> {
     public static final String TAG = "FavoriteRecipeAdapter";
-    private List<FavoriteRecipe> mFavoriteRecipes;
+    public List<FavoriteRecipe> mFavoriteRecipes;
 
-    public FavoriteRecipeAdapter(List<FavoriteRecipe> favoriteRecipes) {
-        this.mFavoriteRecipes = favoriteRecipes;
+    public FavoriteRecipeAdapter() {
+        mFavoriteRecipes = new ArrayList<>();
     }
 
     @NonNull

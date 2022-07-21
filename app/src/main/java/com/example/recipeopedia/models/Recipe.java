@@ -8,6 +8,7 @@ import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.recipeopedia.R;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
@@ -116,6 +117,7 @@ public class Recipe {
     public static void loadImage(ImageView view, String imageUrl) {
         Glide.with(view.getContext())
                 .load(imageUrl)
+                .placeholder(R.drawable.recipe_image_placeholder)
                 .into(view);
     }
 }

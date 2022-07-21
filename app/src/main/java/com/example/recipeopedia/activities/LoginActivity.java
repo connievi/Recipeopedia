@@ -63,24 +63,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if (username.isEmpty() && password.isEmpty()) {
-                    YoYo.with(Techniques.Shake)
-                            .duration(600)
-                            .playOn(findViewById(R.id.etUsername));
-                    YoYo.with(Techniques.Shake)
-                            .duration(600)
-                            .playOn(findViewById(R.id.etPassword));
+                    errorAnimation(R.id.etUsername);
+                    errorAnimation(R.id.etPassword);
                 }
                 else if (username.isEmpty()) {
                     Toast.makeText(LoginActivity.this, R.string.enter_username, Toast.LENGTH_SHORT).show();
-                    YoYo.with(Techniques.Shake)
-                            .duration(600)
-                            .playOn(findViewById(R.id.etUsername));
+                    errorAnimation(R.id.etUsername);
                 }
                 else if (password.isEmpty()) {
                     Toast.makeText(LoginActivity.this, R.string.enter_password, Toast.LENGTH_SHORT).show();
-                    YoYo.with(Techniques.Shake)
-                            .duration(600)
-                            .playOn(findViewById(R.id.etPassword));
+                    errorAnimation(R.id.etPassword);
                 }
                 if (e != null) {
                     Toast.makeText(LoginActivity.this, R.string.incorrect_login_info, Toast.LENGTH_SHORT).show();
@@ -102,5 +94,11 @@ public class LoginActivity extends AppCompatActivity {
         Intent i = new Intent(this, SignUpActivity.class);
         startActivity(i);
         finish();
+    }
+
+    private void errorAnimation(int resourceId) {
+        YoYo.with(Techniques.Shake)
+                .duration(600)
+                .playOn(findViewById(resourceId));
     }
 }

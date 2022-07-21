@@ -18,16 +18,17 @@ import com.example.recipeopedia.models.Review;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
     public static final String TAG = "ReviewAdapter";
-    private List<Review> mReviews;
+    public List<Review> mReviews;
 
-    public ReviewAdapter(List<Review> reviews) {
-        this.mReviews = reviews;
+    public ReviewAdapter() {
+        mReviews = new ArrayList<>();
     }
 
     @NonNull

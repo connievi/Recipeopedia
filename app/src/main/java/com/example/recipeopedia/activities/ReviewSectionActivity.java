@@ -39,7 +39,6 @@ public class ReviewSectionActivity extends AppCompatActivity {
     private TextView tvNoReviews;
     private SwipeRefreshLayout swipeContainer;
     protected ReviewAdapter reviewAdapter;
-    protected List<Review> mReviews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +56,10 @@ public class ReviewSectionActivity extends AppCompatActivity {
         });
 
         tvNoReviews = findViewById(R.id.tvNoReviews);
-        mReviews = new ArrayList<>();
-        reviewAdapter = new ReviewAdapter(mReviews);
+        reviewAdapter = new ReviewAdapter();
         rvReviews = findViewById(R.id.rvReviews);
         rvReviews.setAdapter(reviewAdapter);
-        rvReviews.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        rvReviews.setLayoutManager(new LinearLayoutManager(this));
         queryReviews();
         setUpLeaveReview();
     }
@@ -94,7 +92,7 @@ public class ReviewSectionActivity extends AppCompatActivity {
                 String username = currentUser.getUsername();
                 String comment = etReview.getText().toString();
                 if (comment.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Review cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), "Review cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else {
@@ -103,7 +101,7 @@ public class ReviewSectionActivity extends AppCompatActivity {
                         reviewAdapter.clear();
                         queryReviews();
                         swipeContainer.setRefreshing(false);
-                        Toast.makeText(getApplicationContext(), "Review posted!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(), "Review posted!", Toast.LENGTH_SHORT).show();
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -126,8 +124,8 @@ public class ReviewSectionActivity extends AppCompatActivity {
                 if (e != null) {
                     return;
                 }
-                mReviews.addAll(reviews);
-                if (mReviews.isEmpty()) {
+                reviewAdapter.mReviews.addAll(reviews);
+                if (reviewAdapter.mReviews.isEmpty()) {
                     tvNoReviews.setVisibility(View.VISIBLE);
                 }
                 else {

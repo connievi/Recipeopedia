@@ -41,8 +41,12 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    saveRecipe(recipe.getRecipeName(), ParseUser.getCurrentUser(), recipe.getImage(),
-                            recipe.getIngredients(), recipe.getInstructions(), recipe.getHealthLabels());
+                    saveRecipe(recipe.getRecipeName(),
+                            ParseUser.getCurrentUser(),
+                            recipe.getImage(),
+                            recipe.getIngredients(),
+                            recipe.getInstructions(),
+                            recipe.getHealthLabels());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -53,7 +57,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         btnReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), ReviewSectionActivity.class);
+                Intent i = new Intent(v.getContext(), ReviewSectionActivity.class);
                 i.putExtra(Recipe.class.getSimpleName(), Parcels.wrap(recipe));
                 startActivity(i);
                 finish();
@@ -66,7 +70,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         ParseQuery<FavoriteRecipe> query = ParseQuery.getQuery(FavoriteRecipe.class);
         query.whereEqualTo(FavoriteRecipe.KEY_RECIPE_NAME, recipeName);
         if (query.count() > 0) {
-            Toast.makeText(getApplicationContext(), "Recipe already saved!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Recipe already saved!", Toast.LENGTH_SHORT).show();
         }
         else {
             FavoriteRecipe favoriteRecipe = new FavoriteRecipe();

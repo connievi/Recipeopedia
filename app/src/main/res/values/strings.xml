@@ -47,4 +47,7 @@
     <string name="describe_your_attempt">Describe your attempt</string>
     <string name="your_attempts">Your Attempts</string>
     <string name="no_recipes_saved_save_some_recipes_first">No recipes saved! Save some recipes first.</string>
+    <string name="enter_account_info">Enter account information</string>
+    <string name="issue_creating_account">Issue with creating account!</string>
+    <string name="account_successfully_made">Account successfully made!</string>
 </resources>

@@ -48,7 +48,6 @@ This Android mobile app will serve as a platform for users to search up recipes 
 * User can add/change a profile image
 * User can create/edit a description for themselves
 * User can follow/unfollow other users
-* Animate a screen growing to fill screen when user navigates to it
 
 ### 2. Screen Archetypes
 

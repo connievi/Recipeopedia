@@ -48,6 +48,7 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // TODO: show more info on My Account page (profile image, first name, last name, etc.)
         // TODO: bind profile image
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
@@ -57,6 +58,7 @@ public class ProfileFragment extends Fragment {
                 goEditProfileActivity();
             }
         });
+
         ParseUser currentUser = ParseUser.getCurrentUser();
         user = new User(currentUser);
         binding.setUser(user);

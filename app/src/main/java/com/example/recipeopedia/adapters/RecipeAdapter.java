@@ -111,7 +111,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             ParseQuery<FavoriteRecipe> query = ParseQuery.getQuery(FavoriteRecipe.class);
             query.whereEqualTo(FavoriteRecipe.KEY_RECIPE_NAME, recipeName);
             if (query.count() > 0) {
-                Toast.makeText(itemView.getContext(), R.string.recipe_already_saved, Toast.LENGTH_SHORT).show();
+                Toast.makeText(itemView.getContext(), "Recipe already saved!", Toast.LENGTH_SHORT).show();
             }
             else {
                 FavoriteRecipe favoriteRecipe = new FavoriteRecipe();
@@ -125,10 +125,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                     @Override
                     public void done(ParseException e) {
                         if (e != null) {
-                            Toast.makeText(itemView.getContext(), R.string.error_while_saving, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(itemView.getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            Toast.makeText(itemView.getContext(), R.string.recipe_saved, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(itemView.getContext(), "Recipe saved!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

@@ -73,7 +73,7 @@ public class Recipe {
         return image;
     }
 
-    public String getRecipeId() {
+    public String getExternalId() {
         Pattern pattern = Pattern.compile("[^\\/][\\w]+(?=\\?)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(href);
         while (matcher.find()) {

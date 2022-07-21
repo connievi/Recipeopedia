@@ -42,18 +42,5 @@
     <string name="enter_username">Please enter username</string>
     <string name="enter_password">Please enter password</string>
     <string name="incorrect_login_info">Incorrect username or password</string>
-    <string name="enter_user_and_password">Please enter username and password</string>
-    <string name="enter_account_info">Please enter account information</string>
-    <string name="recipe_already_saved">Recipe already saved!</string>
-    <string name="error_while_saving">Error while saving!</string>
-    <string name="recipe_saved">Recipe saved!</string>
-    <string name="review_empty">Review cannot be empty</string>
-    <string name="review_posted">Review posted!</string>
-    <string name="issue_creating_account">Issue with creating account!</string>
-    <string name="account_made">Account successfully made!</string>
-    <string name="your_attempt">Your Attempt</string>
-    <string name="tried_this_recipe_out_record_your_attempt">Tried this recipe out? Record your attempt!</string>
     <string name="record">Record</string>
-    <string name="describe_your_attempt">Describe your attempt...</string>
-    <string name="description_empty">Description cannot be empty</string>
 </resources>

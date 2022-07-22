@@ -52,13 +52,14 @@ public class ProfileFragment extends Fragment {
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         user = new User(currentUser);
-        ivProfileImage = view.findViewById(R.id.ivProfileImage);
-        ParseFile image = user.getProfilePicture();
-        if (image != null) {
-            Glide.with(view.getContext())
-                    .load(image.getUrl())
-                    .into(ivProfileImage);
-        }
+//        ivProfileImage = view.findViewById(R.id.ivProfileImage);
+//        ParseFile image = user.getProfilePicture();
+//        if (image != null) {
+//            Glide.with(view.getContext())
+//                    .load(image.getUrl())
+//                    .into(ivProfileImage);
+//        }
+        binding.setUser(user);
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +67,6 @@ public class ProfileFragment extends Fragment {
                 goEditProfileActivity();
             }
         });
-        binding.setUser(user);
     }
 
     private void goEditProfileActivity() {

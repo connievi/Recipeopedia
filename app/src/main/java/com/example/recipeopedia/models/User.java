@@ -11,7 +11,7 @@ import com.parse.ParseFile;
 import com.parse.ParseUser;
 
 public class User {
-    private String username, password, firstName, lastName, email, phoneNumber, bio;
+    private String username, password, firstName, lastName, email, phoneNumber, bio, imageUrl;
     ParseFile profilePicture;
 
     public User() {}
@@ -25,6 +25,7 @@ public class User {
         phoneNumber = (String) user.get(RecipeKeys.KEY_PHONE_NUMBER);
         bio = (String) user.get(RecipeKeys.KEY_BIO);
         profilePicture = (ParseFile) user.get(RecipeKeys.KEY_PROFILE_PICTURE);
+        imageUrl = profilePicture.getUrl();
     }
 
     public String getUsername() {
@@ -59,10 +60,12 @@ public class User {
 
     public ParseFile getProfilePicture() { return profilePicture; }
 
+    public String getImageUrl() { return imageUrl; }
+
     @BindingAdapter("profilePicture")
-    public static void loadImage(ImageView view, ParseFile profilePicture) {
+    public static void loadImage(ImageView view, String imageUrl) {
         Glide.with(view.getContext())
-                .load(profilePicture.getUrl())
+                .load(imageUrl)
                 .placeholder(R.drawable.profile_image_placeholder)
                 .into(view);
     }

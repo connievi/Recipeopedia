@@ -50,4 +50,6 @@
     <string name="enter_account_info">Enter account information</string>
     <string name="issue_creating_account">Issue with creating account!</string>
     <string name="account_successfully_made">Account successfully made!</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
 </resources>

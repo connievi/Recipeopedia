@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.recipeopedia.R;
 import com.example.recipeopedia.RecipeKeys;
 import com.example.recipeopedia.activities.EditProfileActivity;
@@ -22,6 +23,7 @@ import com.example.recipeopedia.databinding.FragmentProfileBinding;
 import com.example.recipeopedia.models.Recipe;
 import com.example.recipeopedia.models.User;
 import com.parse.Parse;
+import com.parse.ParseFile;
 import com.parse.ParseUser;
 
 public class ProfileFragment extends Fragment {
@@ -48,9 +50,15 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // TODO: show more info on My Account page (profile image, first name, last name, etc.)
-        // TODO: bind profile image
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        user = new User(currentUser);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
+        ParseFile image = user.getProfilePicture();
+        if (image != null) {
+            Glide.with(view.getContext())
+                    .load(image.getUrl())
+                    .into(ivProfileImage);
+        }
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,9 +66,6 @@ public class ProfileFragment extends Fragment {
                 goEditProfileActivity();
             }
         });
-
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        user = new User(currentUser);
         binding.setUser(user);
     }
 

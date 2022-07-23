@@ -90,6 +90,8 @@ public class FavoriteRecipeDetailsActivity extends AppCompatActivity {
                 favoriteRecipe.put(KEY_ATTEMPT_PICTURE, new ParseFile(photoFile));
                 favoriteRecipe.saveInBackground();
                 Toast.makeText(FavoriteRecipeDetailsActivity.this, R.string.picture_uploaded, Toast.LENGTH_SHORT).show();
+                goMainActivity();
+                // TODO: navigate to FavoriteRecipesFragment ?
             }
         });
     }
@@ -128,7 +130,6 @@ public class FavoriteRecipeDetailsActivity extends AppCompatActivity {
     private void goMainActivity() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
     }
 }

@@ -25,7 +25,6 @@ public class User {
         phoneNumber = (String) user.get(RecipeKeys.KEY_PHONE_NUMBER);
         bio = (String) user.get(RecipeKeys.KEY_BIO);
         profilePicture = (ParseFile) user.get(RecipeKeys.KEY_PROFILE_PICTURE);
-        imageUrl = profilePicture.getUrl();
     }
 
     public String getUsername() {
@@ -60,7 +59,15 @@ public class User {
 
     public ParseFile getProfilePicture() { return profilePicture; }
 
-    public String getImageUrl() { return imageUrl; }
+    public String getImageUrl() {
+        if (profilePicture == null) {
+            return null;
+        }
+        else {
+            imageUrl = profilePicture.getUrl();
+            return imageUrl;
+        }
+    }
 
     @BindingAdapter("profilePicture")
     public static void loadImage(ImageView view, String imageUrl) {

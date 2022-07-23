@@ -52,4 +52,10 @@
     <string name="account_successfully_made">Account successfully made!</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
+    <string name="upload_a_picture_of_your_attempt">Upload a Picture of Your Attempt</string>
+    <string name="picture_uploaded">Picture uploaded!</string>
+    <string name="take_a_picture_of_your_attempt">Take a Picture of Your Attempt</string>
+    <string name="describe_your_experiences_with_this_recipe">Describe your experiences with this recipe</string>
+    <string name="description_cannot_be_empty">Description cannot be empty</string>
+    <string name="attempt_posted">Attempt posted!</string>
 </resources>

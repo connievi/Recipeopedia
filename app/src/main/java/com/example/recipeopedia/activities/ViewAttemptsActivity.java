@@ -69,7 +69,7 @@ public class ViewAttemptsActivity extends AppCompatActivity {
                 favoriteRecipe = Parcels.unwrap(getIntent().getParcelableExtra(FavoriteRecipe.class.getSimpleName()));
                 String description = etYourAttempt.getText().toString();
                 if (description.isEmpty()) {
-                    Toast.makeText(v.getContext(), "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), R.string.description_cannot_be_empty, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else {
@@ -78,7 +78,7 @@ public class ViewAttemptsActivity extends AppCompatActivity {
                         attemptAdapter.clear();
                         queryAttempts();
                         swipeContainer.setRefreshing(false);
-                        Toast.makeText(v.getContext(), "Attempt posted!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(), R.string.attempt_posted, Toast.LENGTH_SHORT).show();
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -107,9 +107,10 @@ public class ViewAttemptsActivity extends AppCompatActivity {
         query.include(Review.KEY_USER);
         favoriteRecipe = Parcels.unwrap(getIntent().getParcelableExtra(FavoriteRecipe.class.getSimpleName()));
         String recipeName = favoriteRecipe.getRecipeName();
+        query.whereEqualTo(FavoriteRecipe.KEY_USER, ParseUser.getCurrentUser());
         query.whereEqualTo(Attempt.KEY_RECIPE_NAME, recipeName);
         query.setLimit(20);
-        query.addDescendingOrder("createdAt");
+        query.addDescendingOrder(Attempt.KEY_CREATED_AT);
         query.findInBackground(new FindCallback<Attempt>() {
             @Override
             public void done(List<Attempt> attempts, ParseException e) {

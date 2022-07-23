@@ -28,7 +28,6 @@ import com.parse.ParseUser;
 
 public class ProfileFragment extends Fragment {
     private static final String TAG = "ProfileFragment";
-    private ImageView ivProfileImage;
     private Button btnEditProfile;
     private User user;
     private FragmentProfileBinding binding;
@@ -49,16 +48,8 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         ParseUser currentUser = ParseUser.getCurrentUser();
         user = new User(currentUser);
-//        ivProfileImage = view.findViewById(R.id.ivProfileImage);
-//        ParseFile image = user.getProfilePicture();
-//        if (image != null) {
-//            Glide.with(view.getContext())
-//                    .load(image.getUrl())
-//                    .into(ivProfileImage);
-//        }
         binding.setUser(user);
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
         btnEditProfile.setOnClickListener(new View.OnClickListener() {

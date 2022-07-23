@@ -8,7 +8,7 @@ import com.parse.ParseUser;
 @ParseClassName("Attempt")
 public class Attempt extends ParseObject {
     public static final String KEY_USER = "user";
-    public static final String KEY_CREATED = "createdAt";
+    public static final String KEY_CREATED_AT = "createdAt";
     public static final String KEY_ATTEMPT = "attempt";
     public static final String KEY_RECIPE_NAME = "recipeName";
 

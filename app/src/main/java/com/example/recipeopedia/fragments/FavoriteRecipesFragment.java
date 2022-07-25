@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.recipeopedia.ItemMoveCallback;
 import com.example.recipeopedia.adapters.FavoriteRecipeAdapter;
 import com.example.recipeopedia.R;
 import com.example.recipeopedia.models.FavoriteRecipe;
@@ -48,6 +50,11 @@ public class FavoriteRecipesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvFavoriteRecipes = view.findViewById(R.id.rvFavoriteRecipes);
         favoriteRecipeAdapter = new FavoriteRecipeAdapter();
+
+        ItemTouchHelper.Callback callback = new ItemMoveCallback(favoriteRecipeAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(rvFavoriteRecipes);
+
         rvFavoriteRecipes.setAdapter(favoriteRecipeAdapter);
         rvFavoriteRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
         tvNoRecipesSaved = view.findViewById(R.id.tvNoRecipesSaved);

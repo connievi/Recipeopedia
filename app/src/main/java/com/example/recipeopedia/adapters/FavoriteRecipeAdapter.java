@@ -1,6 +1,7 @@
 package com.example.recipeopedia.adapters;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recipeopedia.ItemMoveCallback;
 import com.example.recipeopedia.R;
 import com.example.recipeopedia.activities.FavoriteRecipeDetailsActivity;
 import com.example.recipeopedia.databinding.ItemFavoriteRecipeBinding;
@@ -18,9 +20,11 @@ import com.example.recipeopedia.models.FavoriteRecipe;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class FavoriteRecipeAdapter extends RecyclerView.Adapter<FavoriteRecipeAdapter.ViewHolder> {
+public class FavoriteRecipeAdapter extends RecyclerView.Adapter<FavoriteRecipeAdapter.ViewHolder>
+        implements ItemMoveCallback.ItemTouchHelperContract {
     public static final String TAG = "FavoriteRecipeAdapter";
     public List<FavoriteRecipe> mFavoriteRecipes;
 
@@ -49,12 +53,40 @@ public class FavoriteRecipeAdapter extends RecyclerView.Adapter<FavoriteRecipeAd
         return mFavoriteRecipes.size();
     }
 
+    @Override
+    public void onRowMoved(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(mFavoriteRecipes, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(mFavoriteRecipes, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+    }
+
+    @Override
+    public void onRowSelected(ViewHolder myViewHolder) {
+        myViewHolder.rowView.setBackgroundColor(Color.GRAY);
+
+    }
+
+    @Override
+    public void onRowClear(ViewHolder myViewHolder) {
+        myViewHolder.rowView.setBackgroundColor(Color.WHITE);
+
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
+        public View rowView;
         private ItemFavoriteRecipeBinding binding;
         public ViewHolder(@NonNull View itemView)
         {
             super(itemView);
+            rowView = itemView;
             binding = DataBindingUtil.bind(itemView);
             itemView.setOnClickListener(this);
         }

@@ -1,10 +1,18 @@
 package com.example.recipeopedia.models;
 
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
+import com.example.recipeopedia.R;
 import com.example.recipeopedia.RecipeKeys;
+import com.parse.ParseFile;
 import com.parse.ParseUser;
 
 public class User {
-    private String username, password, firstName, lastName, email, phoneNumber, bio;
+    private String username, password, firstName, lastName, email, phoneNumber, bio, imageUrl;
+    ParseFile profilePicture;
 
     public User() {}
 
@@ -16,6 +24,7 @@ public class User {
         email = user.getEmail();
         phoneNumber = (String) user.get(RecipeKeys.KEY_PHONE_NUMBER);
         bio = (String) user.get(RecipeKeys.KEY_BIO);
+        profilePicture = (ParseFile) user.get(RecipeKeys.KEY_PROFILE_PICTURE);
     }
 
     public String getUsername() {
@@ -47,4 +56,24 @@ public class User {
     }
 
     public String getFullName() { return firstName + " " + lastName; }
+
+    public ParseFile getProfilePicture() { return profilePicture; }
+
+    public String getImageUrl() {
+        if (profilePicture == null) {
+            return null;
+        }
+        else {
+            imageUrl = profilePicture.getUrl();
+            return imageUrl;
+        }
+    }
+
+    @BindingAdapter("profilePicture")
+    public static void loadImage(ImageView view, String imageUrl) {
+        Glide.with(view.getContext())
+                .load(imageUrl)
+                .placeholder(R.drawable.profile_image_placeholder)
+                .into(view);
+    }
 }

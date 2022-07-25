@@ -16,7 +16,7 @@
             android:elevation="10dp"
             android:gravity="center_horizontal"
             android:text="@string/no_recipes_saved_save_some_recipes_first"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/black" />
 
         <androidx.recyclerview.widget.RecyclerView

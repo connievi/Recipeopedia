@@ -117,7 +117,7 @@ public class ReviewSectionActivity extends AppCompatActivity {
         String recipeId = recipe.getExternalId();
         query.whereEqualTo(Review.KEY_RECIPE_ID, recipeId);
         query.setLimit(20);
-        query.addDescendingOrder("createdAt");
+        query.addDescendingOrder(Review.KEY_CREATED_AT);
         query.findInBackground(new FindCallback<Review>() {
             @Override
             public void done(List<Review> reviews, ParseException e) {

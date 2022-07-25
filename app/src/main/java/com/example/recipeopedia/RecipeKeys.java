@@ -7,6 +7,7 @@ public class RecipeKeys {
     public static final String KEY_PHONE_NUMBER = "phoneNumber";
     public static final String KEY_BIO = "bio";
     public static final String KEY_EMAIL = "email";
+    public static final String KEY_PROFILE_PICTURE = "profilePicture";
     public static final String KEY_LIMIT = "limit";
     public static final String KEY_PAGE = "page";
     public static final String KEY_TYPE = "type";

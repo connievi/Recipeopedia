@@ -4,7 +4,10 @@ import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
 
+import com.bumptech.glide.Glide;
+import com.example.recipeopedia.R;
 import com.parse.ParseClassName;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -16,7 +19,8 @@ public class FavoriteRecipe extends ParseObject {
     public static final String KEY_INGREDIENTS = "ingredients";
     public static final String KEY_HEALTH_LABELS = "healthLabels";
     public static final String KEY_USER = "user";
-    public static final String KEY_CREATED = "createdAt";
+    public static final String KEY_CREATED_AT = "createdAt";
+    public static final String KEY_ATTEMPT_PICTURE = "attemptPicture";
 
     public String getRecipeName() {
         return getString(KEY_RECIPE_NAME);
@@ -64,5 +68,23 @@ public class FavoriteRecipe extends ParseObject {
 
     public void setUser(ParseUser user) {
         put(KEY_USER, user);
+    }
+
+    public ParseFile getAttemptPicture() { return getParseFile(KEY_ATTEMPT_PICTURE); }
+
+    public String getImageUrl() {
+        ParseFile file = getParseFile(KEY_ATTEMPT_PICTURE);
+        if (file == null) {
+            return null;
+        }
+        return file.getUrl();
+    }
+
+    @BindingAdapter("attemptPicture")
+    public static void loadImage(ImageView view, String imageUrl) {
+        Glide.with(view.getContext())
+                .load(imageUrl)
+                .placeholder(R.drawable.recipe_image_placeholder)
+                .into(view);
     }
 }

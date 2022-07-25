@@ -6,10 +6,6 @@
         <variable
             name="recipe"
             type="com.example.recipeopedia.models.Recipe" />
-
-        <variable
-            name="imageUrl"
-            type="String" />
     </data>
     <ScrollView
         android:layout_width="wrap_content"
@@ -72,7 +68,9 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="6dp"
                 android:text="@{recipe.instructions}"
-                tools:text="@string/instructions" />
+                tools:text="@string/instructions"
+                android:linksClickable="true"
+                android:autoLink="web|email"/>
 
             <TextView
                 android:id="@+id/tvIngredientsLayout"

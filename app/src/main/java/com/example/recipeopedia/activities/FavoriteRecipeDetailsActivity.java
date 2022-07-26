@@ -4,9 +4,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -18,30 +15,17 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.recipeopedia.R;
-import com.example.recipeopedia.adapters.AttemptAdapter;
-import com.example.recipeopedia.adapters.ReviewAdapter;
 import com.example.recipeopedia.databinding.ActivityFavoriteRecipeDetailsBinding;
-import com.example.recipeopedia.models.Attempt;
 import com.example.recipeopedia.models.FavoriteRecipe;
-import com.example.recipeopedia.models.Recipe;
-import com.example.recipeopedia.models.Review;
-import com.parse.FindCallback;
-import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import org.parceler.Parcels;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class FavoriteRecipeDetailsActivity extends AppCompatActivity {
     public static final String TAG = "FavoriteRecipeDetailsActivity";
@@ -69,7 +53,7 @@ public class FavoriteRecipeDetailsActivity extends AppCompatActivity {
         btnViewAttempts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ViewAttemptsActivity.class);
+                Intent intent = new Intent(v.getContext(), AttemptSectionActivity.class);
                 intent.putExtra(FavoriteRecipe.class.getSimpleName(), Parcels.wrap(favoriteRecipe));
                 v.getContext().startActivity(intent);
             }
@@ -91,7 +75,7 @@ public class FavoriteRecipeDetailsActivity extends AppCompatActivity {
                 favoriteRecipe.saveInBackground();
                 Toast.makeText(FavoriteRecipeDetailsActivity.this, R.string.picture_uploaded, Toast.LENGTH_SHORT).show();
                 goMainActivity();
-                // TODO: navigate to FavoriteRecipesFragment ?
+                // TODO: navigate to FavoriteRecipeList ?
             }
         });
     }

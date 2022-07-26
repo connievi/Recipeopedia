@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,15 +21,13 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.util.ArrayList;
 import java.util.List;
 
-
-public class FavoriteRecipesFragment extends Fragment {
-    public static final String TAG = "FavoriteRecipesFragment";
+public class FavoriteRecipeList extends Fragment {
+    public static final String TAG = "FavoriteRecipeList";
     private RecyclerView rvFavoriteRecipes;
-    protected FavoriteRecipeAdapter favoriteRecipeAdapter;
     private TextView tvNoRecipesSaved;
+    protected FavoriteRecipeAdapter favoriteRecipeAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,7 +37,7 @@ public class FavoriteRecipesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_favorite_recipes, container, false);
+        return inflater.inflate(R.layout.fragment_favorite_recipe_list, container, false);
     }
 
     @Override

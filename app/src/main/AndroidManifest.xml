@@ -35,7 +35,7 @@
         </provider>
 
         <activity
-            android:name=".activities.ViewAttemptsActivity"
+            android:name=".activities.AttemptSectionActivity"
             android:exported="false" />
         <activity
             android:name=".activities.ReviewSectionActivity"

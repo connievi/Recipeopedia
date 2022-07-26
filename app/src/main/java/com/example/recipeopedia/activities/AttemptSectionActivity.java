@@ -25,10 +25,9 @@ import com.parse.SaveCallback;
 
 import org.parceler.Parcels;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ViewAttemptsActivity extends AppCompatActivity {
+public class AttemptSectionActivity extends AppCompatActivity {
     private Button btnPostAttempt;
     private EditText etYourAttempt;
     private TextView tvNoAttempts;
@@ -40,7 +39,7 @@ public class ViewAttemptsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_attempts);
+        setContentView(R.layout.activity_attempt_section);
 
         swipeContainer = findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

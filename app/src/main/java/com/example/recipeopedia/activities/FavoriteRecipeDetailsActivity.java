@@ -50,7 +50,7 @@ public class FavoriteRecipeDetailsActivity extends AppCompatActivity {
     private FavoriteRecipe favoriteRecipe;
     private Button btnViewAttempts, btnCaptureImage, btnUploadImage;
     private ImageView ivRecipeImage;
-    public String photoFileName = "photo.jpg";
+    public String photoFileName = "attempt_photo.jpg";
     private File photoFile;
 
     @Override

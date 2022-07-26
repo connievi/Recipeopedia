@@ -35,8 +35,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private Button btnEditProfile, btnCaptureImage;
     private String firstName, lastName, email, phoneNumber, bio;
     private ImageView ivProfileImage;
-    public String photoFileName = "photo.jpg";
     private File photoFile;
+    public String photoFileName = "profile_photo.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +158,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 ivProfileImage.setImageBitmap(takenImage);
             } else {
-                Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.picture_not_taken, Toast.LENGTH_SHORT).show();
             }
         }
     }

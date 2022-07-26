@@ -58,4 +58,8 @@
     <string name="describe_your_experiences_with_this_recipe">Describe your experiences with this recipe</string>
     <string name="description_cannot_be_empty">Description cannot be empty</string>
     <string name="attempt_posted">Attempt posted!</string>
+    <string name="picture_not_taken">Picture wasn\'t taken!</string>
+    <string name="logging_out">Logging Out</string>
+    <string name="review_empty">Review cannot be empty</string>
+    <string name="review_posted">Review posted!</string>
 </resources>

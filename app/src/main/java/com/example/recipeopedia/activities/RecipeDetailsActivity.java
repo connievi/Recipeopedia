@@ -64,8 +64,8 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         });
     }
 
-    private void saveRecipe(String recipeName, ParseUser currentUser,
-                                  String ingredients, String instructions, String healthLabels) throws ParseException {
+    private void saveRecipe(String recipeName, ParseUser currentUser, String ingredients,
+                            String instructions, String healthLabels) throws ParseException {
         ParseQuery<FavoriteRecipe> query = ParseQuery.getQuery(FavoriteRecipe.class);
         query.whereEqualTo(FavoriteRecipe.KEY_USER, currentUser);
         query.whereEqualTo(FavoriteRecipe.KEY_RECIPE_NAME, recipeName);

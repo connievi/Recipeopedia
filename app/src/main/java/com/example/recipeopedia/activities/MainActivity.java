@@ -53,14 +53,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        selectDrawerItem(menuItem);
-                        return true;
-                    }
-                });
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                selectDrawerItem(menuItem);
+                return true;
+            }
+        });
     }
 
     private void selectDrawerItem(MenuItem menuItem) {
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 changeFragments(menuItem, fragment);
                 break;
             case R.id.nav_logout:
-                Toast.makeText(this, "Logging Out", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.logging_out, Toast.LENGTH_SHORT).show();
                 logOutUser();
                 break;
         }

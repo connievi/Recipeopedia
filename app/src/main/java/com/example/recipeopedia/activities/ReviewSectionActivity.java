@@ -35,8 +35,8 @@ public class ReviewSectionActivity extends AppCompatActivity {
     private Recipe recipe;
     private Button btnPostReview;
     private EditText etReview;
-    private RecyclerView rvReviews;
     private TextView tvNoReviews;
+    private RecyclerView rvReviews;
     private SwipeRefreshLayout swipeContainer;
     protected ReviewAdapter reviewAdapter;
 
@@ -92,7 +92,7 @@ public class ReviewSectionActivity extends AppCompatActivity {
                 String username = currentUser.getUsername();
                 String comment = etReview.getText().toString();
                 if (comment.isEmpty()) {
-                    Toast.makeText(v.getContext(), "Review cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), R.string.review_empty, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else {
@@ -101,7 +101,7 @@ public class ReviewSectionActivity extends AppCompatActivity {
                         reviewAdapter.clear();
                         queryReviews();
                         swipeContainer.setRefreshing(false);
-                        Toast.makeText(v.getContext(), "Review posted!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(), R.string.review_posted, Toast.LENGTH_SHORT).show();
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }

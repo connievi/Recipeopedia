@@ -36,7 +36,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private String firstName, lastName, email, phoneNumber, bio;
     private ImageView ivProfileImage;
     private File photoFile;
-    public String photoFileName = "profile_photo.jpg";
+    public String photoFileName = "profile_photo_" + System.currentTimeMillis() + ".jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

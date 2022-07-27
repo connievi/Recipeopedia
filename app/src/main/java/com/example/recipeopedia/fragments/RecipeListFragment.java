@@ -71,8 +71,8 @@ public class RecipeListFragment extends Fragment {
         * typed into the EditText search bar, I decided to switch to an onEditorActionListener that
         * will only query the API after users type in a search word and hit enter. Despite using the
         * filtering algorithm, querying through the TextWatcher still made too many queries and took
-        * too long to load recipes. The code for the TextWatcher is directly below, and the
-        * filtering algorithm is still in my code.
+        * too long to load recipes. The code for the TextWatcher is commented out directly below,
+        * and the filtering algorithm is still in my code.
         */
 
 /*        etSearch.addTextChangedListener(new TextWatcher() {

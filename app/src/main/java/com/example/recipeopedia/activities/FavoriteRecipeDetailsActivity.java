@@ -75,7 +75,6 @@ public class FavoriteRecipeDetailsActivity extends AppCompatActivity {
                 favoriteRecipe.saveInBackground();
                 Toast.makeText(FavoriteRecipeDetailsActivity.this, R.string.picture_uploaded, Toast.LENGTH_SHORT).show();
                 goMainActivity();
-                // TODO: navigate to FavoriteRecipeList ?
             }
         });
     }

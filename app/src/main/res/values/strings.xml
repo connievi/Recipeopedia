@@ -62,4 +62,5 @@
     <string name="logging_out">Logging Out</string>
     <string name="review_empty">Review cannot be empty</string>
     <string name="review_posted">Review posted!</string>
+    <string name="no_key_word_searched_search_for_a_recipe">No key word searched. Search for a recipe!</string>
 </resources>

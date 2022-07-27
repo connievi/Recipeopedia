@@ -8,11 +8,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.RequestParams;
@@ -37,8 +42,7 @@ public class RecipeListFragment extends Fragment {
     protected RecipeAdapter recipeAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_recipe_list, container, false);
     }
 
@@ -50,11 +54,28 @@ public class RecipeListFragment extends Fragment {
         rvRecipes.setAdapter(recipeAdapter);
         rvRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        queryRecipes("chicken"); // keyword is CHICKEN to not overload API with so many requests
-
         EditText etSearch = view.findViewById(R.id.etSearch);
-        // TODO: uncomment below for final product
-        /*etSearch.addTextChangedListener(new TextWatcher() {
+        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (actionId == EditorInfo.IME_NULL)) {
+                    queryRecipes(etSearch.getText().toString());
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        /* NOTE:
+        * Rather than using the TextWatcher API that constantly queries the API with each character
+        * typed into the EditText search bar, I decided to switch to an onEditorActionListener that
+        * will only query the API after users type in a search word and hit enter. Despite using the
+        * filtering algorithm, querying through the TextWatcher still made too many queries and took
+        * too long to load recipes. The code for the TextWatcher is directly below, and the
+        * filtering algorithm is still in my code.
+        */
+
+/*        etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -92,7 +113,7 @@ public class RecipeListFragment extends Fragment {
         params.put(RecipeKeys.KEY_TYPE, RecipeKeys.KEY_PUBLIC);
         params.put(RecipeKeys.KEY_APP_ID, RecipeKeys.APP_ID);
         params.put(RecipeKeys.KEY_APP_KEY, RecipeKeys.APP_KEY);
-        params.put(RecipeKeys.KEY_QUERY, "chicken"); // TODO: change "chicken" to searchWord for final product
+        params.put(RecipeKeys.KEY_QUERY, searchWord);
         client.get(RecipeKeys.KEY_URL_PREFIX, params, new JsonHttpResponseHandler()
         {
             @Override

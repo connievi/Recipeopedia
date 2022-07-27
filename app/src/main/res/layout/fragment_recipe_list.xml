@@ -17,11 +17,28 @@
             android:layout_height="wrap_content"
             android:hint="@string/search_for_a_recipe" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvNoRecipesSearched"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="0dp"
+            android:elevation="10dp"
+            android:gravity="center_horizontal"
+            android:text="@string/no_key_word_searched_search_for_a_recipe"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRecipes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp"
             android:background="@color/cardview_shadow_start_color"/>
+        </RelativeLayout>
     </LinearLayout>
 </FrameLayout>

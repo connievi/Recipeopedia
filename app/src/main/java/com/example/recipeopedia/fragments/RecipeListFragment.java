@@ -40,6 +40,7 @@ public class RecipeListFragment extends Fragment {
     public static final String TAG = "RecipeListFragment";
     private RecyclerView rvRecipes;
     protected RecipeAdapter recipeAdapter;
+    private TextView tvNoRecipesSearched;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class RecipeListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rvRecipes = view.findViewById(R.id.rvRecipes);
+        tvNoRecipesSearched = view.findViewById(R.id.tvNoRecipesSearched);
         recipeAdapter = new RecipeAdapter();
         rvRecipes.setAdapter(recipeAdapter);
         rvRecipes.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -124,6 +126,12 @@ public class RecipeListFragment extends Fragment {
                 {
                     JSONArray hits = jsonObject.getJSONArray("hits");
                     recipeAdapter.mRecipes.addAll(Recipe.fromJsonArray(hits));
+                    if (recipeAdapter.mRecipes.isEmpty()) {
+                        tvNoRecipesSearched.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        tvNoRecipesSearched.setVisibility(View.GONE);
+                    }
                     recipeAdapter.notifyDataSetChanged();
                 }
                 catch (JSONException e)

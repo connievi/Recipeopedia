@@ -20,11 +20,8 @@ import com.parse.ParseUser;
 
 public class LoginActivity extends AppCompatActivity {
     public static final String TAG = "LoginActivity";
-    private ImageView etIcon;
-    private EditText etUsername;
-    private EditText etPassword;
-    private Button btnLogin;
-    private Button btnCreate;
+    private EditText etUsername, etPassword;
+    private Button btnLogin, btnCreate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
             goMainActivity();
         }
 
-        etIcon = findViewById(R.id.etIcon);
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);

@@ -7,8 +7,8 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.136" />
-        <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/activity_favorite_recipe_details.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_favorite_recipe_details.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_leave_review.xml" value="0.3066123188405797" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.24728260869565216" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -18,13 +18,15 @@
         <entry key="app/src/main/res/layout/activity_review_section.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.32916666666666666" />
         <entry key="app/src/main/res/layout/activity_view_attempts.xml" value="0.2896331787109375" />
+        <entry key="app/src/main/res/layout/edit_profile.xml" value="0.3390625" />
         <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.16540020263424518" />
+        <entry key="app/src/main/res/layout/fragment_favorite_recipe_list.xml" value="0.16540020263424518" />
         <entry key="app/src/main/res/layout/fragment_favorite_recipes.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_recipe_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_saved_recipes.xml" value="0.16540020263424518" />
         <entry key="app/src/main/res/layout/item_attempt.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/item_favorite_recipe.xml" value="0.24048913043478262" />
+        <entry key="app/src/main/res/layout/item_favorite_recipe.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_recipe.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_review.xml" value="0.1" />
         <entry key="app/src/main/res/layout/recipe_item.xml" value="0.1" />
@@ -32,6 +34,7 @@
         <entry key="app/src/main/res/menu/example_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.31979166666666664" />
         <entry key="app/src/main/res/menu/search_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/xml/fileprovider.xml" value="0.16510416666666666" />
       </map>
     </option>
   </component>

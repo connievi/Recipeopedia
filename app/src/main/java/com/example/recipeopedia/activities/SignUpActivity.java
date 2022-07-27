@@ -20,11 +20,8 @@ import com.parse.SignUpCallback;
 
 public class SignUpActivity extends AppCompatActivity {
     public static final String TAG = "SignUpActivity";
-    private EditText etEmail;
-    private EditText etUsername;
-    private EditText etPassword;
+    private EditText etEmail, etUsername, etPassword;
     private Button btnCreate;
-    private ImageView etIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +31,6 @@ public class SignUpActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
-        etIcon = findViewById(R.id.etIcon);
         btnCreate = findViewById(R.id.btnCreate);
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,12 +45,6 @@ public class SignUpActivity extends AppCompatActivity {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                }
-
-                try {
-                    saveUser(email, username, password);
-                } catch (ParseException e) {
-                    e.printStackTrace();
                 }
             }
         });

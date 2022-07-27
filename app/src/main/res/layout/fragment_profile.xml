@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="user"
             type="com.example.recipeopedia.models.User" />
-
-        <variable
-            name="imageUrl"
-            type="String" />
     </data>
 
     <FrameLayout
@@ -31,11 +29,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="0dp"
                 android:contentDescription="@string/profile_picture"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars"
+                app:profilePicture="@{user.imageUrl}"/>
 
             <TextView
                 android:id="@+id/tvFullNameLayout"
-                android:layout_width="368dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivProfileImage"
                 android:layout_alignParentStart="true"
@@ -64,7 +63,7 @@
 
             <TextView
                 android:id="@+id/tvUsernameLayout"
-                android:layout_width="368dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvFullName"
                 android:layout_alignParentStart="true"
@@ -76,7 +75,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
             <TextView
-                android:id="@+id/tvUsername"
+                android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@+id/tvUsernameLayout"
@@ -93,9 +92,9 @@
 
             <TextView
                 android:id="@+id/tvEmailLayout"
-                android:layout_width="368dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvUsername"
+                android:layout_below="@+id/etUsername"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="20dp"
@@ -105,7 +104,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
             <TextView
-                android:id="@+id/tvEmail"
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@id/tvEmailLayout"
@@ -121,9 +120,9 @@
 
             <TextView
                 android:id="@+id/tvPhoneNumberLayout"
-                android:layout_width="368dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvEmail"
+                android:layout_below="@+id/etEmail"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="20dp"
@@ -133,8 +132,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
             <TextView
-                android:id="@+id/tvPhoneNumber"
-                android:layout_width="376dp"
+                android:id="@+id/etPhoneNumber"
+                android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@id/tvPhoneNumberLayout"
                 android:layout_alignParentStart="true"
@@ -149,9 +148,9 @@
 
             <TextView
                 android:id="@+id/tvBioLayout"
-                android:layout_width="368dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvPhoneNumber"
+                android:layout_below="@+id/etPhoneNumber"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="20dp"
@@ -161,14 +160,14 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
             <TextView
-                android:id="@+id/tvBio"
+                android:id="@+id/etBio"
                 android:layout_width="wrap_content"
-                android:layout_height="68dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/tvBioLayout"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginEnd="20dp"
                 android:layout_weight="1"
                 android:ems="10"
@@ -179,13 +178,12 @@
                 android:id="@+id/btnEditProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_below="@+id/tvBio"
+                android:layout_below="@+id/etBio"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="130dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="130dp"
-                android:layout_marginBottom="-428dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/edit"
                 android:ems="10"

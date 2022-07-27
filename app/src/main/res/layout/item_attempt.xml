@@ -20,8 +20,8 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tvAttempt"
-                android:layout_width="379dp"
+                android:id="@+id/tvCreatedAt"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -30,25 +30,22 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="9dp"
                 android:layout_marginBottom="0dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                tools:text="Attempt"
-                android:text="@{attempt.attempt}"
-                 />
+                tools:text="@string/time_stamp" />
 
             <TextView
-                android:id="@+id/tvCreatedAt"
+                android:id="@+id/tvAttempt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvAttempt"
+                android:layout_below="@+id/tvCreatedAt"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="9dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="9dp"
                 android:layout_marginBottom="5dp"
-                android:gravity="right"
-                tools:text="@string/time_stamp"
-                />
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                tools:text="Attempt"
+                android:text="@{attempt.attempt}" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

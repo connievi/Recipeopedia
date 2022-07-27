@@ -11,14 +11,13 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.recipeopedia.R;
+import com.example.recipeopedia.fragments.FavoriteRecipeList;
 import com.example.recipeopedia.fragments.ProfileFragment;
 import com.example.recipeopedia.fragments.RecipeListFragment;
-import com.example.recipeopedia.fragments.FavoriteRecipesFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.parse.ParseUser;
 
@@ -53,14 +52,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        selectDrawerItem(menuItem);
-                        return true;
-                    }
-                });
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                selectDrawerItem(menuItem);
+                return true;
+            }
+        });
     }
 
     private void selectDrawerItem(MenuItem menuItem) {
@@ -75,11 +73,11 @@ public class MainActivity extends AppCompatActivity {
                 changeFragments(menuItem, fragment);
                 break;
             case R.id.nav_saved:
-                fragment = new FavoriteRecipesFragment();
+                fragment = new FavoriteRecipeList();
                 changeFragments(menuItem, fragment);
                 break;
             case R.id.nav_logout:
-                Toast.makeText(this, "Logging Out", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.logging_out, Toast.LENGTH_SHORT).show();
                 logOutUser();
                 break;
         }

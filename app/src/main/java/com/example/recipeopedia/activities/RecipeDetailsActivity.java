@@ -43,7 +43,6 @@ public class RecipeDetailsActivity extends AppCompatActivity {
                 try {
                     saveRecipe(recipe.getRecipeName(),
                             ParseUser.getCurrentUser(),
-                            recipe.getImage(),
                             recipe.getIngredients(),
                             recipe.getInstructions(),
                             recipe.getHealthLabels());
@@ -65,9 +64,10 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         });
     }
 
-    private void saveRecipe(String recipeName, ParseUser currentUser, String imageUrl,
-                                  String ingredients, String instructions, String healthLabels) throws ParseException {
+    private void saveRecipe(String recipeName, ParseUser currentUser, String ingredients,
+                            String instructions, String healthLabels) throws ParseException {
         ParseQuery<FavoriteRecipe> query = ParseQuery.getQuery(FavoriteRecipe.class);
+        query.whereEqualTo(FavoriteRecipe.KEY_USER, currentUser);
         query.whereEqualTo(FavoriteRecipe.KEY_RECIPE_NAME, recipeName);
         if (query.count() > 0) {
             Toast.makeText(this, "Recipe already saved!", Toast.LENGTH_SHORT).show();
@@ -75,7 +75,6 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         else {
             FavoriteRecipe favoriteRecipe = new FavoriteRecipe();
             favoriteRecipe.setRecipeName(recipeName);
-            favoriteRecipe.setImage(imageUrl);
             favoriteRecipe.setUser(currentUser);
             favoriteRecipe.setIngredients(ingredients);
             favoriteRecipe.setInstructions(instructions);

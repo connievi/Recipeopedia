@@ -26,7 +26,6 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
     public static final String TAG = "RecipeAdapter";
     public List<Recipe> mRecipes;
@@ -97,8 +96,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             {
                 Recipe recipe = mRecipes.get(position);
                 try {
-                    saveRecipe(recipe.getRecipeName(), ParseUser.getCurrentUser(), recipe.getImage(),
-                            recipe.getIngredients(), recipe.getInstructions(), recipe.getHealthLabels());
+                    saveRecipe(recipe.getRecipeName(),
+                            ParseUser.getCurrentUser(),
+                            recipe.getImage(),
+                            recipe.getIngredients(),
+                            recipe.getInstructions(),
+                            recipe.getHealthLabels());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -109,6 +112,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         private void saveRecipe(String recipeName, ParseUser currentUser, String imageUrl,
                                String ingredients, String instructions, String healthLabels) throws ParseException {
             ParseQuery<FavoriteRecipe> query = ParseQuery.getQuery(FavoriteRecipe.class);
+            query.whereEqualTo(FavoriteRecipe.KEY_USER, currentUser);
             query.whereEqualTo(FavoriteRecipe.KEY_RECIPE_NAME, recipeName);
             if (query.count() > 0) {
                 Toast.makeText(itemView.getContext(), "Recipe already saved!", Toast.LENGTH_SHORT).show();

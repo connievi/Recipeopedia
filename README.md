@@ -30,24 +30,19 @@ This Android mobile app will serve as a platform for users to search up recipes 
 * User can log in
 * User can sign up to create a new account
 * User can log out
-* User can search keywords or choose categories (breakfast, lunch, dinner, etc.) to navigate to a screen of recipes
+* User can search keywords to generate recipes
 * User can view/scroll through generated recipes
 * User can tap on a recipe and view detailed recipe information, users' reviews
-* User can leave reviews on a recipe (comment + image) to share their experience
-* User can double tap to like other users' reviews
+* User can leave reviews on a recipe to share their experience
 * User can long press to save recipes to favorite
 * User can save favorite recipes
 * Incorporate at least one external library to add visual polish
-* Incorporate animated loading symbol while waiting for recipes to load
 
 **Optional Nice-to-have Stories**
 
-* Filter recipes by total ingredient cost and other factors
-* User can receive suggested grocery information for guidance where to buy ingredients
-* User can view generated “Recipes for You” and a daily suggested recipe
 * User can add/change a profile image
 * User can create/edit a description for themselves
-* User can follow/unfollow other users
+* User can long press to save recipes to favorite
 
 ### 2. Screen Archetypes
 
@@ -56,47 +51,50 @@ This Android mobile app will serve as a platform for users to search up recipes 
    * User can sign up to create a new account
 * New account screen
     * User can create a new account
-    * User can create a description for themselves (OPTIONAL)
-    * User can add a profile image (OPTIONAL)
+* Edit Profile screen
+    * User can update their first name, last name, email address, phone number, and a bio
+    * User can upload a profile image
 * Profile screen
-   * User can edit a description for themselves (OPTIONAL)
-   * User can add/change profile image (OPTIONAL)
-   * User can log out
-   * User can delete their account (OPTIONAL)
+   * User can view profile information
+   * User can edit a description for themselves
 * Recipe List Search screen
     * User can search keywords to view list of recipes
-    * Filter recipes by total ingredient cost and other factors (OPTIONAL)
     * User can view/scroll through generated recipes
-    * User can tap on a recipe and view detailed recipe information and users' reviews    
+    * User can tap on a recipe and view detailed recipe information (instructions, ingredients, and health labels) and users' reviews   
+    * User can long press on a recipe to save it 
 * Recipe Details screen
     * User can leave reviews on a recipe to share their experience
-    * User can double tap to like other users' reviews
     * User can save favorite recipes
-    * User can receive suggested grocery information for guidance where to buy ingredients (OPTIONAL)
-* Recipes for You Screen (OPTIONAL)
-    * User can view generated “Recipes for You” and a daily suggested recipe (OPTIONAL)
-* Viewing other users' profiles screen (OPTIONAL)
-    * User can follow/unfollow other users (OPTIONAL)
+* Saved Recipes screen
+    * Users can view/scroll through their saved recipes
+* Saved Recipe Details screen
+    * User can tap on a recipe and view detailed recipe information (instructions, ingredients, and health labels) 
+    * User can upload photo of their attempt at the recipe
+* Your Attempt screen
+    * User can record their experiences with attempting the saved recipe
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
-
 * Profile tab
 * Recipe List Search tab
 * Saved Recipes tab
 
 **Flow Navigation** (Screen to Screen)
-* Login page 
-  * Navigate to search/category screen
-* Create account page 
-  * Navigate to profile screen
+* Login screen 
+  * Navigate to Recipe List Search screen
+* New Account screen 
+  * Navigate to Edit Profile Screen
+* Edit Profile Screen
+  * Navigate to Profile screen
 * Recipe List Search screen 
   * Navigate to specific recipe information screen
 * Recipe Information screen
   * Navigate to comment section
 * Saved Recipes screen
-  * Navigate to basic recipe information screen
+  * Navigate to Saved Recipe Details screen
+* Saved Recipe Details screen
+  * Navigate to Your Attempt screen
 
 
 ## Wireframes

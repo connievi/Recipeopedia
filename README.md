@@ -1,13 +1,11 @@
-Original App Design Project - README
+Recipeopedia - README
 ===
-
-# Recipeopedia
 
 ## Table of Contents
 1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
-2. [Schema](#Schema)
+2. [Product Spec](#Product-Spec)
+3. [Wireframes](#Wireframes)
+4. [Schema](#Schema)
 
 ## Overview
 ### Description
@@ -19,7 +17,7 @@ This Android mobile app will serve as a platform for users to search up recipes 
 - **Story:** This app is very compelling towards users as they can easily find new recipes based on their personal preferences. 
 - **Market:** The market for this app is typically teenagers or adults who want to learn/explore new recipes. 
 - **Habit:** Users will use this app when they want to discover new recipes. They can consume and create content on this app.
-- **Scope:** I believe the scope is realistic for this app and allows me to incorporate many different useful and relevant features.
+- **Scope:** The scope is realistic for this app and allows me to incorporate many different useful and relevant features.
 
 ## Product Spec
 
@@ -157,6 +155,3 @@ Review
     * (Read/GET) Query recipe information
 * Favorite Recipe screen
   * (READ/GET) Query favorite recipes from database
-
-
-API: https://developer.edamam.com/edamam-docs-recipe-api
